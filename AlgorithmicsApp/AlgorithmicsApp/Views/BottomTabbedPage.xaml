@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:AlgorithmicsApp.Views"
+             x:Class="AlgorithmicsApp.Views.BottomTabbedPage"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom">
+    <local:CoursesPage Title="Обучение">
+        <local:CoursesPage.IconImageSource>
+            <FontImageSource FontFamily="IconFont" Glyph="&#xeada;"/>
+        </local:CoursesPage.IconImageSource>
+    </local:CoursesPage>
+    <local:ProfilePage Title="Профиль">
+        <local:ProfilePage.IconImageSource>
+            <FontImageSource FontFamily="IconFont" Glyph="&#xec8e;"/>
+        </local:ProfilePage.IconImageSource>
+    </local:ProfilePage>
+</TabbedPage>
