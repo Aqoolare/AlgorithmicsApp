@@ -11,7 +11,7 @@ namespace AlgorithmicsApp
         {
             InitializeComponent();
 
-            MainPage = new BottomTabbedPage();
+            MainPage = new NavigationPage(new BottomTabbedPage());
         }
 
         protected override void OnStart()

@@ -4,10 +4,9 @@ using System.Text;
 
 namespace AlgorithmicsApp.Models
 {
-    public class Answer
+    public class Theory
     {
         public string Content { get; set; }
-        public bool IsTrue { get; set; }
-        public int QuestionId { get; set; }
+        public int CourseId { get; set; }
     }
 }

@@ -1,31 +1,42 @@
 ﻿using AlgorithmicsApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using AlgorithmicsApp.Services;
+using MvvmHelpers;
+using System.Threading.Tasks;
+using MvvmHelpers.Commands;
+using AlgorithmicsApp.Views;
+using Xamarin.Forms;
 
 namespace AlgorithmicsApp.ViewModels
 {
-    public class CourseViewModel
+    public class CourseViewModel : BaseViewModel
     {
+        public ObservableRangeCollection<Course> CoursesList { get; set; }
+        public AsyncCommand LoadCommand { get; }
+        public AsyncCommand<Course> TappedCommand { get; }
+
+
         public CourseViewModel()
         {
-            CoursesList = new List<Course>
-            {
-                new Course
-                {
-                    Name = "Курс по сосанию членов",
-                },
-                new Course
-                {
-                    Name = "Курс по депрессии",
-                },
-                new Course
-                {
-                    Name = "Курс по трамваям без кондукторов",
-                }
-            };
+            CoursesList = new ObservableRangeCollection<Course>();
+
+            LoadCommand = new AsyncCommand(LoadCourses);
+            TappedCommand = new AsyncCommand<Course>(Tapped);
+
+            Task.Run(async () => await LoadCourses());
         }
 
-        public List<Course> CoursesList { get; set; }
+        async Task LoadCourses()
+        {
+            IsBusy = true;
+            CoursesList.Clear();
+            var courses = await CoursesDbService.GetCourses();
+            CoursesList.AddRange(courses);
+            IsBusy = false;
+        }
+
+        async Task Tapped(Course course)
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new GcdTabbedPage());
+        }
     }
 }

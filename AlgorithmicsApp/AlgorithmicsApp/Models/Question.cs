@@ -7,6 +7,7 @@ namespace AlgorithmicsApp.Models
     public class Question
     {
         public string Formulation { get; set; }
-        public List<Answer> Answers { get; set; } 
+        public string Id { get; set; }
+        public string CourseId { get; set; }
     }
 }

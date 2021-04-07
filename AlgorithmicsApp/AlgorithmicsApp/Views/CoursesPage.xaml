@@ -1,12 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AlgorithmicsApp.Views.CoursesPage">
-    <ListView ItemsSource="{Binding CoursesList}">
+             xmlns:model="clr-namespace:AlgorithmicsApp.Models"
+             x:Class="AlgorithmicsApp.Views.CoursesPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ListView
+        BackgroundColor="Transparent"
+        CachingStrategy="RecycleElement"
+        HasUnevenRows="True"
+        IsPullToRefreshEnabled="True"
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding CoursesList}"
+        RefreshCommand="{Binding LoadCommand}"
+        RefreshControlColor="Red"
+        SelectionMode="None"
+        SeparatorVisibility="None">
+        <ListView.Behaviors>
+            <xct:EventToCommandBehavior
+                EventName="ItemTapped"
+                Command="{Binding TappedCommand}"                
+                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+        </ListView.Behaviors>
         <ListView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="model:Course">
                 <ViewCell>
-                    <Label Text="{Binding Name}"/>
+                    <Grid Padding="10">
+                        <Frame CornerRadius="10" HasShadow="True">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Image}" WidthRequest="66"/>
+                                <StackLayout VerticalOptions="Center">
+                                    <Label
+                                        FontSize="Large"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="Center" />
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
