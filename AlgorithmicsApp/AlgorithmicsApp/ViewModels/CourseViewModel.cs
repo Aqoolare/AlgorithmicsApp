@@ -28,6 +28,7 @@ namespace AlgorithmicsApp.ViewModels
         async Task LoadCourses()
         {
             IsBusy = true;
+            await Task.Delay(500);
             CoursesList.Clear();
             var courses = await CoursesDbService.GetCourses();
             CoursesList.AddRange(courses);
@@ -36,7 +37,8 @@ namespace AlgorithmicsApp.ViewModels
 
         async Task Tapped(Course course)
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new GcdTabbedPage());
+            var route = $"{nameof(CourseContentPage)}";
+            await Shell.Current.GoToAsync(route);
         }
     }
 }

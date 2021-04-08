@@ -101,13 +101,16 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
+    <AndroidResource Include="Resources\drawable\dildo.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AlgorithmicsApp\AlgorithmicsApp.csproj">
       <Project>{0386F537-E937-4CFA-991D-32A9B8720D6F}</Project>
       <Name>AlgorithmicsApp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\penis.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

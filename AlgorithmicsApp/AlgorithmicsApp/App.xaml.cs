@@ -11,7 +11,9 @@ namespace AlgorithmicsApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new BottomTabbedPage());
+            MainPage = new AppShell();
+
+            Routing.RegisterRoute(nameof(CourseContentPage), typeof(CourseContentPage));
         }
 
         protected override void OnStart()
