@@ -5,7 +5,6 @@ using Xamarin.Forms.Xaml;
 
 namespace AlgorithmicsApp.Views
 {
-    [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CoursesPage : ContentPage
     {

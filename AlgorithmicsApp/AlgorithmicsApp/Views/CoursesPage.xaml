@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:AlgorithmicsApp.Models"
              x:Class="AlgorithmicsApp.Views.CoursesPage"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             Title="Обучение">
     
     
     <ContentPage.Resources>
@@ -12,41 +14,39 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ListView
-        BackgroundColor="Transparent"
-        CachingStrategy="RecycleElement"
-        HasUnevenRows="True"
-        IsPullToRefreshEnabled="True"
-        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-        ItemsSource="{Binding CoursesList}"
-        RefreshCommand="{Binding LoadCommand}"
-        RefreshControlColor="Red"
-        SelectionMode="None"
-        SeparatorVisibility="None">
-        <ListView.Behaviors>
-            <xct:EventToCommandBehavior
-                EventName="ItemTapped"
-                Command="{Binding TappedCommand}"                
-                EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
-        </ListView.Behaviors>
-        <ListView.ItemTemplate>
-            <DataTemplate x:DataType="model:Course">
-                <ViewCell>
-                    <Grid Padding="10">
-                        <Frame CornerRadius="10" HasShadow="True">
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding Image}" WidthRequest="66"/>
-                                <StackLayout VerticalOptions="Center">
-                                    <Label
-                                        FontSize="Large"
-                                        Text="{Binding Name}"
-                                        VerticalOptions="Center" />
+    <RefreshView x:DataType="local:CourseViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <ListView
+            BackgroundColor="Transparent"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            ItemsSource="{Binding CoursesList}"
+            SelectionMode="None"
+            SeparatorVisibility="None">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding TappedCommand}"                
+                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Course">
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame CornerRadius="10" HasShadow="True">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" WidthRequest="66"/>
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label
+                                            FontSize="Large"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </Frame>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
 </ContentPage>

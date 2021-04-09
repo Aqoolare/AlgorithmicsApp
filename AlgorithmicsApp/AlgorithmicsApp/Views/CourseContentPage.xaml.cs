@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using AlgorithmicsApp.ViewModels;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace AlgorithmicsApp.Views
@@ -12,33 +8,10 @@ namespace AlgorithmicsApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseContentPage : ContentPage
     {
-        public ObservableCollection<string> Items { get; set; }
-
         public CourseContentPage()
         {
             InitializeComponent();
-
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
-
-            MyListView.ItemsSource = Items;
-        }
-
-        async void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (e.Item == null)
-                return;
-
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            BindingContext = new CourseContentViewModel();
         }
     }
 }

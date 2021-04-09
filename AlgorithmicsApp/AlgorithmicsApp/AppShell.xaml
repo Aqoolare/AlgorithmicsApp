@@ -3,8 +3,7 @@
     x:Class="AlgorithmicsApp.AppShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:AlgorithmicsApp.Views"
-    Title="AlgorithmicsApp">
+    xmlns:local="clr-namespace:AlgorithmicsApp.Views">
 
 
     <TabBar>
@@ -12,7 +11,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:CoursesPage}" />
         </Tab>
         <Tab Title="Профиль" Icon="dildo.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}" />
+            <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" />
         </Tab>
     </TabBar>
 

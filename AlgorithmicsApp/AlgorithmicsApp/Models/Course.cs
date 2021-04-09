@@ -8,7 +8,7 @@ namespace AlgorithmicsApp.Models
         public string Name { get; set; }
         
         public string Image { get; set; }
-        [PrimaryKey, AutoIncrement]
+        [PrimaryKey]
         public int Id { get; set; }
     }
 }

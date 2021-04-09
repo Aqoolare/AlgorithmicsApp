@@ -22,22 +22,24 @@ namespace AlgorithmicsApp.ViewModels
             LoadCommand = new AsyncCommand(LoadCourses);
             TappedCommand = new AsyncCommand<Course>(Tapped);
 
-            Task.Run(async () => await LoadCourses());
+            LoadCommand.ExecuteAsync();
         }
 
         async Task LoadCourses()
         {
             IsBusy = true;
-            await Task.Delay(500);
-            CoursesList.Clear();
             var courses = await CoursesDbService.GetCourses();
+            CoursesList.Clear();
             CoursesList.AddRange(courses);
             IsBusy = false;
         }
 
         async Task Tapped(Course course)
         {
-            var route = $"{nameof(CourseContentPage)}";
+            if (course == null)
+                return;
+
+            var route = $"{nameof(CourseContentPage)}?CourseId={course.Id}&CourseName={course.Name}";
             await Shell.Current.GoToAsync(route);
         }
     }

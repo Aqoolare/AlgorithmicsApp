@@ -1,32 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AlgorithmicsApp.Views.CourseContentPage">
-  <ListView x:Name="MyListView"
-            ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <TextCell Text="{Binding .}" />
-        </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-  </ListView>
+             xmlns:model="clr-namespace:AlgorithmicsApp.Models"
+             x:Class="AlgorithmicsApp.Views.CourseContentPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             Title="{Binding CourseName}">
+
+
+    <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+        <ListView
+            BackgroundColor="Transparent"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            ItemsSource="{Binding TheoryList}"
+            SelectionMode="None"
+            SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Theory">
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Frame CornerRadius="10" HasShadow="True">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Order}" WidthRequest="66"/>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
 </ContentPage>
