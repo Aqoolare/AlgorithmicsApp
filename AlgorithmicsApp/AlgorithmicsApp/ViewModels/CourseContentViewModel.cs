@@ -4,8 +4,6 @@ using AlgorithmicsApp.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -22,6 +20,7 @@ namespace AlgorithmicsApp.ViewModels
         public ObservableRangeCollection<Question> QuestionsList { get; set; }
         public AsyncCommand LoadTheoryCommand { get; }
         public AsyncCommand LoadQuestionsCommand { get; }
+        public AsyncCommand<Theory> TheoryTappedCommand { get; }
 
 
         public CourseContentViewModel()
@@ -31,8 +30,16 @@ namespace AlgorithmicsApp.ViewModels
 
             LoadTheoryCommand = new AsyncCommand(LoadTheory);
             LoadQuestionsCommand = new AsyncCommand(LoadQuestions);
+            TheoryTappedCommand = new AsyncCommand<Theory>(TheoryTapped);
+        }
 
-            LoadTheoryCommand.ExecuteAsync();
+        async Task TheoryTapped(Theory theory)
+        {
+            if (theory == null)
+                return;
+
+            var route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
+            await Shell.Current.GoToAsync(route);
         }
 
         private Task LoadQuestions()

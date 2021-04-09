@@ -7,8 +7,14 @@
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
              Title="{Binding CourseName}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
-    <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+
+    <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <ListView
             BackgroundColor="Transparent"
             CachingStrategy="RecycleElement"
@@ -16,14 +22,18 @@
             ItemsSource="{Binding TheoryList}"
             SelectionMode="None"
             SeparatorVisibility="None">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding TheoryTappedCommand}"                
+                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+            </ListView.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Theory">
                     <ViewCell>
                         <Grid Padding="10">
                             <Frame CornerRadius="10" HasShadow="True">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Order}" WidthRequest="66"/>
-                                </StackLayout>
+                                <Label Text="{Binding Title}"/>
                             </Frame>
                         </Grid>
                     </ViewCell>

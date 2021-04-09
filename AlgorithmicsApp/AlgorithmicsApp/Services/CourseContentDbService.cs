@@ -21,28 +21,51 @@ namespace AlgorithmicsApp.Services
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
             db = new SQLiteAsyncConnection(databasePath);
-            await db.CreateTableAsync<Theory>();
-            await db.CreateTableAsync<Question>();
+            //await db.CreateTableAsync<Theory>();
+            //await db.CreateTableAsync<Question>();
+            //await db.CreateTableAsync<TheoryContent>();
 
-            var t1 = new Theory
-            {
-                Content = "Определение 1. Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
-                "условиям: 1) d | a и d | b; 2) если c | a и c | b, то c | d.",
-                CourseId = 0,
-                Order = 1
-            };
-            var t2 = new Theory
-            {
-                Content = "Наибольший общий делитель двух чисел a и b, a ≥ b > 0, можно найти с помощью алгоритма Евклида, который основан на том, что если " +
-                "a = bq + r, 0 ≤ r < b, то НОД(a, b) = НОД(r, b).",
-                CourseId = 0,
-                Order = 2
-            };
+            //var t0 = new Theory
+            //{
+            //    Id = 0,
+            //    CourseId = 0,
+            //    Order = 1,
+            //    Title = "Определение НОД"
+            //};
 
-            await db.DeleteAllAsync<Theory>();
+            //var tc00 = new TheoryContent
+            //{
+            //    Id = 0,
+            //    TheoryId = 0,
+            //    Content = "Определение 1. Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
+            //    "условиям: 1) d | a и d | b; 2) если c | a и c | b, то c | d.",
+            //    ContentType = "Текст"
+            //};
 
-            await db.InsertAsync(t1);
-            await db.InsertAsync(t2);
+            //var t1 = new Theory
+            //{
+            //    Id = 1,
+            //    CourseId = 0,
+            //    Order = 2,
+            //    Title = "Как найти НОД?"
+            //};
+
+            //var tc10 = new TheoryContent
+            //{
+            //    Id = 1,
+            //    TheoryId = 1,
+            //    Content = "Наибольший общий делитель двух чисел a и b, a ≥ b > 0, можно найти с помощью алгоритма Евклида, который основан на том, что если " +
+            //    "a = bq + r, 0 ≤ r < b, то НОД(a, b) = НОД(r, b).",
+            //    ContentType = "Текст"
+            //};
+
+            //await db.DeleteAllAsync<Theory>();
+            //await db.DeleteAllAsync<TheoryContent>();
+
+            //await db.InsertAsync(t0);
+            //await db.InsertAsync(t1);
+            //await db.InsertAsync(tc00);
+            //await db.InsertAsync(tc10);
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)
@@ -50,8 +73,15 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var theory = await db.Table<Theory>().Where(t => t.CourseId == courseId).ToListAsync();
-            //var theory = await db.QueryAsync<Theory>($"select * from Theory where CourseId={courseId}");
             return theory;
+        }
+
+        public static async Task<IEnumerable<TheoryContent>> GetTheoryContent(int theoryId)
+        {
+            await Init();
+
+            var theoryContent = await db.Table<TheoryContent>().Where(tc => tc.TheoryId == theoryId).ToListAsync();
+            return theoryContent;
         }
 
         public static async Task<IEnumerable<Question>> GetQuestions(int courseId)

@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <RefreshView x:DataType="local:CourseViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+    <RefreshView x:DataType="local:CourseViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <ListView
             BackgroundColor="Transparent"
             CachingStrategy="RecycleElement"

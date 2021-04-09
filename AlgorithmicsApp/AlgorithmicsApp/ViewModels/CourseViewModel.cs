@@ -21,8 +21,6 @@ namespace AlgorithmicsApp.ViewModels
 
             LoadCommand = new AsyncCommand(LoadCourses);
             TappedCommand = new AsyncCommand<Course>(Tapped);
-
-            LoadCommand.ExecuteAsync();
         }
 
         async Task LoadCourses()
