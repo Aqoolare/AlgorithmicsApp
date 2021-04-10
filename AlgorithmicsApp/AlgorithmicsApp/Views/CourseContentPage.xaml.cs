@@ -8,10 +8,17 @@ namespace AlgorithmicsApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseContentPage : ContentPage
     {
+        CourseContentViewModel _viewModel;
         public CourseContentPage()
         {
             InitializeComponent();
-            BindingContext = new CourseContentViewModel();
+            BindingContext = _viewModel = new CourseContentViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
         }
     }
 }

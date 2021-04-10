@@ -23,6 +23,11 @@ namespace AlgorithmicsApp.ViewModels
             TappedCommand = new AsyncCommand<Course>(Tapped);
         }
 
+        public void OnAppearing()
+        {
+            IsBusy = true;
+        }
+
         async Task LoadCourses()
         {
             IsBusy = true;

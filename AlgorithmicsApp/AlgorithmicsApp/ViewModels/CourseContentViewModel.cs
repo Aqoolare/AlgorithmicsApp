@@ -55,5 +55,10 @@ namespace AlgorithmicsApp.ViewModels
             TheoryList.AddRange(theory);
             IsBusy = false;
         }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
+        }
     }
 }

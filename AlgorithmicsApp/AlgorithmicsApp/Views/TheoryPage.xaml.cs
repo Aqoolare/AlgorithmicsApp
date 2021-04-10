@@ -13,10 +13,18 @@ namespace AlgorithmicsApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TheoryPage : ContentPage
     {
+        TheoryViewModel _viewModel;
+
         public TheoryPage()
         {
             InitializeComponent();
-            BindingContext = new TheoryViewModel();
+            BindingContext = _viewModel = new TheoryViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
         }
     }
 }
