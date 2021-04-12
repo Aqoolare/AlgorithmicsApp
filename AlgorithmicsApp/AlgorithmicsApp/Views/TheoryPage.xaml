@@ -5,6 +5,7 @@
              x:Class="AlgorithmicsApp.Views.TheoryPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
              Title="{Binding TheoryTitle}">
 
 
@@ -19,7 +20,16 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:TheoryContent">
                     <ViewCell>
-                        <Label Text="{Binding Content}"/>
+                        <StackLayout VerticalOptions="Center">
+                            <Label
+                                FontSize="Large"
+                                Text="{Binding Text}" 
+                                TextType="Html"
+                                LineBreakMode="WordWrap"
+                                HorizontalTextAlignment="Start"
+                            />
+                            <math:MathView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" LaTeX="{Binding Formula}"/>
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

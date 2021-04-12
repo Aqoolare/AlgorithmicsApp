@@ -7,10 +7,20 @@
 
 
     <TabBar>
-        <Tab Title="Обучение" Icon="penis.png">
+        <Tab Title="Обучение">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeada;"/>
+            </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:CoursesPage}" />
         </Tab>
-        <Tab Title="Профиль" Icon="dildo.png">
+        <Tab Title="Профиль">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xec8e;"/>
+            </Tab.Icon>
             <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" />
         </Tab>
     </TabBar>

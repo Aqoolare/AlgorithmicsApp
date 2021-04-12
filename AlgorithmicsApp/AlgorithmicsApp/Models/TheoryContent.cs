@@ -7,9 +7,10 @@ namespace AlgorithmicsApp.Models
 {
     public class TheoryContent
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int TheoryId { get; set; }
-        public string Content { get; set; }
-        public string ContentType { get; set; }
+        public string Text { get; set; }
+        public string Formula { get; set; }
     }
 }
