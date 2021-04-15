@@ -15,28 +15,34 @@ namespace AlgorithmicsApp.ViewModels
         public string TheoryTitle { get; set; }
 
         public ObservableRangeCollection<TheoryContent> TheoryContentList { get; set; }
-        public AsyncCommand LoadTheoryContentCommand { get; }
+        public AsyncCommand<TheoryContent> LinkTappedCommand { get; }
 
 
         public TheoryViewModel()
         {
             TheoryContentList = new ObservableRangeCollection<TheoryContent>();
-
-            LoadTheoryContentCommand = new AsyncCommand(LoadTheoryContent);
+            LinkTappedCommand = new AsyncCommand<TheoryContent>(LinkTapped);
+            LoadTheoryContent();
         }
 
-        async Task LoadTheoryContent()
+        void LoadTheoryContent()
         {
             IsBusy = true;
-            var theoryContent = await CourseContentDbService.GetTheoryContent(TheoryId);
+            var theoryContent = TheoryContentDbService.GetTheoryContent(TheoryId);
             TheoryContentList.Clear();
             TheoryContentList.AddRange(theoryContent);
             IsBusy = false;
         }
 
-        public void OnAppearing()
+        async Task LinkTapped(TheoryContent theoryContent)
         {
+            if (theoryContent == null)
+                return;
+
+            var route = $"{theoryContent.LinkPage}";
             IsBusy = true;
+            await Shell.Current.GoToAsync(route);
+            IsBusy = false;
         }
     }
 }

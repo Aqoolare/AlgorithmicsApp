@@ -9,30 +9,9 @@
              Title="{Binding TheoryTitle}">
 
 
-    <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadTheoryContentCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <ListView
-            BackgroundColor="Transparent"
-            CachingStrategy="RecycleElement"
-            HasUnevenRows="True"
-            ItemsSource="{Binding TheoryContentList}"
-            SelectionMode="None"
-            SeparatorVisibility="None">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:TheoryContent">
-                    <ViewCell>
-                        <StackLayout VerticalOptions="Center">
-                            <Label
-                                FontSize="Large"
-                                Text="{Binding Text}" 
-                                TextType="Html"
-                                LineBreakMode="WordWrap"
-                                HorizontalTextAlignment="Start"
-                            />
-                            <math:MathView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" LaTeX="{Binding Formula}"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </RefreshView>
-</ContentPage>
+    <ScrollView>
+        <StackLayout x:Name="theoryStack"/>
+    </ScrollView>
+    
+</ContentPage> 
+    

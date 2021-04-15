@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmicsApp.Android", "AlgorithmicsApp\AlgorithmicsApp.Android\AlgorithmicsApp.Android.csproj", "{F848D425-87BD-47D5-9F6E-CB7613E06C8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmicsApp", "AlgorithmicsApp\AlgorithmicsApp\AlgorithmicsApp.csproj", "{39F8F996-3AD7-46C4-AE0C-0FA5E0F91EF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmicsApp", "AlgorithmicsApp\AlgorithmicsApp\AlgorithmicsApp.csproj", "{39F8F996-3AD7-46C4-AE0C-0FA5E0F91EF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

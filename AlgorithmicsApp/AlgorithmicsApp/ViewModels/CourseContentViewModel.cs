@@ -39,7 +39,9 @@ namespace AlgorithmicsApp.ViewModels
                 return;
 
             var route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
+            IsBusy = true;
             await Shell.Current.GoToAsync(route);
+            IsBusy = false;
         }
 
         private Task LoadQuestions()

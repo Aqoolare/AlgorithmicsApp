@@ -7,10 +7,9 @@ namespace AlgorithmicsApp.Models
 {
     public class TheoryContent
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
         public int TheoryId { get; set; }
+        public bool Type { get; set; }
         public string Text { get; set; }
-        public string Formula { get; set; }
+        public string LinkPage { get; set; }
     }
 }

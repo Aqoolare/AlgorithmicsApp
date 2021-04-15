@@ -14,31 +14,34 @@
     </ContentPage.Resources>
 
 
-    <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <ListView
-            BackgroundColor="Transparent"
-            CachingStrategy="RecycleElement"
-            HasUnevenRows="True"
-            ItemsSource="{Binding TheoryList}"
-            SelectionMode="None"
-            SeparatorVisibility="None">
-            <ListView.Behaviors>
-                <xct:EventToCommandBehavior
-                    EventName="ItemTapped"
-                    Command="{Binding TheoryTappedCommand}"                
-                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
-            </ListView.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Theory">
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Frame CornerRadius="10" HasShadow="True">
-                                <Label Text="{Binding Title}"/>
-                            </Frame>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </RefreshView>
+    <Grid>
+        <ActivityIndicator VerticalOptions="Center" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}"/>
+        <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <ListView
+                BackgroundColor="Transparent"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemsSource="{Binding TheoryList}"
+                SelectionMode="None"
+                SeparatorVisibility="None">
+                <ListView.Behaviors>
+                    <xct:EventToCommandBehavior
+                        EventName="ItemTapped"
+                        Command="{Binding TheoryTappedCommand}"                
+                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Theory">
+                        <ViewCell>
+                            <Grid Padding="10">
+                                <Frame CornerRadius="10" HasShadow="True">
+                                    <Label Text="{Binding Title}"/>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RefreshView>
+    </Grid>
 </ContentPage>
