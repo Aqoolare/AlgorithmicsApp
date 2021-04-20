@@ -6,12 +6,43 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
              xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
-             Title="{Binding TheoryTitle}">
+             Title="{Binding TheoryTitle}"
+             x:Name="TheoryPage1">
 
 
-    <ScrollView>
-        <StackLayout x:Name="theoryStack"/>
-    </ScrollView>
-    
+    <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <ListView
+            BackgroundColor="Transparent"
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            ItemsSource="{Binding TheoryContentList}"
+            SelectionMode="None"
+            SeparatorVisibility="None"
+            x:Name="listView">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Wrapper">
+                    <ViewCell x:Name="{Binding Link.ElementName}">
+                        <StackLayout>
+                            <Label LineBreakMode="WordWrap" TextType="Html">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding Text1}"/>
+                                        <Span x:Name="{Binding }" Text="{Binding Link.Text}" TextDecorations="Underline" TextColor="Blue">
+                                            <Span.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
+                                            </Span.GestureRecognizers>
+                                        </Span>
+                                        <Span Text="{Binding Text2}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <math:MathView LaTeX="{Binding Formula}"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
+
 </ContentPage> 
     

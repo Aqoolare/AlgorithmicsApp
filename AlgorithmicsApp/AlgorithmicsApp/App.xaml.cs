@@ -14,7 +14,7 @@ namespace AlgorithmicsApp
             MainPage = new AppShell();
 
             Routing.RegisterRoute($"{nameof(CourseContentPage)}", typeof(CourseContentPage));
-            Routing.RegisterRoute($"{nameof(CourseContentPage)}/{nameof(TheoryPage)}", typeof(TheoryPage));
+            Routing.RegisterRoute($"{nameof(TheoryPage)}", typeof(TheoryPage));
         }
 
         protected override void OnStart()

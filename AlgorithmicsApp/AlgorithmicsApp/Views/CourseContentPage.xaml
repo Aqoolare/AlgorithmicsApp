@@ -15,7 +15,6 @@
 
 
     <Grid>
-        <ActivityIndicator VerticalOptions="Center" IsVisible="{Binding IsBusy, Mode=TwoWay}" IsRunning="{Binding IsBusy, Mode=TwoWay}"/>
         <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadTheoryCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ListView
                 BackgroundColor="Transparent"

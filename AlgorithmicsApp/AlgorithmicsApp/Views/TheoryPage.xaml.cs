@@ -1,6 +1,8 @@
-﻿using AlgorithmicsApp.ViewModels;
+﻿using AlgorithmicsApp.Models;
+using AlgorithmicsApp.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,45 +13,30 @@ using Xamarin.Forms.Xaml;
 namespace AlgorithmicsApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+    [QueryProperty(nameof(ItemIndexToScroll), nameof(ItemIndexToScroll))]
     public partial class TheoryPage : ContentPage
     {
         TheoryViewModel _viewModel;
+        public int ItemIndexToScroll { get; set; }
 
         public TheoryPage()
         {
             InitializeComponent();
             BindingContext = _viewModel = new TheoryViewModel();
-            LoadDataToStackLayout();
         }
 
-        void LoadDataToStackLayout()
+        protected override void OnAppearing()
         {
-            theoryStack.Children.Clear();
-            var formattedString = new FormattedString();
-            foreach (var item in _viewModel.TheoryContentList)
-            {
-                if (item.Type == false)
+            base.OnAppearing();
+            _viewModel.RefreshScrollDown = () => {
+                if (_viewModel.TheoryContentList.Count > 0)
                 {
-                    var span = new Span { Text = item.Text };
-                    if (item.LinkPage != null)
-                    {
-                        span.GestureRecognizers.Add(new TapGestureRecognizer { Command = _viewModel.LinkTappedCommand, CommandParameter = item });
-                        span.TextDecorations = TextDecorations.Underline;
-                        span.TextColor = Color.Blue;
-                        span.FontSize = 100;
-                    }
-                    formattedString.Spans.Add(span);
+                    Device.BeginInvokeOnMainThread(() => {
+                        listView.ScrollTo(_viewModel.TheoryContentList[ItemIndexToScroll], ScrollToPosition.Start, true);
+                    });
                 }
-                else
-                {
-                    theoryStack.Children.Add(new Label { FormattedText = formattedString });
-                    formattedString = new FormattedString();
-                    var mathView = new CSharpMath.Forms.MathView();
-                    var span = new Span();
-                    mathView.LaTeX = item.Text;
-                    theoryStack.Children.Add(mathView);
-                }
-            }
+            };
+            _viewModel.OnAppearing();
         }
     }
 }

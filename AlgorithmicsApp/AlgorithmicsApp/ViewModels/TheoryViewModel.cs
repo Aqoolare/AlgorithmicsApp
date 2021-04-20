@@ -14,32 +14,44 @@ namespace AlgorithmicsApp.ViewModels
         public int TheoryId { get; set; }
         public string TheoryTitle { get; set; }
 
-        public ObservableRangeCollection<TheoryContent> TheoryContentList { get; set; }
-        public AsyncCommand<TheoryContent> LinkTappedCommand { get; }
+        public ObservableRangeCollection<Wrapper> TheoryContentList { get; set; }
+        public AsyncCommand<Link> LinkTappedCommand { get; }
+        public AsyncCommand LoadCommand { get; }
+        public System.Action RefreshScrollDown;
 
 
         public TheoryViewModel()
         {
-            TheoryContentList = new ObservableRangeCollection<TheoryContent>();
-            LinkTappedCommand = new AsyncCommand<TheoryContent>(LinkTapped);
-            LoadTheoryContent();
+            TheoryContentList = new ObservableRangeCollection<Wrapper>();
+            LoadCommand = new AsyncCommand(LoadTheoryContent);
+            LinkTappedCommand = new AsyncCommand<Link>(LinkTapped);
         }
 
-        void LoadTheoryContent()
+        async Task LoadTheoryContent()
         {
             IsBusy = true;
-            var theoryContent = TheoryContentDbService.GetTheoryContent(TheoryId);
             TheoryContentList.Clear();
-            TheoryContentList.AddRange(theoryContent);
+            var theoryContent = await TheoryContentDbService.GetTheoryContent(TheoryId);
+            foreach (var theoryItem in theoryContent)
+            {
+                var link = await TheoryContentDbService.GetLinkById(theoryItem.LinkId);
+                TheoryContentList.Add(new Wrapper(theoryItem, link));
+            }
+            RefreshScrollDown();
             IsBusy = false;
         }
 
-        async Task LinkTapped(TheoryContent theoryContent)
+        public void OnAppearing()
         {
-            if (theoryContent == null)
+            IsBusy = true;
+        }
+
+        async Task LinkTapped(Link link)
+        {
+            if (link == null)
                 return;
 
-            var route = $"{theoryContent.LinkPage}";
+            var route = $"{link.Page}?ItemIndexToScroll={link.ElementIndex}";
             IsBusy = true;
             await Shell.Current.GoToAsync(route);
             IsBusy = false;

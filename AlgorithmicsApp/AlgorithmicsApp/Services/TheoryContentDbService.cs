@@ -11,64 +11,106 @@ namespace AlgorithmicsApp.Services
 {
     class TheoryContentDbService
     {
-        static SQLiteConnection db = null;
+        static SQLiteAsyncConnection db = null;
 
-        static void Init()
+        static async Task Init()
         {
             if (db != null)
                 return;
 
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
-            db = new SQLiteConnection(databasePath);
-            db.CreateTable<TheoryContent>();
+            db = new SQLiteAsyncConnection(databasePath);
+            await db.CreateTableAsync<TheoryContent>();
+            await db.CreateTableAsync<Link>();
 
             var tc00 = new TheoryContent
             {
                 TheoryId = 0,
-                Type = false,
-                Text = "Определение 1. Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
+                Text1 = "Определение 1. Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
                 "условиям: 1) d | a и d | b; 2) если c | a и c | b, то c | d.",
+                Formula = @"\frac\sqrt0",
+                LinkId = 0
             };
-
             var tc01 = new TheoryContent
             {
                 TheoryId = 0,
-                Type = false,
-                Text = "Наибольший общий делитель двух чисел a и b, a ≥ b > 0, можно найти с помощью алгоритма Евклида, который основан на том, что если " +
-                "a = bq + r, 0 ≤ r < b, то НОД(a, b) = НОД(r, b).",
+                Text1 = "Привет1",
+                Formula = @"\frac\sqrt1",
             };
-
             var tc02 = new TheoryContent
             {
                 TheoryId = 0,
-                Type = false,
-                Text = "Алгоритм Евклида состоит из следующих шагов вычисления",
-                LinkPage = "CourseContentPage"
+                Text1 = "Привет2",
+                Formula = @"\frac\sqrt2",
             };
-
             var tc03 = new TheoryContent
             {
                 TheoryId = 0,
-                Type = true,
-                Text = @"\frac\sqrt23"
+                Text1 = "Привет3",
+                Formula = @"\frac\sqrt3",
+            };
+            var tc04 = new TheoryContent
+            {
+                TheoryId = 0,
+                Text1 = "Привет4",
+                Formula = @"\frac\sqrt4",
+            };
+            var tc05 = new TheoryContent
+            {
+                TheoryId = 0,
+                Text1 = "Привет5",
+                Formula = @"\frac\sqrt5",
+            };
+            var tc06 = new TheoryContent
+            {
+                TheoryId = 0,
+                Text1 = "Привет6",
+                Formula = @"\frac\sqrt6",
+            };
+            var tc07 = new TheoryContent
+            {
+                TheoryId = 0,
+                Text1 = "Привет7",
+                Formula = @"\frac\sqrt7",
             };
 
-            db.DeleteAll<TheoryContent>();
+            var link0 = new Link
+            {
+                Id = 0,
+                Text = "пися)",
+                Page = "TheoryPage",
+                ElementIndex = 4
+            };
 
-            db.Insert(tc00);
-            db.Insert(tc01);
-            db.Insert(tc02);
-            db.Insert(tc03);
-            db.Insert(tc00);
+            await db.DeleteAllAsync<TheoryContent>();
+            await db.DeleteAllAsync<Link>();
+
+            await db.InsertAsync(tc00);
+            await db.InsertAsync(tc01);
+            await db.InsertAsync(tc02);
+            await db.InsertAsync(tc03);
+            await db.InsertAsync(tc04);
+            await db.InsertAsync(tc05);
+            await db.InsertAsync(tc06);
+            await db.InsertAsync(tc07);
+            await db.InsertAsync(link0);
         }
 
-        public static IEnumerable<TheoryContent> GetTheoryContent(int theoryId)
+        public static async Task<IEnumerable<TheoryContent>> GetTheoryContent(int theoryId)
         {
-            Init();
+            await Init();
 
-            var theoryContent = db.Table<TheoryContent>().Where(tc => tc.TheoryId == theoryId).ToList();
+            var theoryContent = await db.Table<TheoryContent>().Where(tc => tc.TheoryId == theoryId).ToListAsync();
             return theoryContent;
+        }
+
+        public static async Task<Link> GetLinkById(int linkId)
+        {
+            await Init();
+
+            var link = await db.Table<Link>().Where(l => l.Id == linkId).FirstOrDefaultAsync();
+            return link;
         }
     }
 }
