@@ -1,8 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AlgorithmicsApp.App">
+             x:Class="AlgorithmicsApp.App"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Span}">
+                <Setter Property="FontSize"
+                    Value="Medium" />
+                <Setter Property="TextColor"
+                    Value="Gray" />
+            </Style>
+            <Style TargetType="{x:Type Label}">
+                <Setter Property="Padding"
+                    Value="10" />
+                <Setter Property="HorizontalTextAlignment"
+                        Value="Start"/>
+            </Style>
+            <Style TargetType="{x:Type math:MathView}">
+                <Setter Property="FontSize"
+                    Value="45" />
+                <Setter Property="TextColor"
+                    Value="Gray" />
+            </Style>
+            <Style TargetType="{x:Type StackLayout}">
+                <Setter Property="Spacing"
+                    Value="0" />
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

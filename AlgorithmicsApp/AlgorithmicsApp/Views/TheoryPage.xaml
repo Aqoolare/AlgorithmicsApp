@@ -23,9 +23,10 @@
                 <DataTemplate x:DataType="model:Wrapper">
                     <ViewCell x:Name="{Binding Link.ElementName}">
                         <StackLayout>
-                            <Label LineBreakMode="WordWrap" TextType="Html">
+                            <Label LineBreakMode="WordWrap">
                                 <Label.FormattedText>
                                     <FormattedString>
+                                        <Span Text="{Binding BoldText}" FontAttributes="Bold"/>
                                         <Span Text="{Binding Text1}"/>
                                         <Span x:Name="{Binding }" Text="{Binding Link.Text}" TextDecorations="Underline" TextColor="Blue">
                                             <Span.GestureRecognizers>

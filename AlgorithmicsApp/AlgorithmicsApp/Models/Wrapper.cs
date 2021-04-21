@@ -8,6 +8,7 @@ namespace AlgorithmicsApp.Models
     {
         public string Text1 { get; set; }
         public string Text2 { get; set; }
+        public string BoldText { get; set; }
         public string Formula { get; set; }
         public Link Link { get; set; }
 
@@ -15,6 +16,7 @@ namespace AlgorithmicsApp.Models
         {
             Text1 = tc.Text1;
             Text2 = tc.Text2;
+            BoldText = tc.BoldText;
             Formula = tc.Formula;
             Link = l;
         }

@@ -10,6 +10,7 @@ namespace AlgorithmicsApp.Models
         public int TheoryId { get; set; }
         public string Text1 { get; set; }
         public string Text2 { get; set; }
+        public string BoldText { get; set; }
         public int LinkId { get; set; }
         public string Formula { get; set; }
     }
