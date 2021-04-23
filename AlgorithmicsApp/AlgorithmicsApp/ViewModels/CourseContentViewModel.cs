@@ -4,8 +4,10 @@ using AlgorithmicsApp.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace AlgorithmicsApp.ViewModels
 {
@@ -16,20 +18,16 @@ namespace AlgorithmicsApp.ViewModels
         public int CourseId { get; set; }
         public string CourseName { get; set; }
 
-        public ObservableRangeCollection<Theory> TheoryList { get; set; }
-        public ObservableRangeCollection<Question> QuestionsList { get; set; }
-        public AsyncCommand LoadTheoryCommand { get; }
-        public AsyncCommand LoadQuestionsCommand { get; }
+        public ObservableRangeCollection<CourseItem> CourseItems { get; set; }
+        public AsyncCommand LoadCourseItemsCommand { get; }
         public AsyncCommand<Theory> TheoryTappedCommand { get; }
 
 
         public CourseContentViewModel()
         {
-            TheoryList = new ObservableRangeCollection<Theory>();
-            QuestionsList = new ObservableRangeCollection<Question>();
+            CourseItems = new ObservableRangeCollection<CourseItem>();
 
-            LoadTheoryCommand = new AsyncCommand(LoadTheory);
-            LoadQuestionsCommand = new AsyncCommand(LoadQuestions);
+            LoadCourseItemsCommand = new AsyncCommand(LoadCourseItems);
             TheoryTappedCommand = new AsyncCommand<Theory>(TheoryTapped);
         }
 
@@ -39,9 +37,7 @@ namespace AlgorithmicsApp.ViewModels
                 return;
 
             var route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
-            IsBusy = true;
             await Shell.Current.GoToAsync(route);
-            IsBusy = false;
         }
 
         private Task LoadQuestions()
@@ -49,12 +45,19 @@ namespace AlgorithmicsApp.ViewModels
             throw new NotImplementedException();
         }
 
-        async Task LoadTheory()
+        async Task LoadCourseItems()
         {
             IsBusy = true;
             var theory = await CourseContentDbService.GetTheory(CourseId);
-            TheoryList.Clear();
-            TheoryList.AddRange(theory);
+            var questions = await CourseContentDbService.GetQuestions(CourseId);
+
+            List<CourseItem> temp = new List<CourseItem>();
+            temp.AddRange(theory);
+            temp.AddRange(questions);
+            IEnumerable<CourseItem> courseItems = from item in temp orderby item.Order ascending select item;
+            
+            CourseItems.Clear();
+            CourseItems.AddRange(courseItems);
             IsBusy = false;
         }
 

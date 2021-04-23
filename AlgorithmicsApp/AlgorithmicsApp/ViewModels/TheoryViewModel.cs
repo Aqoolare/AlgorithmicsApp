@@ -4,6 +4,7 @@ using MvvmHelpers;
 using System.Threading.Tasks;
 using MvvmHelpers.Commands;
 using Xamarin.Forms;
+using System;
 
 namespace AlgorithmicsApp.ViewModels
 {
@@ -17,7 +18,7 @@ namespace AlgorithmicsApp.ViewModels
         public ObservableRangeCollection<Wrapper> TheoryContentList { get; set; }
         public AsyncCommand<Link> LinkTappedCommand { get; }
         public AsyncCommand LoadCommand { get; }
-        public System.Action RefreshScrollDown;
+        public Action RefreshScrollDown;
 
 
         public TheoryViewModel()

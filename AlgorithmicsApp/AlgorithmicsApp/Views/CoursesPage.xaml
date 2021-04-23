@@ -34,7 +34,17 @@
                         <Grid Padding="10">
                             <Frame CornerRadius="10" HasShadow="True">
                                 <StackLayout Orientation="Horizontal">
-                                    <Image Source="{Binding Image}" WidthRequest="66"/>
+                                    <Image 
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                    FontFamily="IconFont"
+                                                    Glyph="&#xe872;"
+                                                    Color="DarkSlateGray"
+                                                    Size="100"/>
+                                        </Image.Source>
+                                    </Image>
                                     <StackLayout VerticalOptions="Center">
                                         <Label
                                             FontSize="Large"

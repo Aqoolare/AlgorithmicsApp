@@ -9,6 +9,10 @@
              Title="{Binding TheoryTitle}"
              x:Name="TheoryPage1">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Далее"/>
+        <ToolbarItem Text="Назад"/>
+    </ContentPage.ToolbarItems>
 
     <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <ListView

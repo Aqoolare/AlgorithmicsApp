@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlgorithmicsApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace AlgorithmicsApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class QuestionPage : ContentPage
     {
+        QuestionViewModel _viewModel;
         public QuestionPage()
         {
             InitializeComponent();
+            BindingContext = _viewModel = new QuestionViewModel();
         }
     }
 }

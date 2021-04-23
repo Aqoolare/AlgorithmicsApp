@@ -42,6 +42,10 @@ namespace AlgorithmicsApp.ViewModels
             if (course == null)
                 return;
 
+            IsBusy = true;
+            var theory = await CourseContentDbService.GetTheory(course.Id);
+            IsBusy = false;
+
             var route = $"{nameof(CourseContentPage)}?CourseId={course.Id}&CourseName={course.Name}";
             await Shell.Current.GoToAsync(route);
         }

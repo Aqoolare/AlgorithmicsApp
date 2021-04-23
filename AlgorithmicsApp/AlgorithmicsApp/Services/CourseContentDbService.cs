@@ -32,9 +32,19 @@ namespace AlgorithmicsApp.Services
                 Title = "Определение НОД и алгоритм нахождения"
             };
 
+            var q0 = new Question
+            {
+                Id = 0,
+                CourseId = 0,
+                Order = 2,
+                Title = "Вопросик :3"
+            };
+
             await db.DeleteAllAsync<Theory>();
+            await db.DeleteAllAsync<Question>();
 
             await db.InsertAsync(t0);
+            await db.InsertAsync(q0);
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)
@@ -45,12 +55,12 @@ namespace AlgorithmicsApp.Services
             return theory;
         }
 
-        //public static async Task<IEnumerable<Question>> GetQuestions(int courseId)
-        //{
-        //    await Init();
+        public static async Task<IEnumerable<Question>> GetQuestions(int courseId)
+        {
+            await Init();
 
-        //    var questions = await db.QueryAsync<Question>($"select * from Question where CourseId={courseId}");
-        //    return questions;
-        //}
+            var questions = await db.Table<Question>().Where(q => q.CourseId == courseId).ToListAsync();
+            return questions;
+        }
     }
 }

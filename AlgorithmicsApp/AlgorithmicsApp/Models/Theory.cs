@@ -5,11 +5,15 @@ using System.Text;
 
 namespace AlgorithmicsApp.Models
 {
-    public class Theory
+    public class Theory : CourseItem
     {
         public int CourseId { get; set; }
         public int Id { get; set; }
-        public int Order { get; set; }
-        public string Title { get; set; }
+
+        public Theory()
+        {
+            ItemType = Type.Theory;
+            Icon = IconFont.BookAlt;
+        }
     }
 }
