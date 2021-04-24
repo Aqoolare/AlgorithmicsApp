@@ -23,12 +23,12 @@
                 ItemsSource="{Binding CourseItems}"
                 SelectionMode="None"
                 SeparatorVisibility="None">
-                <!--<ListView.Behaviors>
+                <ListView.Behaviors>
                     <xct:EventToCommandBehavior
                         EventName="ItemTapped"
-                        Command="{Binding TheoryTappedCommand}"                
+                        Command="{Binding ItemTappedCommand}"                
                         EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
-                </ListView.Behaviors>-->
+                </ListView.Behaviors>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:CourseItem">
                         <ViewCell>

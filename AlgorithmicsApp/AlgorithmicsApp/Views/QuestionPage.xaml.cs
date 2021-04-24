@@ -19,5 +19,11 @@ namespace AlgorithmicsApp.Views
             InitializeComponent();
             BindingContext = _viewModel = new QuestionViewModel();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _viewModel.OnAppearing();
+        }
     }
 }

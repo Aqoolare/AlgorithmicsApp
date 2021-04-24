@@ -24,7 +24,7 @@ namespace AlgorithmicsApp.Services
             var course1 = new Course
             {
                 Name = "Наибольший общий делитель и алгоритмы его нахождения",
-                Image = "https://www.yesplz.coffee/app/uploads/2020/11/emptybag-min.png",
+                Icon = "\ue872",
                 Id = 0
             };
 

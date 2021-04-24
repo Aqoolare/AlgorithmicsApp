@@ -20,7 +20,7 @@ namespace AlgorithmicsApp.ViewModels
 
         public ObservableRangeCollection<CourseItem> CourseItems { get; set; }
         public AsyncCommand LoadCourseItemsCommand { get; }
-        public AsyncCommand<Theory> TheoryTappedCommand { get; }
+        public AsyncCommand<CourseItem> ItemTappedCommand { get; }
 
 
         public CourseContentViewModel()
@@ -28,21 +28,26 @@ namespace AlgorithmicsApp.ViewModels
             CourseItems = new ObservableRangeCollection<CourseItem>();
 
             LoadCourseItemsCommand = new AsyncCommand(LoadCourseItems);
-            TheoryTappedCommand = new AsyncCommand<Theory>(TheoryTapped);
+            ItemTappedCommand = new AsyncCommand<CourseItem>(ItemTapped);
         }
 
-        async Task TheoryTapped(Theory theory)
+        async Task ItemTapped(CourseItem item)
         {
-            if (theory == null)
+            if (item == null)
                 return;
 
-            var route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
+            var route = String.Empty;
+            if (item.ItemType == Models.Type.Theory)
+            {
+                Theory theory = (Theory)item;
+                route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
+            }
+            else
+            {
+                Question question = (Question)item;
+                route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}&Formulation={question.Formulation}";
+            }
             await Shell.Current.GoToAsync(route);
-        }
-
-        private Task LoadQuestions()
-        {
-            throw new NotImplementedException();
         }
 
         async Task LoadCourseItems()

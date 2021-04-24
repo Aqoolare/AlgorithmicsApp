@@ -40,7 +40,7 @@
                                         <Image.Source>
                                             <FontImageSource
                                                     FontFamily="IconFont"
-                                                    Glyph="&#xe872;"
+                                                    Glyph="{Binding Icon}"
                                                     Color="DarkSlateGray"
                                                     Size="100"/>
                                         </Image.Source>

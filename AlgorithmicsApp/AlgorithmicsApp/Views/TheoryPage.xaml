@@ -25,7 +25,7 @@
             x:Name="listView">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="model:Wrapper">
-                    <ViewCell x:Name="{Binding Link.ElementName}">
+                    <ViewCell>
                         <StackLayout>
                             <Label LineBreakMode="WordWrap">
                                 <Label.FormattedText>
