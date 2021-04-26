@@ -4,6 +4,8 @@ using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -27,12 +29,48 @@ namespace AlgorithmicsApp.ViewModels
 
         public ObservableRangeCollection<Answer> Answers { get; set; }
 
+        int collectionViewHeightRequest = 0;
+        public int CollectionViewHeightRequest
+        {
+            get { return collectionViewHeightRequest; }
+            set { SetProperty(ref collectionViewHeightRequest, value); }
+        }
+
+
+        private ObservableCollection<object> _selectedAnswers;
+        public ObservableCollection<object> SelectedAnswers
+        {
+            get { return _selectedAnswers; }
+            set { SetProperty(ref _selectedAnswers, value); }
+        }
+
+
         public AsyncCommand LoadCommand { get; }
+        public Xamarin.Forms.Command CheckAnswersCommand { get; }
 
         public QuestionViewModel()
         {
             Answers = new ObservableRangeCollection<Answer>();
+            SelectedAnswers = new ObservableCollection<object>();
             LoadCommand = new AsyncCommand(LoadAnswers);
+            CheckAnswersCommand = new Xamarin.Forms.Command(CheckAnswers);
+        }
+
+        void CheckAnswers()
+        {
+            List<Answer> wrongAnswers = new List<Answer>();
+            foreach (var answer in SelectedAnswers)
+            {
+                Answer a = (Answer)answer;
+                if (!a.IsTrue)
+                {
+                    wrongAnswers.Add(a);
+                }
+            }
+            foreach (var answer in wrongAnswers)
+            {
+                SelectedAnswers.Remove(answer);
+            }
         }
 
         async Task LoadAnswers()
@@ -41,8 +79,11 @@ namespace AlgorithmicsApp.ViewModels
             var answers = await QuestionContentDbService.GetQuestionContent(QuestionId);
             Answers.Clear();
             Answers.AddRange(answers);
+            CollectionViewHeightRequest = 105 * Answers.Count;
             IsBusy = false;
         }
+
+
 
         public void OnAppearing()
         {

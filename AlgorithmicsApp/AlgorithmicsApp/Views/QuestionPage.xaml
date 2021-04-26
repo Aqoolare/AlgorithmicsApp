@@ -9,35 +9,50 @@
              Title="{Binding QuestionTitle}">
     <ContentPage.Content>
         <RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-            <StackLayout>
-                <Label Text="{Binding Formulation}" />
-                <ListView
-                    BackgroundColor="Transparent"
-                    CachingStrategy="RecycleElement"
-                    HasUnevenRows="True"
-                    ItemsSource="{Binding Answers}"
-                    SelectionMode="None"
-                    SeparatorVisibility="None"
-                    x:Name="listView">
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="model:Answer">
-                            <ViewCell>
-                                <Grid Padding="10">
-                                    <Frame CornerRadius="10" HasShadow="True">
-                                        <Label LineBreakMode="WordWrap">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding Content}"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-                                    </Frame>
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="{Binding Formulation}" HorizontalOptions="Center"/>
+                    <!--<RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+                        <CollectionView
+                            ItemsSource="{Binding Answers}"
+                            SelectedItems="{Binding SelectedAnswers, Mode=TwoWay}"
+                            SelectionMode="Multiple"
+                            x:Name="collectionView"
+                            HeightRequest="{Binding CollectionViewHeightRequest}"
+                            SelectionChanged="collectionView_SelectionChanged">
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Answer">
+                                    <StackLayout Padding="10">
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+                                                <VisualState Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="White"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="MediumPurple"/>
+                                                        <Setter TargetName="label" Property="Label.TextColor" Value="White"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+                                        <Frame CornerRadius="10" HasShadow="True" x:Name="frame" >
+                                            <Label x:Name="label" LineBreakMode="WordWrap" Text="{Binding Content}" />
+                                        </Frame>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    <!--</RefreshView>-->
+                    <Button Text="Проверить ответы" CornerRadius="10" Margin="10"
+                            Command="{Binding CheckAnswersCommand}"/>
+                </StackLayout>
+            </ScrollView>
         </RefreshView>
     </ContentPage.Content>
 </ContentPage>

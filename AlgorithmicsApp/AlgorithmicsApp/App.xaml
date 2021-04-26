@@ -16,6 +16,7 @@
                     Value="10" />
                 <Setter Property="HorizontalTextAlignment"
                         Value="Start"/>
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
             <Style TargetType="{x:Type math:MathView}">
                 <Setter Property="FontSize"

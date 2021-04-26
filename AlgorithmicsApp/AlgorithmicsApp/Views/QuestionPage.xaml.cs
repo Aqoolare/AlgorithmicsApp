@@ -25,5 +25,10 @@ namespace AlgorithmicsApp.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
+
+        private void collectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = collectionView.SelectedItems;
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace AlgorithmicsApp.Services
                 CourseId = 0,
                 Order = 2,
                 Title = "Вопросик :3",
-                Formulation = "Да или нет"
+                Formulation = "Да или нет?"
             };
 
             await db.DeleteAllAsync<Theory>();
