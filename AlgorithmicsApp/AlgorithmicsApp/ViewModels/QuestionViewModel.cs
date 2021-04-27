@@ -47,6 +47,7 @@ namespace AlgorithmicsApp.ViewModels
 
         public AsyncCommand LoadCommand { get; }
         public Xamarin.Forms.Command CheckAnswersCommand { get; }
+        public Action UpdateAnswersInterface;
 
         public QuestionViewModel()
         {
@@ -58,19 +59,7 @@ namespace AlgorithmicsApp.ViewModels
 
         void CheckAnswers()
         {
-            List<Answer> wrongAnswers = new List<Answer>();
-            foreach (var answer in SelectedAnswers)
-            {
-                Answer a = (Answer)answer;
-                if (!a.IsTrue)
-                {
-                    wrongAnswers.Add(a);
-                }
-            }
-            foreach (var answer in wrongAnswers)
-            {
-                SelectedAnswers.Remove(answer);
-            }
+            UpdateAnswersInterface();
         }
 
         async Task LoadAnswers()

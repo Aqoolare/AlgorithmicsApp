@@ -29,28 +29,32 @@ namespace AlgorithmicsApp.Services
             {
                 QuestionId = 0,
                 Content = "Ответ 1",
-                IsTrue = false
+                IsTrue = false,
+                AnswerColor = "White"
             };
 
             var a1 = new Answer
             {
                 QuestionId = 0,
                 Content = "Ответ 2",
-                IsTrue = false
+                IsTrue = false,
+                AnswerColor = "White"
             };
 
             var a2 = new Answer
             {
                 QuestionId = 0,
                 Content = "Ответ 3",
-                IsTrue = true
+                IsTrue = true,
+                AnswerColor = "White"
             };
 
             var a3 = new Answer
             {
                 QuestionId = 0,
                 Content = "Ответ 4",
-                IsTrue = true
+                IsTrue = true,
+                AnswerColor = "White"
             };
 
             await db.InsertAsync(a0);

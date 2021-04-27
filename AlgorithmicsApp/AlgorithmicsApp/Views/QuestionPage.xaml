@@ -7,6 +7,9 @@
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
              xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
              Title="{Binding QuestionTitle}">
+    <ContentPage.Resources>
+        <ResourceDictionary />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ScrollView>
@@ -35,13 +38,13 @@
                                                 </VisualState>
                                                 <VisualState Name="Selected">
                                                     <VisualState.Setters>
-                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="MediumPurple"/>
+                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="{DynamicResource MainColor}"/>
                                                         <Setter TargetName="label" Property="Label.TextColor" Value="White"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                             </VisualStateGroup>
                                         </VisualStateManager.VisualStateGroups>
-                                        <Frame CornerRadius="10" HasShadow="True" x:Name="frame" >
+                                        <Frame CornerRadius="10" HasShadow="True" x:Name="frame" BackgroundColor="{Binding AnswerColor}">
                                             <Label x:Name="label" LineBreakMode="WordWrap" Text="{Binding Content}" />
                                         </Frame>
                                     </StackLayout>
@@ -49,7 +52,8 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     <!--</RefreshView>-->
-                    <Button Text="Проверить ответы" CornerRadius="10" Margin="10"
+                    <Label x:Name="conditionLabel"/>
+                    <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
                             Command="{Binding CheckAnswersCommand}"/>
                 </StackLayout>
             </ScrollView>
