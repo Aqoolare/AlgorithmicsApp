@@ -24,13 +24,13 @@ namespace AlgorithmicsApp.Services
             var course1 = new Course
             {
                 Name = "Наибольший общий делитель и алгоритмы его нахождения",
-                Icon = "\ue872",
+                Icon = "\ueade",
                 Id = 0
             };
 
-            //await db.DeleteAllAsync<Course>();
+            await db.DeleteAllAsync<Course>();
 
-            //await db.InsertAsync(course1);
+            await db.InsertAsync(course1);
         }
 
         public static async Task<IEnumerable<Course>> GetCourses()

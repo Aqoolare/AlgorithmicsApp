@@ -41,7 +41,7 @@
                                             <FontImageSource
                                                     FontFamily="IconFont"
                                                     Glyph="{Binding Icon}"
-                                                    Color="DarkSlateGray"
+                                                    Color="Gray"
                                                     Size="100"/>
                                         </Image.Source>
                                     </Image>

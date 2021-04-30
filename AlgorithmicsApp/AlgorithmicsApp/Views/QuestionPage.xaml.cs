@@ -15,6 +15,7 @@ namespace AlgorithmicsApp.Views
     public partial class QuestionPage : ContentPage
     {
         QuestionViewModel _viewModel;
+        string[] resultMessages = { "Абсолютно верно!", "Пока не верно, попробуйте ещё раз." };
         public QuestionPage()
         {
             InitializeComponent();
@@ -24,8 +25,20 @@ namespace AlgorithmicsApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            _viewModel.UpdateAnswersInterface = UpdateIntrface;
+            _viewModel.OnAppearing();
             if (_viewModel.IsAnswered)
             {
+                if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
+                {
+                    conditionLabel.Text = resultMessages[1];
+                    App.Current.Resources["AnswerColor"] = Color.Red;
+                }
+                else
+                {
+                    conditionLabel.Text = resultMessages[0];
+                    App.Current.Resources["AnswerColor"] = Color.Green;
+                }
                 collectionView.SelectionMode = SelectionMode.None;
                 checkButton.Text = "Решить заново";
             }
@@ -34,8 +47,6 @@ namespace AlgorithmicsApp.Views
                 checkButton.IsEnabled = false;
                 checkButton.Text = "Проверить ответы";
             }
-            _viewModel.UpdateAnswersInterface = UpdateIntrface;
-            _viewModel.OnAppearing();
         }
 
         void UpdateIntrface()
@@ -54,6 +65,7 @@ namespace AlgorithmicsApp.Views
         void UpdateIsAnsweredInteface()
         {
             _viewModel.SelectedAnswers.Clear();
+            conditionLabel.Text = String.Empty;
             foreach (var answer in _viewModel.Answers)
             {
                 answer.AnswerColor = "White";
@@ -89,12 +101,12 @@ namespace AlgorithmicsApp.Views
                 collectionView.SelectionMode = SelectionMode.None;
                 if (selectedColor == "Green")
                 {
-                    conditionLabel.Text = "Абсолютно верно!";
+                    conditionLabel.Text = resultMessages[0];
                     App.Current.Resources["AnswerColor"] = Color.Green;
                 }
                 else
                 {
-                    conditionLabel.Text = "Пока не верно, попробуйте ещё раз.";
+                    conditionLabel.Text = resultMessages[1];
                     App.Current.Resources["AnswerColor"] = Color.Red;
                 }
                 _viewModel.IsAnswered = true;
