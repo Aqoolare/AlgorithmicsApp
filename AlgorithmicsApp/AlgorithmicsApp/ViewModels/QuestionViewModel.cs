@@ -15,10 +15,12 @@ namespace AlgorithmicsApp.ViewModels
     [QueryProperty(nameof(QuestionId), nameof(QuestionId))]
     [QueryProperty(nameof(QuestionTitle), nameof(QuestionTitle))]
     [QueryProperty(nameof(Formulation), nameof(Formulation))]
+    [QueryProperty(nameof(IsAnswered), nameof(IsAnswered))]
     public class QuestionViewModel : BaseViewModel
     {
         public int QuestionId { get; set; }
         public string QuestionTitle { get; set; }
+        public bool IsAnswered { get; set; }
 
         string formulation = string.Empty;
         public string Formulation
@@ -46,7 +48,7 @@ namespace AlgorithmicsApp.ViewModels
 
 
         public AsyncCommand LoadCommand { get; }
-        public Xamarin.Forms.Command CheckAnswersCommand { get; }
+        public AsyncCommand CheckAnswersCommand { get; }
         public Action UpdateAnswersInterface;
 
         public QuestionViewModel()
@@ -54,12 +56,21 @@ namespace AlgorithmicsApp.ViewModels
             Answers = new ObservableRangeCollection<Answer>();
             SelectedAnswers = new ObservableCollection<object>();
             LoadCommand = new AsyncCommand(LoadAnswers);
-            CheckAnswersCommand = new Xamarin.Forms.Command(CheckAnswers);
+            CheckAnswersCommand = new AsyncCommand(CheckAnswers);
         }
 
-        void CheckAnswers()
+        async Task CheckAnswers()
         {
             UpdateAnswersInterface();
+            foreach (var answer in Answers)
+            {
+                await QuestionContentDbService.UpdateQuestionContent(answer);
+            }
+            var question = await CourseContentDbService.GetQuestion(QuestionId);
+            question.IsAnswered = !question.IsAnswered;
+            await CourseContentDbService.UpdateQuestion(question);
+            
+            await LoadAnswers();
         }
 
         async Task LoadAnswers()

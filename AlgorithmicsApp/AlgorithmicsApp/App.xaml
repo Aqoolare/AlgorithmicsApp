@@ -6,8 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="MainColor">MediumPurple</Color>
-            <Color x:Key="RightAnswerColor">Green</Color>
-            <Color x:Key="WrongAnswerColor">Red</Color>
+            <Color x:Key="AnswerColor">Green</Color>
             <Style TargetType="{x:Type Span}">
                 <Setter Property="FontSize"
                     Value="Medium" />

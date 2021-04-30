@@ -38,14 +38,15 @@ namespace AlgorithmicsApp.Services
                 CourseId = 0,
                 Order = 2,
                 Title = "Вопросик :3",
-                Formulation = "Да или нет?"
+                Formulation = "Да или нет?",
+                IsAnswered = false
             };
 
-            await db.DeleteAllAsync<Theory>();
-            await db.DeleteAllAsync<Question>();
+            //await db.DeleteAllAsync<Theory>();
+            //await db.DeleteAllAsync<Question>();
 
-            await db.InsertAsync(t0);
-            await db.InsertAsync(q0);
+            //await db.InsertAsync(t0);
+            //await db.InsertAsync(q0);
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)
@@ -62,6 +63,21 @@ namespace AlgorithmicsApp.Services
 
             var questions = await db.Table<Question>().Where(q => q.CourseId == courseId).ToListAsync();
             return questions;
+        }
+
+        public static async Task<Question> GetQuestion(int questionId)
+        {
+            await Init();
+
+            var question = await db.Table<Question>().Where(q => q.Id == questionId).FirstOrDefaultAsync();
+            return question;
+        }
+
+        public static async Task<int> UpdateQuestion(Question question)
+        {
+            await Init();
+
+            return await db.UpdateAsync(question);
         }
     }
 }

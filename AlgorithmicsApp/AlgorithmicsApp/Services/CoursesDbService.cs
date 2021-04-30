@@ -28,9 +28,9 @@ namespace AlgorithmicsApp.Services
                 Id = 0
             };
 
-            await db.DeleteAllAsync<Course>();
+            //await db.DeleteAllAsync<Course>();
 
-            await db.InsertAsync(course1);
+            //await db.InsertAsync(course1);
         }
 
         public static async Task<IEnumerable<Course>> GetCourses()

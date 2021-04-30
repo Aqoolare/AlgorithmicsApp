@@ -45,7 +45,8 @@ namespace AlgorithmicsApp.ViewModels
             else
             {
                 Question question = (Question)item;
-                route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}&Formulation={Uri.EscapeDataString(question.Formulation)}";
+                route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}" +
+                    $"&Formulation={Uri.EscapeDataString(question.Formulation)}&IsAnswered={question.IsAnswered}";
             }
             await Shell.Current.GoToAsync(route);
         }

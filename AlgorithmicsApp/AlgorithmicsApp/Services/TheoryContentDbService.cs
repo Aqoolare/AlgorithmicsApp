@@ -61,14 +61,14 @@ namespace AlgorithmicsApp.Services
                 ElementIndex = 3
             };
 
-            await db.DeleteAllAsync<TheoryContent>();
-            await db.DeleteAllAsync<Link>();
+            //await db.DeleteAllAsync<TheoryContent>();
+            //await db.DeleteAllAsync<Link>();
 
-            await db.InsertAsync(tc00);
-            await db.InsertAsync(tc01);
-            await db.InsertAsync(tc02);
-            await db.InsertAsync(tc03);
-            await db.InsertAsync(link0);
+            //await db.InsertAsync(tc00);
+            //await db.InsertAsync(tc01);
+            //await db.InsertAsync(tc02);
+            //await db.InsertAsync(tc03);
+            //await db.InsertAsync(link0);
         }
 
         public static async Task<IEnumerable<TheoryContent>> GetTheoryContent(int theoryId)

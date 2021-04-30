@@ -17,7 +17,7 @@
                     <Label Text="{Binding Formulation}" HorizontalOptions="Center"/>
                     <!--<RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
                         <CollectionView
-                            ItemsSource="{Binding Answers}"
+                            ItemsSource="{Binding Answers, Mode=TwoWay}"
                             SelectedItems="{Binding SelectedAnswers, Mode=TwoWay}"
                             SelectionMode="Multiple"
                             x:Name="collectionView"
@@ -33,7 +33,7 @@
                                             <VisualStateGroup Name="CommonStates">
                                                 <VisualState Name="Normal">
                                                     <VisualState.Setters>
-                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="White"/>
+                                                        <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="{Binding AnswerColor}"/>
                                                     </VisualState.Setters>
                                                 </VisualState>
                                                 <VisualState Name="Selected">
@@ -52,7 +52,7 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                     <!--</RefreshView>-->
-                    <Label x:Name="conditionLabel"/>
+                    <Label x:Name="conditionLabel" TextColor="{DynamicResource AnswerColor}"/>
                     <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
                             Command="{Binding CheckAnswersCommand}"/>
                 </StackLayout>
