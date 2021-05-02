@@ -10,6 +10,15 @@
     <ContentPage.Resources>
         <ResourceDictionary />
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Далее" Command="{Binding GoToNextPageCommand}"/>
+        <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
+    </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}" />
+    </Shell.BackButtonBehavior>
+
     <ContentPage.Content>
         <RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ScrollView>

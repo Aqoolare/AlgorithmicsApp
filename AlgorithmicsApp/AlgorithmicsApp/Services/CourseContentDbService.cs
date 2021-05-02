@@ -13,6 +13,10 @@ namespace AlgorithmicsApp.Services
     class CourseContentDbService
     {
         static SQLiteAsyncConnection db = null;
+
+        public static CourseItem[] CourseItems { get; set; }
+        public static List<CourseItem> CourseItemsHistory { get; set; }
+
         static async Task Init()
         {
             if (db != null)

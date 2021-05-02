@@ -28,7 +28,7 @@ namespace AlgorithmicsApp.Services
             {
                 TheoryId = 0,
                 BoldText = "Определение 1.",
-                Text1 = " Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
+                Text1 = " Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
                 "условиям: 1) d | a и d | b; 2) если c | a и c | b, то c | d.",
                 LinkId = -1
             };
@@ -57,8 +57,9 @@ namespace AlgorithmicsApp.Services
             {
                 Id = 0,
                 Text = "Это ссылка",
-                Page = "TheoryPage",
-                ElementIndex = 3
+                TheoryId = 0,
+                ElementIndex = 3,
+                TheoryTitle = "Определение НОД и алгоритм нахождения"
             };
 
             //await db.DeleteAllAsync<TheoryContent>();

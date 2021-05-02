@@ -10,9 +10,12 @@
              x:Name="TheoryPage1">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Далее"/>
-        <ToolbarItem Text="Назад"/>
+        <ToolbarItem Text="Далее" Command="{Binding GoToNextPageCommand}"/>
+        <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
     </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}" />
+    </Shell.BackButtonBehavior>
 
     <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <ListView

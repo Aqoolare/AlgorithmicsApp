@@ -1,5 +1,6 @@
 ﻿using AlgorithmicsApp.Models;
 using AlgorithmicsApp.Services;
+using AlgorithmicsApp.Views;
 using MvvmHelpers;
 using MvvmHelpers.Commands;
 using System;
@@ -16,11 +17,13 @@ namespace AlgorithmicsApp.ViewModels
     [QueryProperty(nameof(QuestionTitle), nameof(QuestionTitle))]
     [QueryProperty(nameof(Formulation), nameof(Formulation))]
     [QueryProperty(nameof(IsAnswered), nameof(IsAnswered))]
+    [QueryProperty(nameof(CurrentPosition), nameof(CurrentPosition))]
     public class QuestionViewModel : BaseViewModel
     {
         public int QuestionId { get; set; }
         public string QuestionTitle { get; set; }
         public bool IsAnswered { get; set; }
+        public int CurrentPosition { get; set; }
 
         string formulation = string.Empty;
         public string Formulation
@@ -49,6 +52,10 @@ namespace AlgorithmicsApp.ViewModels
 
         public AsyncCommand LoadCommand { get; }
         public AsyncCommand CheckAnswersCommand { get; }
+        public AsyncCommand GoToCourseContentListCommand { get; }
+        public AsyncCommand GoToPreviousPageCommand { get; }
+        public AsyncCommand GoToNextPageCommand { get; }
+
         public Action UpdateAnswersInterface;
 
         public QuestionViewModel()
@@ -57,6 +64,43 @@ namespace AlgorithmicsApp.ViewModels
             SelectedAnswers = new ObservableCollection<object>();
             LoadCommand = new AsyncCommand(LoadAnswers);
             CheckAnswersCommand = new AsyncCommand(CheckAnswers);
+            GoToCourseContentListCommand = new AsyncCommand(GoToCourseContentList);
+            GoToPreviousPageCommand = new AsyncCommand(GoToPreviousPage);
+            GoToNextPageCommand = new AsyncCommand(GoToNextPage);
+        }
+
+        private async Task GoToNextPage()
+        {
+            CourseContentDbService.CourseItemsHistory.Add(CourseContentDbService.CourseItems[CurrentPosition]);
+
+            var route = String.Empty;
+            var item = CourseContentDbService.CourseItems[CurrentPosition];
+            CourseContentDbService.CourseItemsHistory.Add(item);
+            if (item.ItemType == Models.Type.Theory)
+            {
+                Theory theory = (Theory)item;
+                route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}&CurrentPosition={CurrentPosition + 1}";
+            }
+            else
+            {
+                Question question = (Question)item;
+                route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}" +
+                    $"&Formulation={Uri.EscapeDataString(question.Formulation)}&IsAnswered={question.IsAnswered}&CurrentPosition={CurrentPosition + 1}";
+            }
+            await Shell.Current.GoToAsync(route);
+        }
+
+        private async Task GoToPreviousPage()
+        {
+            var a = Shell.Current.CurrentState;
+            CourseContentDbService.CourseItemsHistory.RemoveAt(CourseContentDbService.CourseItemsHistory.Count - 1);
+            await Shell.Current.GoToAsync($"..");
+        }
+
+        private async Task GoToCourseContentList()
+        {
+            var a = Shell.Current.CurrentState;
+            await Shell.Current.GoToAsync($"///{nameof(CoursesPage)}/{nameof(CourseContentPage)}");
         }
 
         async Task CheckAnswers()

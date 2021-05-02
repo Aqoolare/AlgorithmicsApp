@@ -13,10 +13,12 @@ namespace AlgorithmicsApp.ViewModels
 {
     [QueryProperty(nameof(CourseId), nameof(CourseId))]
     [QueryProperty(nameof(CourseName), nameof(CourseName))]
+    [QueryProperty(nameof(CurrentPosition), nameof(CurrentPosition))]
     public class CourseContentViewModel : BaseViewModel
     {
         public int CourseId { get; set; }
         public string CourseName { get; set; }
+        public int CurrentPosition { get; set; }
 
         public ObservableRangeCollection<CourseItem> CourseItems { get; set; }
         public AsyncCommand LoadCourseItemsCommand { get; }
@@ -37,17 +39,21 @@ namespace AlgorithmicsApp.ViewModels
                 return;
 
             var route = String.Empty;
+            CurrentPosition = item.Order;
             if (item.ItemType == Models.Type.Theory)
             {
                 Theory theory = (Theory)item;
-                route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}";
+                route = $"{nameof(TheoryPage)}?TheoryId={theory.Id}&TheoryTitle={theory.Title}&CurrentPosition={CurrentPosition}";
             }
             else
             {
                 Question question = (Question)item;
                 route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}" +
-                    $"&Formulation={Uri.EscapeDataString(question.Formulation)}&IsAnswered={question.IsAnswered}";
+                    $"&Formulation={Uri.EscapeDataString(question.Formulation)}&IsAnswered={question.IsAnswered}&CurrentPosition={CurrentPosition}";
             }
+            CourseContentDbService.CourseItemsHistory = new List<CourseItem>();
+            CourseContentDbService.CourseItemsHistory.Add(item);
+
             await Shell.Current.GoToAsync(route);
         }
 
@@ -64,6 +70,12 @@ namespace AlgorithmicsApp.ViewModels
             
             CourseItems.Clear();
             CourseItems.AddRange(courseItems);
+            CourseContentDbService.CourseItems = new CourseItem[CourseItems.Count()];
+            for (var i = 0; i < CourseItems.Count(); i++)
+            {
+                CourseContentDbService.CourseItems[i] = CourseItems[i];
+            }
+
             IsBusy = false;
         }
 
