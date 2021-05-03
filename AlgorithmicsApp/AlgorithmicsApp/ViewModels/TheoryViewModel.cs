@@ -44,11 +44,13 @@ namespace AlgorithmicsApp.ViewModels
             IsBusy = true;
             TheoryContentList.Clear();
             var theoryContent = await TheoryContentDbService.GetTheoryContent(TheoryId);
+            ObservableRangeCollection<Wrapper> items = new ObservableRangeCollection<Wrapper>(); 
             foreach (var theoryItem in theoryContent)
             {
                 var link = await TheoryContentDbService.GetLinkById(theoryItem.LinkId);
-                TheoryContentList.Add(new Wrapper(theoryItem, link));
+                items.Add(new Wrapper(theoryItem, link));
             }
+            TheoryContentList.AddRange(items);
             RefreshScrollDown();
             IsBusy = false;
         }
@@ -68,8 +70,6 @@ namespace AlgorithmicsApp.ViewModels
 
         async Task GoToNextPage()
         {
-            CourseContentDbService.CourseItemsHistory.Add(CourseContentDbService.CourseItems[CurrentPosition]);
-
             var route = String.Empty;
             var item = CourseContentDbService.CourseItems[CurrentPosition];
             if (item.ItemType == Models.Type.Theory)
@@ -88,8 +88,8 @@ namespace AlgorithmicsApp.ViewModels
 
         async Task GoToPreviousPage()
         {
+            var route = String.Empty;
             var a = Shell.Current.CurrentState;
-            CourseContentDbService.CourseItemsHistory.RemoveAt(CourseContentDbService.CourseItemsHistory.Count - 1);
             await Shell.Current.GoToAsync($"..");
         }
 
@@ -99,12 +99,11 @@ namespace AlgorithmicsApp.ViewModels
                 return;
             // получить позицию некст элемента
             var theoryPages = from page in CourseContentDbService.CourseItems where page.ItemType == Type.Theory select (Theory)page;
-            var theoryId = from page in theoryPages where page.Id == link.TheoryId select page.Id;
+            var theoryId = from page in theoryPages where page.Id == link.TheoryId select page.Order;
 
             var route = $"{nameof(TheoryPage)}?TheoryId={link.TheoryId}&TheoryTitle={link.TheoryTitle}&ItemIndexToScroll={link.ElementIndex}&CurrentPosition={theoryId.FirstOrDefault()}";
             IsBusy = true;
             var nextPage = from page in theoryPages where page.Id == link.TheoryId select page;
-            CourseContentDbService.CourseItemsHistory.Add(nextPage.FirstOrDefault());
             await Shell.Current.GoToAsync(route);
             IsBusy = false;
         }

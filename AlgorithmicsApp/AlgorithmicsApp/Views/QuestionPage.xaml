@@ -12,7 +12,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Далее" Command="{Binding GoToNextPageCommand}"/>
+        <ToolbarItem x:Name="nextButton" Text="Далее" Command="{Binding GoToNextPageCommand}"/>
         <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
     </ContentPage.ToolbarItems>
     <Shell.BackButtonBehavior>

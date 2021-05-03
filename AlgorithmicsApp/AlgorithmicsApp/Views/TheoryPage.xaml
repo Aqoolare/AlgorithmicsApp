@@ -10,7 +10,7 @@
              x:Name="TheoryPage1">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Далее" Command="{Binding GoToNextPageCommand}"/>
+        <ToolbarItem x:Name="nextButton" Text="Далее" Command="{Binding GoToNextPageCommand}"/>
         <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
     </ContentPage.ToolbarItems>
     <Shell.BackButtonBehavior>
@@ -44,7 +44,7 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <math:MathView LaTeX="{Binding Formula}"/>
+                            <math:TextView LaTeX="{Binding Formula}" HeightRequest="{Binding HeightReq}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

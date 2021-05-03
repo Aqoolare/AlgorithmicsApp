@@ -71,8 +71,6 @@ namespace AlgorithmicsApp.ViewModels
 
         private async Task GoToNextPage()
         {
-            CourseContentDbService.CourseItemsHistory.Add(CourseContentDbService.CourseItems[CurrentPosition]);
-
             var route = String.Empty;
             var item = CourseContentDbService.CourseItems[CurrentPosition];
             CourseContentDbService.CourseItemsHistory.Add(item);
@@ -92,8 +90,8 @@ namespace AlgorithmicsApp.ViewModels
 
         private async Task GoToPreviousPage()
         {
+            var route = String.Empty;
             var a = Shell.Current.CurrentState;
-            CourseContentDbService.CourseItemsHistory.RemoveAt(CourseContentDbService.CourseItemsHistory.Count - 1);
             await Shell.Current.GoToAsync($"..");
         }
 

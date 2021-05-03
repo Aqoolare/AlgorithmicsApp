@@ -1,4 +1,5 @@
 ﻿using AlgorithmicsApp.Models;
+using AlgorithmicsApp.Services;
 using AlgorithmicsApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,10 @@ namespace AlgorithmicsApp.Views
                 }
             };
             _viewModel.OnAppearing();
+            if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
+            {
+                nextButton.IsEnabled = false;
+            }
         }
     }
 }

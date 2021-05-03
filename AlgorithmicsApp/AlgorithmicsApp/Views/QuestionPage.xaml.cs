@@ -1,9 +1,11 @@
 ﻿using AlgorithmicsApp.Models;
+using AlgorithmicsApp.Services;
 using AlgorithmicsApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -29,6 +31,7 @@ namespace AlgorithmicsApp.Views
             _viewModel.OnAppearing();
             if (_viewModel.IsAnswered)
             {
+                Thread.Sleep(1000);
                 if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
                 {
                     conditionLabel.Text = resultMessages[1];
@@ -46,6 +49,10 @@ namespace AlgorithmicsApp.Views
             {
                 checkButton.IsEnabled = false;
                 checkButton.Text = "Проверить ответы";
+            }
+            if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
+            {
+                nextButton.IsEnabled = false;
             }
         }
 

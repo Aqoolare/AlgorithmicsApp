@@ -19,12 +19,15 @@
                 <Setter Property="HorizontalTextAlignment"
                         Value="Start"/>
                 <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontFamily" Value="Times New Roman" />
             </Style>
-            <Style TargetType="{x:Type math:MathView}">
+            <Style TargetType="{x:Type math:TextView}">
                 <Setter Property="FontSize"
-                    Value="45" />
+                    Value="43" />
                 <Setter Property="TextColor"
                     Value="Gray" />
+                <Setter Property="Margin"
+                        Value="10" />
             </Style>
             <Style TargetType="{x:Type StackLayout}">
                 <Setter Property="Spacing"

@@ -11,6 +11,7 @@ namespace AlgorithmicsApp.Models
         public string BoldText { get; set; }
         public string Formula { get; set; }
         public Link Link { get; set; }
+        public int HeightReq { get; set; }
 
         public Wrapper(TheoryContent tc, Link l)
         {
@@ -18,6 +19,7 @@ namespace AlgorithmicsApp.Models
             Text2 = tc.Text2;
             BoldText = tc.BoldText;
             Formula = tc.Formula;
+            HeightReq = tc.CountStrings * 30;
             Link = l;
         }
     }
