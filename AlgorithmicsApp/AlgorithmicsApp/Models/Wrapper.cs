@@ -21,7 +21,7 @@ namespace AlgorithmicsApp.Models
             BoldText = tc.BoldText;
             Formula = tc.Formula;
             HeightReq = tc.FormulaCountStrings * 30;
-            LabelHeightReq = tc.TextCountStrings * 30;
+            LabelHeightReq = tc.TextCountStrings * 15;
             Link = l;
         }
     }

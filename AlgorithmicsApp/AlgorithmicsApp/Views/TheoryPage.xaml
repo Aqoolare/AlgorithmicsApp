@@ -27,15 +27,18 @@
             SeparatorVisibility="None"
             x:Name="listView">
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Wrapper">
+                <DataTemplate x:DataType="model:Wrapper"> 
                     <ViewCell>
                         <StackLayout>
+                            <ScrollView>
+                                <math:TextView LaTeX="{Binding Formula}" HeightRequest="{Binding HeightReq}"/>
+                            </ScrollView>
                             <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding BoldText}" FontAttributes="Bold"/>
-                                        <Span Text="{Binding Text1}"/>
-                                        <Span x:Name="{Binding }" Text="{Binding Link.Text}" TextDecorations="Underline" TextColor="Blue">
+                                        <Span Text="{Binding Text1}" FontSize="Small" FontAttributes="Italic"/>
+                                        <Span x:Name="{Binding }" Text="{Binding Link.Text}" FontSize="Small" TextDecorations="Underline" FontAttributes="Italic" TextColor="Blue">
                                             <Span.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
                                             </Span.GestureRecognizers>
@@ -44,7 +47,6 @@
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
-                            <math:TextView LaTeX="{Binding Formula}" HeightRequest="{Binding HeightReq}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

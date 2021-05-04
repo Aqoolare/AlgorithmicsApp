@@ -123,15 +123,40 @@ namespace AlgorithmicsApp.Services
                     TextCountStrings = 0,
                     FormulaCountStrings = 33,
                 },
+                new TheoryContent
+                {
+                    TheoryId = 6,
+                    Formula = @"Центрированное деление числа a на число b характеризуется тем, что остаток от деления по абсолютной величине является наименьшим возможным, т. е.$$a=bq+r,\quad где \left | r \right |\leq \frac{b}{2}.$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 6,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 6,
+                    Text1 = "Вспомнить тему: ",
+                    Formula = @"Алгоритм Евклида, использующий центрированное деление, в общем случае требует меньшего числа шагов для получения результата.",
+                    LinkId = 0,
+                    TextCountStrings = 3,
+                    FormulaCountStrings = 4,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 7,
+                    Formula = @"$$Алгоритм Евклида, использующий центрированное деление, в общем случае требует меньшего числа шагов для получения результата.$$",
+                    LinkId = 0,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 4,
+                },
             };
 
             var link0 = new Link
             {
                 Id = 0,
-                Text = "Это ссылка",
-                TheoryId = 2,
-                ElementIndex = 3,
-                TheoryTitle = "Каноническое разложение чисел на простые множители"
+                Text = "Алгоритм Евклида",
+                TheoryId = 1,
+                ElementIndex = 0,
+                TheoryTitle = "Шаги вычисления Алгоритма Евклида"
             };
 
             await db.DeleteAllAsync<TheoryContent>();
