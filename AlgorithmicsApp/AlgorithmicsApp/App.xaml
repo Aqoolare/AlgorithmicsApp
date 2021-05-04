@@ -17,7 +17,7 @@
                 <Setter Property="Padding"
                     Value="10" />
                 <Setter Property="HorizontalTextAlignment"
-                        Value="Start"/>
+                        Value="Center"/>
                 <Setter Property="FontSize" Value="Medium" />
                 <Setter Property="FontFamily" Value="aAromanis" />
             </Style>

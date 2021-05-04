@@ -77,7 +77,7 @@ namespace AlgorithmicsApp.Services
                     Id = 6,
                     CourseId = 0,
                     Order = 9,
-                    Title = "Центированное деление"
+                    Title = "Центрированное деление"
                 },
                 new Theory
                 {

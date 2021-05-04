@@ -143,27 +143,64 @@ namespace AlgorithmicsApp.Services
                 new TheoryContent
                 {
                     TheoryId = 7,
-                    Formula = @"$$Алгоритм Евклида, использующий центрированное деление, в общем случае требует меньшего числа шагов для получения результата.$$",
-                    LinkId = 0,
+                    Text1 = "Вспомнить тему: ",
+                    Formula = @"Расширенный алгоритм Евклида используется для того, чтобы, кроме наибольшего общего делителя двух чисел a, b, найти представление его в виде: $$НОД(a,b)=au+bv,\quad где u,v\in \mathbb{Z}.$$",
+                    LinkId = 1,
+                    TextCountStrings = 3,
+                    FormulaCountStrings = 5,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 7,
+                    Formula = @"Для этого в ходе работы алгоритма Евклида дополнительно строятся две числовые последовательности $\left \{ u_{i}\right \}_{i=0,1,...,n+1}$ и $\left \{ v_{i}\right \}_{i=0,1,...,n+1}$, такие что $$r_{i}=au_{i}+bv_{i}\quad (i=0,1,...,n+1).$$",
+                    LinkId = -1,
                     TextCountStrings = 0,
-                    FormulaCountStrings = 4,
+                    FormulaCountStrings = 5,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 7,
+                    Formula = @"Если $r_{n}=НОД(a,b),$ то $r_{n}=au_{n}+bv_{n},$ т. е. $u=u_{n},$ $v=v_{n}.$ Числа u и v называются коэффициентами Безу.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 3,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 7,
+                    Text1 = "Вспомнить тему: ",
+                    Formula = @"Очевидно, $u_{0}=1,$ $v_{0}=1;$ $u_{1}=0,$ $v_{1}=1.$ В дальнейшем элементы последовательностей $\left \{ u_{i}\right \}_{i=0,1,...,n+1}$ и $\left \{ v_{i}\right \}_{i=0,1,...,n+1}$ строятся по рекуррентным формулам: $$u_{i+1}=u_{i-1}-q_{i}u_{i},$$ $$v_{i+1}=v_{i-1}-q_{i}v_{i},\quad (i=1,2,...,n),$$ где $q_{i}$ определено из i-го деления алгоритма Евклида, т. е. $$r_{i-1}=q_{i}r_{i}+r_{i+1},\quad 0<r_{i+1}<r_{i}.$$",
+                    LinkId = 0,
+                    TextCountStrings = 3,
+                    FormulaCountStrings = 9,
                 },
             };
 
-            var link0 = new Link
+            Link[] links =
             {
-                Id = 0,
-                Text = "Алгоритм Евклида",
-                TheoryId = 1,
-                ElementIndex = 0,
-                TheoryTitle = "Шаги вычисления Алгоритма Евклида"
+                new Link
+                {
+                    Id = 0,
+                    Text = "Алгоритм Евклида",
+                    TheoryId = 1,
+                    ElementIndex = 0,
+                    TheoryTitle = "Шаги вычисления Алгоритма Евклида"
+                },
+                new Link
+                {
+                    Id = 1,
+                    Text = "НОД",
+                    TheoryId = 0,
+                    ElementIndex = 0,
+                    TheoryTitle = "Определение НОД и алгоритм нахождения"
+                },
             };
 
             await db.DeleteAllAsync<TheoryContent>();
             await db.DeleteAllAsync<Link>();
 
             await db.InsertAllAsync(theoryContents);
-            await db.InsertAsync(link0);
+            await db.InsertAllAsync(links);
         }
 
         public static async Task<IEnumerable<TheoryContent>> GetTheoryContent(int theoryId)
