@@ -155,7 +155,7 @@ namespace AlgorithmicsApp.Services
                     Formula = @"Для этого в ходе работы алгоритма Евклида дополнительно строятся две числовые последовательности $\left \{ u_{i}\right \}_{i=0,1,...,n+1}$ и $\left \{ v_{i}\right \}_{i=0,1,...,n+1}$, такие что $$r_{i}=au_{i}+bv_{i}\quad (i=0,1,...,n+1).$$",
                     LinkId = -1,
                     TextCountStrings = 0,
-                    FormulaCountStrings = 5,
+                    FormulaCountStrings = 6,
                 },
                 new TheoryContent
                 {
@@ -172,7 +172,7 @@ namespace AlgorithmicsApp.Services
                     Formula = @"Очевидно, $u_{0}=1,$ $v_{0}=1;$ $u_{1}=0,$ $v_{1}=1.$ В дальнейшем элементы последовательностей $\left \{ u_{i}\right \}_{i=0,1,...,n+1}$ и $\left \{ v_{i}\right \}_{i=0,1,...,n+1}$ строятся по рекуррентным формулам: $$u_{i+1}=u_{i-1}-q_{i}u_{i},$$ $$v_{i+1}=v_{i-1}-q_{i}v_{i},\quad (i=1,2,...,n),$$ где $q_{i}$ определено из i-го деления алгоритма Евклида, т. е. $$r_{i-1}=q_{i}r_{i}+r_{i+1},\quad 0<r_{i+1}<r_{i}.$$",
                     LinkId = 0,
                     TextCountStrings = 3,
-                    FormulaCountStrings = 9,
+                    FormulaCountStrings = 10,
                 },
             };
 

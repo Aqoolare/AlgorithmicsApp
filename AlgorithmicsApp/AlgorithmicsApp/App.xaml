@@ -25,9 +25,9 @@
                 <Setter Property="FontSize"
                     Value="43" />
                 <Setter Property="TextColor"
-                    Value="Gray" />
+                    Value="Black" />
                 <Setter Property="Margin"
-                        Value="10" />
+                        Value="15" />
             </Style>
             <Style TargetType="{x:Type StackLayout}">
                 <Setter Property="Spacing"

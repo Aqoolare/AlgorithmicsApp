@@ -113,6 +113,14 @@ namespace AlgorithmicsApp.Services
             return theory;
         }
 
+        public static async Task<Theory> GetTheoryById(int theoryId)
+        {
+            await Init();
+
+            var theory = await db.Table<Theory>().Where(t => t.Id == theoryId).FirstOrDefaultAsync();
+            return theory;
+        }
+
         public static async Task<IEnumerable<Question>> GetQuestions(int courseId)
         {
             await Init();

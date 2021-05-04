@@ -97,13 +97,13 @@ namespace AlgorithmicsApp.ViewModels
         {
             if (link == null)
                 return;
-            // получить позицию некст элемента
-            var theoryPages = from page in CourseContentDbService.CourseItems where page.ItemType == Type.Theory select (Theory)page;
-            var theoryId = from page in theoryPages where page.Id == link.TheoryId select page.Order;
-
-            var route = $"{nameof(TheoryPage)}?TheoryId={link.TheoryId}&TheoryTitle={link.TheoryTitle}&ItemIndexToScroll={link.ElementIndex}&CurrentPosition={theoryId.FirstOrDefault()}";
             IsBusy = true;
-            var nextPage = from page in theoryPages where page.Id == link.TheoryId select page;
+            // получить позицию некст элемента
+            var theoryItem = await CourseContentDbService.GetTheoryById(link.TheoryId);
+
+            var route = $"{nameof(TheoryPage)}?TheoryId={link.TheoryId}&TheoryTitle={theoryItem.Title}&ItemIndexToScroll={link.ElementIndex}&CurrentPosition={link.TheoryId}";
+            //IsBusy = true;
+            //var nextPage = from page in theoryPages where page.Id == link.TheoryId select page;
             await Shell.Current.GoToAsync(route);
             IsBusy = false;
         }
