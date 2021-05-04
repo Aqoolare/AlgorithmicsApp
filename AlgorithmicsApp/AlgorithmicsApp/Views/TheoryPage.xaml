@@ -30,7 +30,7 @@
                 <DataTemplate x:DataType="model:Wrapper">
                     <ViewCell>
                         <StackLayout>
-                            <Label LineBreakMode="WordWrap">
+                            <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding BoldText}" FontAttributes="Bold"/>

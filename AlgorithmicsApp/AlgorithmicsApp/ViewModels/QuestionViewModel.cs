@@ -57,6 +57,7 @@ namespace AlgorithmicsApp.ViewModels
         public AsyncCommand GoToNextPageCommand { get; }
 
         public Action UpdateAnswersInterface;
+        public Action UpdateAnswersInterfaceAfterLoad;
 
         public QuestionViewModel()
         {
@@ -123,6 +124,7 @@ namespace AlgorithmicsApp.ViewModels
             Answers.AddRange(answers);
             CollectionViewHeightRequest = 105 * Answers.Count;
             IsBusy = false;
+            UpdateAnswersInterfaceAfterLoad();
         }
 
 

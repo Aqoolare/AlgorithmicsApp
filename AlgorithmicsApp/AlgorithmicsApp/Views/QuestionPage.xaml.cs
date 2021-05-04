@@ -28,10 +28,38 @@ namespace AlgorithmicsApp.Views
         {
             base.OnAppearing();
             _viewModel.UpdateAnswersInterface = UpdateIntrface;
+            _viewModel.UpdateAnswersInterfaceAfterLoad = UpdateInterfaceAfterLoad;
             _viewModel.OnAppearing();
+            //if (_viewModel.IsAnswered)
+            //{
+            //    if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
+            //    {
+            //        conditionLabel.Text = resultMessages[1];
+            //        App.Current.Resources["AnswerColor"] = Color.Red;
+            //    }
+            //    else
+            //    {
+            //        conditionLabel.Text = resultMessages[0];
+            //        App.Current.Resources["AnswerColor"] = Color.Green;
+            //    }
+            //    collectionView.SelectionMode = SelectionMode.None;
+            //    checkButton.Text = "Решить заново";
+            //}
+            //else
+            //{
+            //    checkButton.IsEnabled = false;
+            //    checkButton.Text = "Проверить ответы";
+            //}
+            if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
+            {
+                nextButton.IsEnabled = false;
+            }
+        }
+
+        void UpdateInterfaceAfterLoad()
+        {
             if (_viewModel.IsAnswered)
             {
-                Thread.Sleep(1000);
                 if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
                 {
                     conditionLabel.Text = resultMessages[1];
@@ -49,10 +77,6 @@ namespace AlgorithmicsApp.Views
             {
                 checkButton.IsEnabled = false;
                 checkButton.Text = "Проверить ответы";
-            }
-            if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
-            {
-                nextButton.IsEnabled = false;
             }
         }
 

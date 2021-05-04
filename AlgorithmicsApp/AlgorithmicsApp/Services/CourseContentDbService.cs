@@ -77,20 +77,27 @@ namespace AlgorithmicsApp.Services
                     Id = 6,
                     CourseId = 0,
                     Order = 7,
-                    Title = "НОД двух чисел в двоичной системе счисления"
+                    Title = "НОД двух чисел в двоичной системе счисления. Ч.1"
                 },
                 new Theory
                 {
                     Id = 7,
                     CourseId = 0,
                     Order = 8,
-                    Title = "Центированное деление"
+                    Title = "НОД двух чисел в двоичной системе счисления. Ч.2"
                 },
                 new Theory
                 {
                     Id = 8,
                     CourseId = 0,
                     Order = 9,
+                    Title = "Центированное деление"
+                },
+                new Theory
+                {
+                    Id = 9,
+                    CourseId = 0,
+                    Order = 10,
                     Title = "Расширенный алгоритм Евклида"
                 },
             };

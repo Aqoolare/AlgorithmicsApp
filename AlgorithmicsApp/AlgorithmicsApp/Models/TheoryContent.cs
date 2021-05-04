@@ -13,6 +13,7 @@ namespace AlgorithmicsApp.Models
         public string BoldText { get; set; }
         public int LinkId { get; set; }
         public string Formula { get; set; }
-        public int CountStrings { get; set; }
+        public int TextCountStrings { get; set; }
+        public int FormulaCountStrings { get; set; }
     }
 }
