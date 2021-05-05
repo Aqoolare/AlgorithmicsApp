@@ -21,16 +21,37 @@ namespace AlgorithmicsApp.Services
 
             await db.CreateTableAsync<Course>();
 
-            var course1 = new Course
+            Course[] courses =
             {
-                Name = "Наибольший общий делитель и алгоритмы его нахождения",
-                Icon = "\ueade",
-                Id = 0
+                new Course
+                {
+                    Name = "Наибольший общий делитель и алгоритмы его нахождения",
+                    Icon = "\ueade",
+                    Id = 0
+                },
+                new Course
+                {
+                    Name = "Диофантовы уравнения первой степени",
+                    Icon = "\ueade",
+                    Id = 1
+                },
+                new Course
+                {
+                    Name = "Непрерывные (цепные) дроби",
+                    Icon = "\ueade",
+                    Id = 2
+                },
+                new Course
+                {
+                    Name = "Кольцо целых гауссовых чисел",
+                    Icon = "\ueade",
+                    Id = 3
+                },
             };
 
             await db.DeleteAllAsync<Course>();
 
-            await db.InsertAsync(course1);
+            await db.InsertAllAsync(courses);
         }
 
         public static async Task<IEnumerable<Course>> GetCourses()

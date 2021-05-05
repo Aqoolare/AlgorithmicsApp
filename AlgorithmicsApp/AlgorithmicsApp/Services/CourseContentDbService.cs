@@ -86,6 +86,62 @@ namespace AlgorithmicsApp.Services
                     Order = 10,
                     Title = "Расширенный алгоритм Евклида"
                 },
+                new Theory
+                {
+                    Id = 8,
+                    CourseId = 1,
+                    Order = 1,
+                    Title = "Определение. Условие разрешимости"
+                },
+                new Theory
+                {
+                    Id = 9,
+                    CourseId = 1,
+                    Order = 2,
+                    Title = "Решение диофантова уравнения"
+                },
+                new Theory
+                {
+                    Id = 10,
+                    CourseId = 2,
+                    Order = 1,
+                    Title = "Определение непрерывной дроби"
+                },
+                new Theory
+                {
+                    Id = 11,
+                    CourseId = 2,
+                    Order = 2,
+                    Title = "Свойства подходящих дробей"
+                },
+                new Theory
+                {
+                    Id = 12,
+                    CourseId = 2,
+                    Order = 3,
+                    Title = "Разложение произвольного вещественного числа в непрерывную дробь"
+                },
+                new Theory
+                {
+                    Id = 13,
+                    CourseId = 2,
+                    Order = 4,
+                    Title = "Периодические непрерывные дроби"
+                },
+                new Theory
+                {
+                    Id = 14,
+                    CourseId = 2,
+                    Order = 5,
+                    Title = "Теорема Лагранжа"
+                },
+                new Theory
+                {
+                    Id = 15,
+                    CourseId = 2,
+                    Order = 6,
+                    Title = "Лемма о погрешности приближения"
+                },
             };
 
             var q0 = new Question

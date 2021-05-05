@@ -30,10 +30,10 @@
                 <DataTemplate x:DataType="model:Wrapper"> 
                     <ViewCell>
                         <StackLayout>
-                            <ScrollView>
+                            <ScrollView x:Name="scrollView">
                                 <math:TextView LaTeX="{Binding Formula}" HeightRequest="{Binding HeightReq}"/>
                             </ScrollView>
-                            <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}">
+                            <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
                                 <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding BoldText}" FontAttributes="Bold"/>

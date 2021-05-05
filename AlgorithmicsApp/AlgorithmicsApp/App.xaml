@@ -16,10 +16,8 @@
             <Style TargetType="{x:Type Label}">
                 <Setter Property="Padding"
                     Value="10" />
-                <Setter Property="HorizontalTextAlignment"
-                        Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Start"/>
                 <Setter Property="FontSize" Value="Medium" />
-                <Setter Property="FontFamily" Value="aAromanis" />
             </Style>
             <Style TargetType="{x:Type math:TextView}">
                 <Setter Property="FontSize"

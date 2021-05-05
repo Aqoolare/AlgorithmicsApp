@@ -45,7 +45,7 @@
                                                     Size="100"/>
                                         </Image.Source>
                                     </Image>
-                                    <StackLayout VerticalOptions="Center">
+                                    <StackLayout VerticalOptions="Center" Margin="15, 0">
                                         <Label
                                             FontSize="Large"
                                             Text="{Binding Name}"
