@@ -18,40 +18,42 @@
     </Shell.BackButtonBehavior>
 
     <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
-        <ListView
+        <StackLayout>
+            <ListView
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             ItemsSource="{Binding TheoryContentList}"
             SelectionMode="None"
             SeparatorVisibility="None"
             x:Name="listView">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="model:Wrapper"> 
-                    <ViewCell>
-                        <StackLayout>
-                            <ScrollView>
-                                <math:TextView LaTeX="{Binding Formula}" FontSize="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.FSize}" HeightRequest="{Binding HeightReq}"/>
-                            </ScrollView>
-                            <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding BoldText}" FontAttributes="Bold"/>
-                                        <Span Text="{Binding Text1}" FontSize="Small" FontAttributes="Italic"/>
-                                        <Span x:Name="{Binding }" Text="{Binding Link.Text}" FontSize="Small" TextDecorations="Underline" FontAttributes="Italic" TextColor="Blue">
-                                            <Span.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
-                                            </Span.GestureRecognizers>
-                                        </Span>
-                                        <Span Text="{Binding Text2}"/>
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Wrapper">
+                        <ViewCell>
+                            <StackLayout>
+                                <ScrollView>
+                                    <math:TextView x:Name="textView" LaTeX="{Binding Formula}" FontSize="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.FSize}" HeightRequest="{Binding HeightReq}"/>
+                                </ScrollView>
+                                <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding BoldText}" FontAttributes="Bold"/>
+                                            <Span Text="{Binding Text1}" FontSize="Small" FontAttributes="Italic"/>
+                                            <Span x:Name="{Binding }" Text="{Binding Link.Text}" FontSize="Small" TextDecorations="Underline" FontAttributes="Italic" TextColor="Blue">
+                                                <Span.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
+                                                </Span.GestureRecognizers>
+                                            </Span>
+                                            <Span Text="{Binding Text2}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label x:Name="linkLabel" FontSize="Small" TextColor="Gray" Padding="0" Margin="15,0" HorizontalTextAlignment="Start"/>
+        </StackLayout>
     </RefreshView>
-
 </ContentPage> 
     

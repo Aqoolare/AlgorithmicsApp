@@ -62,5 +62,13 @@ namespace AlgorithmicsApp.Services
             var courses = await db.Table<Course>().ToListAsync();
             return courses;
         }
+
+        public static async Task<Course> GetCourseById(int courseId)
+        {
+            await Init();
+
+            var courses = await db.Table<Course>().Where(c => c.Id == courseId).FirstOrDefaultAsync();
+            return courses;
+        }
     }
 }

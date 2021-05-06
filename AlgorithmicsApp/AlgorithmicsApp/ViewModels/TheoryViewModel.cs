@@ -15,11 +15,15 @@ namespace AlgorithmicsApp.ViewModels
     [QueryProperty(nameof(TheoryId), nameof(TheoryId))]
     [QueryProperty(nameof(TheoryTitle), nameof(TheoryTitle))]
     [QueryProperty(nameof(CurrentPosition), nameof(CurrentPosition))]
+    [QueryProperty(nameof(ByLink), nameof(ByLink))]
+    [QueryProperty(nameof(TheoryLinkId), nameof(TheoryLinkId))]
     public class TheoryViewModel : BaseViewModel
     {
         public int TheoryId { get; set; }
         public string TheoryTitle { get; set; }
         public int CurrentPosition { get; set; }
+        public bool ByLink { get; set; }
+        public int TheoryLinkId { get; set; }
 
         public ObservableRangeCollection<Wrapper> TheoryContentList { get; set; }
         public AsyncCommand<Link> LinkTappedCommand { get; }
@@ -49,11 +53,20 @@ namespace AlgorithmicsApp.ViewModels
             FSize = Convert.ToInt32(43 * (p / 2.625));
         }
 
+        int GetRightTheoryID()
+        {
+            if (ByLink)
+                return TheoryLinkId;
+            else
+                return TheoryId;
+        }
+
         async Task LoadTheoryContent()
         {
             IsBusy = true;
+            var id = GetRightTheoryID();
             TheoryContentList.Clear();
-            var theoryContent = await TheoryContentDbService.GetTheoryContent(TheoryId);
+            var theoryContent = await TheoryContentDbService.GetTheoryContent(id);
             ObservableRangeCollection<Wrapper> items = new ObservableRangeCollection<Wrapper>(); 
             foreach (var theoryItem in theoryContent)
             {
@@ -75,7 +88,9 @@ namespace AlgorithmicsApp.ViewModels
         async Task GoToCourseContentList()
         {
             var a = Shell.Current.CurrentState;
-            await Shell.Current.GoToAsync($"///{nameof(CoursesPage)}/{nameof(CourseContentPage)}");
+            var courseItem = await CourseContentDbService.GetTheoryById(TheoryId);
+            var course = await CoursesDbService.GetCourseById(courseItem.CourseId);
+            await Shell.Current.GoToAsync($"///{nameof(CoursesPage)}/{nameof(CourseContentPage)}?CourseId={course.Id}&CourseName={course.Name}");
         }
 
         async Task GoToNextPage()
@@ -111,7 +126,7 @@ namespace AlgorithmicsApp.ViewModels
             // получить позицию некст элемента
             var theoryItem = await CourseContentDbService.GetTheoryById(link.TheoryId);
 
-            var route = $"{nameof(TheoryPage)}?TheoryId={link.TheoryId}&TheoryTitle={theoryItem.Title}&ItemIndexToScroll={link.ElementIndex}&CurrentPosition={link.TheoryId}";
+            var route = $"{nameof(TheoryPage)}?TheoryLinkId={link.TheoryId}&TheoryId={this.TheoryId}&TheoryTitle={theoryItem.Title}&ItemIndexToScroll={link.ElementIndex}&ByLink={true}";
             //IsBusy = true;
             //var nextPage = from page in theoryPages where page.Id == link.TheoryId select page;
             await Shell.Current.GoToAsync(route);

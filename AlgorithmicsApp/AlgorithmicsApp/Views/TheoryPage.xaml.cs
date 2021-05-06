@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +48,15 @@ namespace AlgorithmicsApp.Views
             if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
             {
                 nextButton.IsEnabled = false;
+            }
+            if (_viewModel.ByLink)
+            {
+                linkLabel.Text = "Переход выполнен по ссылке";
+                nextButton.IsEnabled = false;
+            }
+            else
+            {
+                linkLabel.HeightRequest = 0;
             }
         }
     }

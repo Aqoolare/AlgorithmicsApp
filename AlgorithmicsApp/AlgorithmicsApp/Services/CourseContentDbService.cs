@@ -32,175 +32,175 @@ namespace AlgorithmicsApp.Services
             {
                 new Theory
                 {
-                    Id = 0,
+                    Id = 1,
                     CourseId = 0,
                     Order = 1,
                     Title = "Определение НОД и алгоритм нахождения"
                 },
                 new Theory
                 {
-                    Id = 1,
+                    Id = 2,
                     CourseId = 0,
                     Order = 2,
                     Title = "Шаги вычисления Алгоритма Евклида"
                 },
                 new Theory
                 {
-                    Id = 2,
+                    Id = 3,
                     CourseId = 0,
                     Order = 3,
                     Title = "Каноническое разложение чисел на простые множители"
                 },
                 new Theory
                 {
-                    Id = 3,
+                    Id = 4,
                     CourseId = 0,
                     Order = 4,
                     Title = "Свойства НОД"
                 },
                 new Theory
                 {
-                    Id = 4,
+                    Id = 5,
                     CourseId = 0,
                     Order = 5,
                     Title = "Бинарный алгоритм"
                 },
                 new Theory
                 {
-                    Id = 5,
-                    CourseId = 0,
-                    Order = 7,
-                    Title = "НОД двух чисел в двоичной системе счисления"
-                },
-                new Theory
-                {
                     Id = 6,
                     CourseId = 0,
-                    Order = 9,
-                    Title = "Центрированное деление"
+                    Order = 6,
+                    Title = "НОД двух чисел в двоичной системе счисления"
                 },
                 new Theory
                 {
                     Id = 7,
                     CourseId = 0,
-                    Order = 10,
-                    Title = "Расширенный алгоритм Евклида"
+                    Order = 7,
+                    Title = "Центрированное деление"
                 },
                 new Theory
                 {
                     Id = 8,
+                    CourseId = 0,
+                    Order = 9,
+                    Title = "Расширенный алгоритм Евклида"
+                },
+                new Theory
+                {
+                    Id = 9,
                     CourseId = 1,
                     Order = 1,
                     Title = "Определение. Условие разрешимости"
                 },
                 new Theory
                 {
-                    Id = 9,
+                    Id = 10,
                     CourseId = 1,
                     Order = 2,
                     Title = "Решение диофантова уравнения"
                 },
                 new Theory
                 {
-                    Id = 10,
+                    Id = 11,
                     CourseId = 2,
                     Order = 1,
                     Title = "Определение непрерывной дроби"
                 },
                 new Theory
                 {
-                    Id = 11,
+                    Id = 12,
                     CourseId = 2,
                     Order = 2,
                     Title = "Свойства подходящих дробей"
                 },
                 new Theory
                 {
-                    Id = 12,
+                    Id = 13,
                     CourseId = 2,
                     Order = 3,
                     Title = "Разложение произвольного вещественного числа в непрерывную дробь"
                 },
                 new Theory
                 {
-                    Id = 13,
+                    Id = 14,
                     CourseId = 2,
                     Order = 4,
                     Title = "Периодические непрерывные дроби"
                 },
                 new Theory
                 {
-                    Id = 14,
+                    Id = 15,
                     CourseId = 2,
                     Order = 5,
                     Title = "Теорема Лагранжа"
                 },
                 new Theory
                 {
-                    Id = 15,
+                    Id = 16,
                     CourseId = 2,
                     Order = 6,
                     Title = "Лемма о погрешности приближения"
                 },
                 new Theory
                 {
-                    Id = 16,
+                    Id = 17,
                     CourseId = 3,
                     Order = 1,
                     Title = "Определение кольца целых гауссовых чисел"
                 },
                 new Theory
                 {
-                    Id = 17,
+                    Id = 18,
                     CourseId = 3,
                     Order = 2,
                     Title = "Норма элемента"
                 },
                 new Theory
                 {
-                    Id = 18,
-                    CourseId = 3,
-                    Order = 2,
-                    Title = "Операция деления с остатком"
-                },
-                new Theory
-                {
                     Id = 19,
                     CourseId = 3,
                     Order = 3,
-                    Title = "Факториальность кольца"
+                    Title = "Операция деления с остатком"
                 },
                 new Theory
                 {
                     Id = 20,
                     CourseId = 3,
                     Order = 4,
-                    Title = "Теорема"
+                    Title = "Факториальность кольца"
                 },
                 new Theory
                 {
                     Id = 21,
+                    CourseId = 3,
+                    Order = 5,
+                    Title = "Теорема"
+                },
+                new Theory
+                {
+                    Id = 22,
                     CourseId = 4,
                     Order = 1,
                     Title = "Определение сравнения по модулю"
                 },
                 new Theory
                 {
-                    Id = 22,
+                    Id = 23,
                     CourseId = 4,
                     Order = 2,
                     Title = "Свойства сравнений"
                 },
                 new Theory
                 {
-                    Id = 23,
+                    Id = 24,
                     CourseId = 4,
                     Order = 3,
                     Title = "Теорема (разрешимость сравнения)"
                 },
                 new Theory
                 {
-                    Id = 24,
+                    Id = 25,
                     CourseId = 4,
                     Order = 4,
                     Title = "Решение системы сравнений"
@@ -211,7 +211,7 @@ namespace AlgorithmicsApp.Services
             {
                 Id = 0,
                 CourseId = 0,
-                Order = 9,
+                Order = 8,
                 Title = "Вопрос 1",
                 Formulation = "Да или нет?",
                 IsAnswered = false
