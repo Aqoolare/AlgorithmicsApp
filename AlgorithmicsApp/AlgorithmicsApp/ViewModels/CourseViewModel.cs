@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MvvmHelpers.Commands;
 using AlgorithmicsApp.Views;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace AlgorithmicsApp.ViewModels
 {

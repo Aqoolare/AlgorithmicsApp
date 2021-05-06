@@ -5,10 +5,10 @@ using Xamarin.Forms.Xaml;
 
 namespace AlgorithmicsApp
 {
-    class RussianBreakingEngine : Typography.TextBreak.EngBreakingEngine
-    {
-        public override bool CanHandle(char c) => c is >= '\u0400' and <= '\u052f'; // Unicode Cyrillic and Cyrillic Supplement
-    }
+    //class RussianBreakingEngine : Typography.TextBreak.EngBreakingEngine
+    //{
+    //    public override bool CanHandle(char c) => c is >= '\u0400' and <= '\u052f'; // Unicode Cyrillic and Cyrillic Supplement
+    //}
     public partial class App : Application
     {
         public App()
@@ -20,7 +20,7 @@ namespace AlgorithmicsApp
             Routing.RegisterRoute($"{nameof(CourseContentPage)}", typeof(CourseContentPage));
             Routing.RegisterRoute($"{nameof(TheoryPage)}", typeof(TheoryPage));
             Routing.RegisterRoute($"{nameof(QuestionPage)}", typeof(QuestionPage));
-
+            //CSharpMath.Rendering.Text.TextLaTeXParser.AdditionalBreakingEngines.Add(new RussianBreakingEngine());
         }
 
         protected override void OnStart()

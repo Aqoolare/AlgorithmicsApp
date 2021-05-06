@@ -26,7 +26,7 @@ namespace AlgorithmicsApp.Services
 
             db = new SQLiteAsyncConnection(databasePath);
             await db.CreateTableAsync<Theory>();
-            //await db.CreateTableAsync<Question>();
+            await db.CreateTableAsync<Question>();
 
             Theory[] theories = 
             {
@@ -155,10 +155,10 @@ namespace AlgorithmicsApp.Services
             };
 
             await db.DeleteAllAsync<Theory>();
-            //await db.DeleteAllAsync<Question>();
+            await db.DeleteAllAsync<Question>();
 
             await db.InsertAllAsync(theories);
-            //await db.InsertAsync(q0);
+            await db.InsertAsync(q0);
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)

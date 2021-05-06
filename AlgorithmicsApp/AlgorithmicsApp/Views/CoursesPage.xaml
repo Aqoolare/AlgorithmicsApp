@@ -5,6 +5,7 @@
              x:Class="AlgorithmicsApp.Views.CoursesPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
              Title="Обучение">
     
     
@@ -42,12 +43,12 @@
                                                     FontFamily="IconFont"
                                                     Glyph="{Binding Icon}"
                                                     Color="Gray"
-                                                    Size="100"/>
+                                                    Size="Header"/>
                                         </Image.Source>
                                     </Image>
                                     <StackLayout VerticalOptions="Center" Margin="15, 0">
                                         <Label
-                                            FontSize="Large"
+                                            FontSize="Medium"
                                             Text="{Binding Name}"
                                             VerticalOptions="Center" />
                                     </StackLayout>

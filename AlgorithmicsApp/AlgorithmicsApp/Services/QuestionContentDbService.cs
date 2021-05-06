@@ -21,9 +21,9 @@ namespace AlgorithmicsApp.Services
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
 
             db = new SQLiteAsyncConnection(databasePath);
-            //await db.CreateTableAsync<Answer>();
+            await db.CreateTableAsync<Answer>();
 
-            //await db.DeleteAllAsync<Answer>();
+            await db.DeleteAllAsync<Answer>();
 
             var a0 = new Answer
             {
@@ -61,10 +61,10 @@ namespace AlgorithmicsApp.Services
                 Id = 3
             };
 
-            //await db.InsertAsync(a0);
-            //await db.InsertAsync(a1);
-            //await db.InsertAsync(a2);
-            //await db.InsertAsync(a3);
+            await db.InsertAsync(a0);
+            await db.InsertAsync(a1);
+            await db.InsertAsync(a2);
+            await db.InsertAsync(a3);
         }
 
         public static async Task<IEnumerable<Answer>> GetQuestionContent(int questionID)

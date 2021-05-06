@@ -8,6 +8,7 @@ using System;
 using AlgorithmicsApp.Views;
 using System.Linq;
 using Type = AlgorithmicsApp.Models.Type;
+using Xamarin.Essentials;
 
 namespace AlgorithmicsApp.ViewModels
 {
@@ -28,6 +29,13 @@ namespace AlgorithmicsApp.ViewModels
         public AsyncCommand LoadCommand { get; }
         public Action RefreshScrollDown;
 
+        int fSize = 0;
+        public int FSize
+        {
+            get { return fSize; }
+            set { SetProperty(ref fSize, value); }
+        }
+
 
         public TheoryViewModel()
         {
@@ -37,6 +45,8 @@ namespace AlgorithmicsApp.ViewModels
             GoToCourseContentListCommand = new AsyncCommand(GoToCourseContentList);
             GoToPreviousPageCommand = new AsyncCommand(GoToPreviousPage);
             GoToNextPageCommand = new AsyncCommand(GoToNextPage);
+            var p = DeviceDisplay.MainDisplayInfo.Density;
+            FSize = Convert.ToInt32(43 * (p / 2.625));
         }
 
         async Task LoadTheoryContent()

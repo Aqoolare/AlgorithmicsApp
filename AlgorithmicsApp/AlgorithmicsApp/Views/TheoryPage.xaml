@@ -19,7 +19,6 @@
 
     <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
         <ListView
-            BackgroundColor="Transparent"
             CachingStrategy="RecycleElement"
             HasUnevenRows="True"
             ItemsSource="{Binding TheoryContentList}"
@@ -30,8 +29,8 @@
                 <DataTemplate x:DataType="model:Wrapper"> 
                     <ViewCell>
                         <StackLayout>
-                            <ScrollView x:Name="scrollView">
-                                <math:TextView LaTeX="{Binding Formula}" HeightRequest="{Binding HeightReq}"/>
+                            <ScrollView>
+                                <math:TextView LaTeX="{Binding Formula}" FontSize="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.FSize}" HeightRequest="{Binding HeightReq}"/>
                             </ScrollView>
                             <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
                                 <Label.FormattedText>

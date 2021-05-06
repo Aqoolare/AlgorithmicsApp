@@ -20,12 +20,10 @@
                 <Setter Property="FontSize" Value="Medium" />
             </Style>
             <Style TargetType="{x:Type math:TextView}">
-                <Setter Property="FontSize"
-                    Value="43" />
                 <Setter Property="TextColor"
                     Value="Black" />
                 <Setter Property="Margin"
-                        Value="15" />
+                        Value="15, 5" />
             </Style>
             <Style TargetType="{x:Type StackLayout}">
                 <Setter Property="Spacing"

@@ -113,7 +113,7 @@ namespace AlgorithmicsApp.Services
                     Formula = @"Рассмотрим пример по нахождению НОД двух чисел, записанных в двоичной системе счисления: $$a=111010110100_{2},\quad b=101101000_{2}.$$ Очевидно оба числа делятся на $100_{2},$ поэтому $d_{0}=100_{2}.$ Делим оба числа на $d_{0},$ т.е. сдвигаем оба числа на два разряда вправо (отсекаем два последних нуля), получаем числа $$1110101101_{2}, 10110100_{2}.$$ Второе число является чётным, сдвигаем его вправо на два разряда, получаем $101101_{2}.$",
                     LinkId = -1,
                     TextCountStrings = 0,
-                    FormulaCountStrings = 12,
+                    FormulaCountStrings = 13,
                 },
                 new TheoryContent
                 {
@@ -207,6 +207,78 @@ namespace AlgorithmicsApp.Services
                     LinkId = -1,
                     TextCountStrings = 0,
                     FormulaCountStrings = 7,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 11,
+                    Formula = @"Определение. Пусть дана непрерывная дробь $\frac{a}{b}=[q_{1},q_{2},...,q_{n}].$ Рациональное число $\frac{P_{k}}{Q_{k}}=[q_{1},q_{2},...,q_{n}],$ $(1\leq k\leq n)$ называют k-й подходящей дробью к числу $\frac{a}{b}=\frac{P_{n}}{Q_{n}}.$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 6,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 11,
+                    Formula = @"Свойства подходящих дробей: $$1.\; \frac{P_{n}}{Q_{n}}=q_{1}+\frac{1}{[q_{1},q_{2},...,q_{n}]};$$ $$2.\; \frac{P_{n}}{Q_{n}}=[q_{1},q_{2},...,q_{n-1}+\frac{1}{q_{n}}];$$ $$3.\; \frac{P_{n}}{Q_{n}}=[q_{1},q_{2},...,q_{s-1}+$$ $$\frac{1}{[q_{1},q_{2},...,q_{n}]}]$$ $$(2\leq s\leq n);$$ $$4.\; P_{k}Q_{k-1}-P_{k-1}Q_{k}=(-1)^{k}\quad (k\geq 1);$$ $$5.\; НОД(P_{k},Q_{k})=1;$$ $$6.\; \frac{P_{k}}{Q_{k}}=\frac{P_{k-1}}{Q_{k-1}}+\frac{(-1)^{k}}{Q_{k}Q_{k-1}}\quad (k\geq 2);$$ $$7.\; P_{k}=q_{k}P_{k-1}+P_{k-2},$$ $$Q_{k}=q_{k}Q_{k-1}+Q_{k-2}\quad (k\geq 2);$$ $$8.\; \frac{P_{k}}{Q_{k}}-\frac{P_{k-2}}{Q_{k-2}}=\frac{q_{k}(-1)^{k-1}}{Q_{k}Q_{k-2}}\quad (k>2);$$ $$9.\; \frac{P_{n}}{Q_{n}}=\frac{P_{1}}{Q_{1}}+\sum_{k=2}^{n}\frac{(-1)^{k}}{\frac{Q_{k}}{Q_{k-1}}};$$ $$10.\; Q_{k}\geq 2^{\frac{k-2}{2}}\quad (k\geq 2).$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 29,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 12,
+                    Formula = @"Для разложения произвольного вещественного числа a в непрерывную дробь следует применить следующий алгоритм. Выделим целую и дробную части числа a: $$a=\left \lfloor a \right \rfloor+\left \{ a \right \}=a_{1}+\alpha ,$$ тогда $a=a_{1}+\frac{1}{\alpha _{1}},$ где $\alpha _{1}=\frac{1}{\alpha }>1.$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 7,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 12,
+                    Formula = @"Далее применяем тот же прием к $\alpha _{1};$ $$\alpha _{1}=\left \lfloor \alpha _{1} \right \rfloor+\left \{ \alpha _{1} \right \}=a_{2}+\frac{1}{\alpha _{2}},$$ где $\alpha _{2}=\frac{1}{\left \{ \alpha _{1} \right \}}>1$ и так далее. В результате получаем $$a=a_{1}+\frac{1}{a_{2}+\frac{1}{a_{3}+\frac{1}{\ddots }}}=$$ $$[a_{1},a_{2},a_{3},...],$$ где $a_{1},a_{2},a_{3},...$ - целые числа.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 10,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 12,
+                    Formula = @"Теорема. Любое иррациональное вещественное число однозначно представляется в виде бесконечной непрерывной дроби с целыми неполными частными. Обратно: значением всякой бесконечной непрерывной дроби с целыми неполными частными является иррациональное вещественное число.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 8,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 13,
+                    Formula = @"Бесконечная непрерывная дробь $[a_{1},a_{2},...,a_{n},...]$ называется периодической, если существуют натуральные числа $k_{0}$ и t такие, что для любого $k>k_{0}$ выполняется равенство $a_{k+t}=a_{k},$ т. е. последовательность $\left \{ a_{k} \right \}_{k=1,2,...}$ начиная с некоторого момента является периодической $$[a_{1},...a_{k_{0}},a_{k_{0}+1},...,$$ $$a_{k_{0}+t},a_{k_{0}+1},...,a_{k_{0}+t},...]=$$ $$[a_{1},...,a_{k_{0}},$$ $$(a_{k_{0}+1},...,a_{k_{0}+t})].$$ t называется длиной периода, $k_{0}$ - индексом вхождения в период.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 16,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 14,
+                    Formula = @"Определение. Действительное число называется квадратичной иррациональностью, если оно является корнем квадратного уравнения $ax^{2}+bx+c=0$ с  целыми коэффициентами.\\ Любая квадратичная иррациональность может быть представлена в виде $x+y\sqrt{N},$ где $x,y\in \mathbb{Q},$ а $N\in \mathbb{N}$ не является полным квадратом.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 9,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 14,
+                    Formula = @"Теорема (Лагранж). Квадратичные иррациональности и только они могут быть представлены в виде бесконечной периодической непрерывной дроби.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 4,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 15,
+                    Formula = @"Лемма. Пусть $\alpha =[c_{1},c_{2},...,c_{n},\alpha _{n}]$ - иррациональное число, где $\alpha _{n} =[c_{n+1},c_{n+2},...],$ $n\geq 1.$ Тогда при $k\geq 1$ $$\frac{1}{2Q_{k+1}Q_{k}}<\left | \alpha -\frac{P_{k}}{Q_{k}} \right |$$ $$< \frac{1}{Q_{k+1}Q_{k}}<\frac{1}{Q_{k}^{2}}.$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 8,
                 },
             };
 
