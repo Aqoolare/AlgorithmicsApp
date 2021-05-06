@@ -22,11 +22,13 @@ namespace AlgorithmicsApp.Views
         {
             InitializeComponent();
             BindingContext = _viewModel = new QuestionViewModel();
+            collectionView.SelectedItems.Clear();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            collectionView.SelectedItems.Clear();
             _viewModel.UpdateAnswersInterface = UpdateIntrface;
             _viewModel.UpdateAnswersInterfaceAfterLoad = UpdateInterfaceAfterLoad;
             _viewModel.OnAppearing();
@@ -72,6 +74,7 @@ namespace AlgorithmicsApp.Views
                 }
                 collectionView.SelectionMode = SelectionMode.None;
                 checkButton.Text = "Решить заново";
+                checkButton.IsEnabled = true;
             }
             else
             {
