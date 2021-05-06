@@ -142,6 +142,41 @@ namespace AlgorithmicsApp.Services
                     Order = 6,
                     Title = "Лемма о погрешности приближения"
                 },
+                new Theory
+                {
+                    Id = 16,
+                    CourseId = 3,
+                    Order = 1,
+                    Title = "Определение кольца целых гауссовых чисел"
+                },
+                new Theory
+                {
+                    Id = 17,
+                    CourseId = 3,
+                    Order = 2,
+                    Title = "Норма элемента"
+                },
+                new Theory
+                {
+                    Id = 18,
+                    CourseId = 3,
+                    Order = 2,
+                    Title = "Операция деления с остатком"
+                },
+                new Theory
+                {
+                    Id = 19,
+                    CourseId = 3,
+                    Order = 3,
+                    Title = "Факториальность кольца"
+                },
+                new Theory
+                {
+                    Id = 20,
+                    CourseId = 3,
+                    Order = 4,
+                    Title = "Теорема"
+                },
             };
 
             var q0 = new Question

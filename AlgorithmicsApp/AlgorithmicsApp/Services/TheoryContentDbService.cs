@@ -280,6 +280,46 @@ namespace AlgorithmicsApp.Services
                     TextCountStrings = 0,
                     FormulaCountStrings = 8,
                 },
+                new TheoryContent
+                {
+                    TheoryId = 16,
+                    Formula = @"Кольцо $\mathbb{Z}[i],$ состоящее из чисел вида $a+ib,$ где $a,b\in \mathbb{Z},$ i - мнимая единица, с естественными операциями сложения и умножения комплексных чисел называется кольцом целых гауссовых чисел.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 6,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 17,
+                    Formula = @"В  этом кольце введем норму элемента $z=a+bi$ формулой $$g(z)=g(a+ib)=a^{2}+b^{2}.\: (5)$$ Кольцо $\mathbb{Z}[i]$ относительно введенной нормы является евклидовым и, следовательно, факториальным кольцом. (Любое евклидово кольцо является факториальным.) Кроме того, норма элемента, определенная формулой (5), является мультипликативной, т. е. $$g(z_{1}z_{2})=g(z_{1})g(z_{2}).$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 12,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 18,
+                    Formula = @"Операцию деления с остатком в $\mathbb{Z}[i]$ определим следующим образом. Пусть $z_{1},z_{2}\in \mathbb{Z}[i],$ $z_{2}\neq 0.$ Тогда поделим $z_{1}$ на $z_{2}$ в поле частных $\mathbb{Q}[i]$ кольца $\mathbb{Z}[i]$ $$\frac{z_{1}}{z_{2}}=x+iy,\: x,y\in \mathbb{Q}.$$ Определим числа r, s: r есть ближайшее целое к x, а s – ближайшее целое к y, т. е. $$\left | x-r \right |\leq \frac{1}{2},$$ $$\left | y-s \right |\leq \frac{1}{2}.$$ Тогда деление $z_{1}$ на $z_{2}$ с остатком в $\mathbb{Z}[i]$ определено формулой $$z_{1}=(r+is)z_{2}+(u+iv),$$ где $$(u+iv)=z_{1}-(r+is)z_{2}\in \mathbb{Z}[i]$$ таково, что $g(u+iv)<g(z_{2}).$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 17,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 19,
+                    Formula = @"Поскольку кольцо $\mathbb{Z}[i]$ факториально, то любой ненулевой элемент этого кольца можно единственным способом представить в виде произведения неприводимых элементов с точностью до порядка сомножителей и умножения их на обратимые элементы кольца.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 7,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 20,
+                    Formula = @"Теорема. \\(1) Множество обратимых элементов в $\mathbb{Z}[i]$ есть $$\left \{ z\in \mathbb{Z}[i]\, |\, g(z)=1 \right \}=\left \{ 1,-1,i,-i \right \};$$ \\(2)  Если p – простое в $\mathbb{N}$, то p неприводимо в $\mathbb{Z}[i]$ тогда и только тогда, когда оно не является нормой g(z) для $z\in \mathbb{Z}[i];$ \\(3) Пусть $z\in \mathbb{Z}[i].$ Элемент z является неприводимым в $\mathbb{Z}[i]$ и не ассоциированным с элементом из $\mathbb{Z}$ тогда и только тогда, когда g(z) - простое число в кольце $\mathbb{Z}.$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 15,
+                },
             };
 
             Link[] links =

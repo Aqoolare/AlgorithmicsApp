@@ -47,6 +47,12 @@ namespace AlgorithmicsApp.Services
                     Icon = "\ueade",
                     Id = 3
                 },
+                new Course
+                {
+                    Name = "Сравнения и системы сравнений",
+                    Icon = "\ueade",
+                    Id = 4
+                },
             };
 
             await db.DeleteAllAsync<Course>();
