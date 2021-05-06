@@ -7,5 +7,10 @@ namespace AlgorithmicsApp.Models
         public string Name { get; set; }
         public string Icon { get; set; }
         public int Id { get; set; }
+
+        public Course()
+        {
+            Icon = IconFont.Education;
+        }
     }
 }

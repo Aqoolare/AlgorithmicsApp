@@ -43,7 +43,7 @@
                                                     FontFamily="IconFont"
                                                     Glyph="{Binding Icon}"
                                                     Color="Gray"
-                                                    Size="Header"/>
+                                                    Size="55"/>
                                         </Image.Source>
                                     </Image>
                                     <StackLayout VerticalOptions="Center" Margin="15, 0">

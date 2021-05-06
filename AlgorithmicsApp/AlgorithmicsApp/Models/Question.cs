@@ -16,7 +16,7 @@ namespace AlgorithmicsApp.Models
         public Question()
         {
             ItemType = Type.Question;
-            Icon = IconFont.UniqueIdea;
+            Icon = IconFont.QuestionSquare;
         }
     }
 }

@@ -320,6 +320,38 @@ namespace AlgorithmicsApp.Services
                     TextCountStrings = 0,
                     FormulaCountStrings = 15,
                 },
+                new TheoryContent
+                {
+                    TheoryId = 21,
+                    Formula = @"Определение. Целые числа a и b называются сравнимыми по модулю натурального числа m, если $m\mid a-b.$ Обозначение: $$a\equiv b(mod\: m).$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 4,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 22,
+                    Formula = @"Свойства сравнений: \\1.Если $a\equiv b(mod\: m)$ и $d\mid m,$ то $a\equiv b(mod\: d).$\\2. Если $a\equiv b(mod\: m)$ и $a\equiv b(mod\: n),$ то $a\equiv b(mod\: НОК(m,n)).$\\3. Если $a\equiv c(mod\: m)$ и $b\equiv d(mod\: m),$ то $$a+b\equiv c+d(mod\: m);$$ $$a-b\equiv c-d(mod\: m);$$ $$ab\equiv cd(mod\: m).$$ 4. Если $ab\equiv ac(mod\: m),$ то $b\equiv c(mod\: \frac{m}{d}),$ где $d=НОД(a,m).$\\В частности, если $НОД(m,a)=1,$ то из $ab\equiv ac(mod\: m)$ следует $b\equiv c(mod\: m).$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 15,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 23,
+                    Formula = @"Теорема. Пусть $a,b\in \mathbb{Z},$ где $m>1$ - целое. Сравнение $$ax\equiv b(mod\: m)$$ разрешимо тогда и только тогда, когда $d=НОД(a,m)\mid b.$ Если оно разрешимо, то имеет единственное решение по модулю $\frac{m}{d}$ и d решений по модулю m.",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 7,
+                },
+                new TheoryContent
+                {
+                    TheoryId = 24,
+                    Formula = @"Теорема. Пусть $m_{1},m_{2},...,m_{k}$ - попарно взаимно простые целые числа, $m_{i}>1$ $(i=1,...,k)$ и пусть $M=m_{1}m_{2}...m_{k}.$ Тогда единственным неотрицательным решением по модулю M системы сравнений $$\left\{\begin{matrix}x\equiv a_{1}(mod\: m_{1})\\ x\equiv a_{2}(mod\: m_{2})\\ ...\\ x\equiv a_{k}(mod\: m_{k})\end{matrix}\right.$$ \\является $x\equiv \sum_{i=1}^{k}a_{i}M_{i}N_{i}\; (mod\: M),$ $(7)$ где $M_{i}=\frac{M}{m_{i}},$ $i=1,2,...,k,$ $N_{i}$ - целое, удовлетворяющее условию $$M_{i}N_{i}+m_{i}n_{i}=1$$ $$(i=1,2,...,k).$$ Решать систему сравнений по взаимно простым модулям можно, используя формулу (7) или последовательно решая сравнение и подставляя полученное решение  в следующее сравнение системы. В последнем случае решение ищется в виде $$x=q_{0}+q_{1}m_{1}+q_{2}m_{1}m_{2}+$$ $$q_{3}m_{1}m_{2}m_{3}+...+$$ $$q_{k-1}m_{1}m_{2}...m_{k-1}(mod\: M).$$",
+                    LinkId = -1,
+                    TextCountStrings = 0,
+                    FormulaCountStrings = 27,
+                },
             };
 
             Link[] links =

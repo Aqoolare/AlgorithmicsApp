@@ -177,6 +177,34 @@ namespace AlgorithmicsApp.Services
                     Order = 4,
                     Title = "Теорема"
                 },
+                new Theory
+                {
+                    Id = 21,
+                    CourseId = 4,
+                    Order = 1,
+                    Title = "Определение сравнения по модулю"
+                },
+                new Theory
+                {
+                    Id = 22,
+                    CourseId = 4,
+                    Order = 2,
+                    Title = "Свойства сравнений"
+                },
+                new Theory
+                {
+                    Id = 23,
+                    CourseId = 4,
+                    Order = 3,
+                    Title = "Теорема (разрешимость сравнения)"
+                },
+                new Theory
+                {
+                    Id = 24,
+                    CourseId = 4,
+                    Order = 4,
+                    Title = "Решение системы сравнений"
+                },
             };
 
             var q0 = new Question

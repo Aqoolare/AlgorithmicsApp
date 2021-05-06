@@ -26,31 +26,26 @@ namespace AlgorithmicsApp.Services
                 new Course
                 {
                     Name = "Наибольший общий делитель и алгоритмы его нахождения",
-                    Icon = "\ueade",
                     Id = 0
                 },
                 new Course
                 {
                     Name = "Диофантовы уравнения первой степени",
-                    Icon = "\ueade",
                     Id = 1
                 },
                 new Course
                 {
                     Name = "Непрерывные (цепные) дроби",
-                    Icon = "\ueade",
                     Id = 2
                 },
                 new Course
                 {
                     Name = "Кольцо целых гауссовых чисел",
-                    Icon = "\ueade",
                     Id = 3
                 },
                 new Course
                 {
                     Name = "Сравнения и системы сравнений",
-                    Icon = "\ueade",
                     Id = 4
                 },
             };
