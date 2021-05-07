@@ -5,7 +5,7 @@
              x:Class="AlgorithmicsApp.Views.TheoryPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
-             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms" xmlns:views="clr-namespace:AlgorithmicsApp.Views"
              Title="{Binding TheoryTitle}"
              x:Name="TheoryPage1">
 
@@ -31,7 +31,7 @@
                         <ViewCell>
                             <StackLayout>
                                 <ScrollView>
-                                    <math:TextView x:Name="textView" LaTeX="{Binding Formula}" FontSize="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.FSize}" HeightRequest="{Binding HeightReq}"/>
+                                    <views:MyTextView x:Name="textView" LaTeX="{Binding Formula}" Margin="15, 5"/>
                                 </ScrollView>
                                 <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
                                     <Label.FormattedText>

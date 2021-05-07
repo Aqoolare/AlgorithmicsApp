@@ -207,21 +207,60 @@ namespace AlgorithmicsApp.Services
                 },
             };
 
-            var q0 = new Question
+            Question[] questions =
             {
-                Id = 0,
-                CourseId = 0,
-                Order = 8,
-                Title = "Вопрос 1",
-                Formulation = "Да или нет?",
-                IsAnswered = false
+                new Question
+                {
+                    Id = 0,
+                    CourseId = 0,
+                    Order = 10,
+                    Title = "Вопрос 1",
+                    Formulation = "Да или нет?",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 1,
+                    CourseId = 0,
+                    Order = 11,
+                    Title = "Вопрос 1",
+                    Formulation = "Да или нет?",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 2,
+                    CourseId = 0,
+                    Order = 12,
+                    Title = "Вопрос 1",
+                    Formulation = "Да или нет?",
+                    IsAnswered = true
+                },
+                new Question
+                {
+                    Id = 3,
+                    CourseId = 0,
+                    Order = 13,
+                    Title = "Вопрос 1",
+                    Formulation = "Да или нет?",
+                    IsAnswered = true
+                },
+                new Question
+                {
+                    Id = 4,
+                    CourseId = 0,
+                    Order = 14,
+                    Title = "Вопрос 1",
+                    Formulation = "Да или нет?",
+                    IsAnswered = true
+                },
             };
 
             await db.DeleteAllAsync<Theory>();
             await db.DeleteAllAsync<Question>();
 
             await db.InsertAllAsync(theories);
-            await db.InsertAsync(q0);
+            await db.InsertAllAsync(questions);
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)
@@ -246,6 +285,22 @@ namespace AlgorithmicsApp.Services
 
             var questions = await db.Table<Question>().Where(q => q.CourseId == courseId).ToListAsync();
             return questions;
+        }
+
+        public static async Task<int> GetTotalQuestionsCount()
+        {
+            await Init();
+
+            var totalCount = await db.Table<Question>().CountAsync();
+            return totalCount;
+        }
+
+        public static async Task<int> GetAnsweredQuestionsCount()
+        {
+            await Init();
+
+            var answeredCount = await db.Table<Question>().Where(q => q.IsAnswered).CountAsync();
+            return answeredCount;
         }
 
         public static async Task<Question> GetQuestion(int questionId)

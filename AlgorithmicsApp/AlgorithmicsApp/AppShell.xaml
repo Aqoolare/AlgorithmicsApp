@@ -15,13 +15,13 @@
             </Tab.Icon>
             <ShellContent ContentTemplate="{DataTemplate local:CoursesPage}" Route="CoursesPage" />
         </Tab>
-        <Tab Title="Профиль">
+        <Tab Title="Прогресс">
             <Tab.Icon>
                 <FontImageSource
                     FontFamily="IconFont"
-                    Glyph="&#xec8e;"/>
+                    Glyph="&#xed29;"/>
             </Tab.Icon>
-            <ShellContent Title="Профиль" ContentTemplate="{DataTemplate local:ProfilePage}" Route="ProfilePage"/>
+            <ShellContent Title="Прогресс" ContentTemplate="{DataTemplate local:StatPage}" Route="StatPage"/>
         </Tab>
     </TabBar>
 

@@ -15,10 +15,15 @@ using Xamarin.Forms.Xaml;
 
 namespace AlgorithmicsApp.Views
 {
-    //class RussianBreakingEngine : Typography.TextBreak.EngBreakingEngine
-    //{
-    //    public override bool CanHandle(char c) => c is >= '\u0400' and <= '\u052f'; // Unicode Cyrillic and Cyrillic Supplement
-    //}
+    public class MyTextView : TextView
+    {
+        public MyTextView()
+        {
+            CSharpMath.Rendering.Text.TextLaTeXParser.AdditionalBreakingEngines.Add(new RussianBreakingEngine());
+            InvalidateSurface();
+        }
+    }
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [QueryProperty(nameof(ItemIndexToScroll), nameof(ItemIndexToScroll))]
     public partial class TheoryPage : ContentPage
@@ -30,7 +35,6 @@ namespace AlgorithmicsApp.Views
         {
             InitializeComponent();
             BindingContext = _viewModel = new TheoryViewModel();
-            //CSharpMath.Rendering.Text.TextLaTeXParser.AdditionalBreakingEngines.Add(new RussianBreakingEngine());
         }
 
         protected override void OnAppearing()

@@ -29,7 +29,7 @@ namespace AlgorithmicsApp.Services
                 new TheoryContent
                 {
                     TheoryId = 1,
-                    Formula = @"Число d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
+                    Formula = @"\textbf{Число} d > 0 называется наибольшим общим делителем (НОД) двух целых чисел a и b, если оно удовлетворяет следующим " +
                     "условиям: 1) d | a и d | b; 2) если c | a и c | b, то c | d.",
                     LinkId = 0,
                     TextCountStrings = 0,
