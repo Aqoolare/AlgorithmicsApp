@@ -116,13 +116,13 @@ namespace AlgorithmicsApp.ViewModels
             await LoadAnswers();
         }
 
-        async Task LoadAnswers()
+        public async Task LoadAnswers()
         {
             IsBusy = true;
             var answers = await QuestionContentDbService.GetQuestionContent(QuestionId);
             Answers.Clear();
             Answers.AddRange(answers);
-            CollectionViewHeightRequest = 105 * Answers.Count;
+            CollectionViewHeightRequest = 50 * Answers.Count;
             IsBusy = false;
             UpdateAnswersInterfaceAfterLoad();
         }

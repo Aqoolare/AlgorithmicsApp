@@ -24,18 +24,18 @@
         <RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ScrollView>
                 <StackLayout>
-                    <views:MyTextView LaTeX="{Binding Formulation}" HorizontalOptions="Center" Margin="0, 10, 0, 0"/>
-                    <CollectionView
+                    <views:MyTextView LaTeX="{Binding Formulation}" HorizontalOptions="Center" Margin="15, 10, 15, 0"/>
+                    <!--<RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+                        <CollectionView
                             ItemsSource="{Binding Answers, Mode=TwoWay}"
                             SelectedItems="{Binding SelectedAnswers, Mode=TwoWay}"
                             SelectionMode="Multiple"
                             x:Name="collectionView"
-                            HeightRequest="{Binding CollectionViewHeightRequest}"
                             SelectionChanged="collectionView_SelectionChanged"
                             >
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical"/>
-                        </CollectionView.ItemsLayout>
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical"/>
+                            </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:Answer">
                                 <StackLayout Padding="10">
@@ -60,14 +60,13 @@
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                        <CollectionView.Footer>
-                            <StackLayout>
-                                <Label x:Name="conditionLabel" TextColor="{DynamicResource AnswerColor}"/>
-                                <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
-                                    Command="{Binding CheckAnswersCommand}"/>
-                            </StackLayout>
-                        </CollectionView.Footer>
                     </CollectionView>
+                    <!--</RefreshView>-->
+                    <StackLayout>
+                        <Label x:Name="conditionLabel" TextColor="{DynamicResource AnswerColor}"/>
+                        <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
+                                    Command="{Binding CheckAnswersCommand}"/>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </RefreshView>
