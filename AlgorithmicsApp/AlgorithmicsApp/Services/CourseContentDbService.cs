@@ -132,14 +132,14 @@ namespace AlgorithmicsApp.Services
                 {
                     Id = 15,
                     CourseId = 2,
-                    Order = 7,
+                    Order = 8,
                     Title = "Теорема Лагранжа"
                 },
                 new Theory
                 {
                     Id = 16,
                     CourseId = 2,
-                    Order = 9,
+                    Order = 10,
                     Title = "Лемма о погрешности приближения"
                 },
                 new Theory
@@ -167,14 +167,14 @@ namespace AlgorithmicsApp.Services
                 {
                     Id = 20,
                     CourseId = 3,
-                    Order = 4,
+                    Order = 5,
                     Title = "Факториальность кольца"
                 },
                 new Theory
                 {
                     Id = 21,
                     CourseId = 3,
-                    Order = 5,
+                    Order = 6,
                     Title = "Теорема"
                 },
                 new Theory
@@ -267,8 +267,8 @@ namespace AlgorithmicsApp.Services
                 {
                     Id = 6,
                     CourseId = 2,
-                    Order = 8,
-                    Title = "Вопрос 3",
+                    Order = 9,
+                    Title = "Вопрос 4",
                     Formulation = @"Выберите верные утверждения:",
                     IsAnswered = false
                 },
@@ -288,6 +288,33 @@ namespace AlgorithmicsApp.Services
                     Order = 4,
                     Title = "Вопрос 2",
                     Formulation = @"Разложить в непрерывную дробь число $-\frac{795}{79}$",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 9,
+                    CourseId = 2,
+                    Order = 7,
+                    Title = "Вопрос 3",
+                    Formulation = @"Разложить в непрерывную дробь иррациональное число $\sqrt{148}$",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 10,
+                    CourseId = 3,
+                    Order = 4,
+                    Title = "Вопрос 1",
+                    Formulation = @"В кольце $\mathbb{Z}[i]$ найти $НОД$ чисел $z_{1}=18-4i$ и $z_{2}=2-11i$",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 11,
+                    CourseId = 3,
+                    Order = 7,
+                    Title = "Вопрос 2",
+                    Formulation = @"Выберите верные утверждения:",
                     IsAnswered = false
                 },
             };

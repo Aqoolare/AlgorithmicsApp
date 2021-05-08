@@ -307,6 +307,78 @@ namespace AlgorithmicsApp.Services
                     AnswerColor = "White",
                     Id = 34
                 },
+                new Answer
+                {
+                    QuestionId = 9,
+                    Content = @"$\left [ 12, (6, 6, 24) \right ]$",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 35
+                },
+                new Answer
+                {
+                    QuestionId = 9,
+                    Content = @"$\left [ 12, (6, 6, 24, 1) \right ]$",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 36
+                },
+                new Answer
+                {
+                    QuestionId = 9,
+                    Content = @"$\left [ 12, (6, 24) \right ]$",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 37
+                },
+                new Answer
+                {
+                    QuestionId = 10,
+                    Content = @"$2+i$",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 38
+                },
+                new Answer
+                {
+                    QuestionId = 10,
+                    Content = @"$-2+i$",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 39
+                },
+                new Answer
+                {
+                    QuestionId = 10,
+                    Content = @"$2-i$",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 40
+                },
+                new Answer
+                {
+                    QuestionId = 11,
+                    Content = @"$15-4i$ неприводимый элемент кольца $\mathbb{Z}[i]$",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 41
+                },
+                new Answer
+                {
+                    QuestionId = 11,
+                    Content = @"$9+5i$ неприводимый элемент кольца $\mathbb{Z}[i]$",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 42
+                },
+                new Answer
+                {
+                    QuestionId = 11,
+                    Content = @"$617$ приводимый элемент кольца $\mathbb{Z}[i]$",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 43
+                },
             };
 
             await db.InsertAllAsync(answers);
