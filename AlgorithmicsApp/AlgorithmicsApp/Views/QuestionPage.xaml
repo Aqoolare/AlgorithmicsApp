@@ -32,6 +32,7 @@
                             SelectionMode="Multiple"
                             x:Name="collectionView"
                             SelectionChanged="collectionView_SelectionChanged"
+                            HeightRequest="{Binding CollectionViewHeightRequest}"
                             >
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout Orientation="Vertical"/>

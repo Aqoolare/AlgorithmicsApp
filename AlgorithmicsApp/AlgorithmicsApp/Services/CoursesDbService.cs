@@ -1,5 +1,6 @@
 ﻿using AlgorithmicsApp.Models;
 using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -50,9 +51,10 @@ namespace AlgorithmicsApp.Services
                 },
             };
 
-            await db.DeleteAllAsync<Course>();
+            //await db.DeleteAllAsync<Course>();
 
-            await db.InsertAllAsync(courses);
+            if (await db.Table<Course>().CountAsync() == 0)
+                await db.InsertAllAsync(courses);
         }
 
         public static async Task<IEnumerable<Course>> GetCourses()

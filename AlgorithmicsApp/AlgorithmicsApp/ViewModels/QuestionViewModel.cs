@@ -99,7 +99,9 @@ namespace AlgorithmicsApp.ViewModels
         private async Task GoToCourseContentList()
         {
             var a = Shell.Current.CurrentState;
-            await Shell.Current.GoToAsync($"///{nameof(CoursesPage)}/{nameof(CourseContentPage)}");
+            var courseItem = await CourseContentDbService.GetQuestionById(QuestionId);
+            var course = await CoursesDbService.GetCourseById(courseItem.CourseId);
+            await Shell.Current.GoToAsync($"///{nameof(CoursesPage)}/{nameof(CourseContentPage)}?CourseId={course.Id}&CourseName={course.Name}");
         }
 
         async Task CheckAnswers()
@@ -122,7 +124,7 @@ namespace AlgorithmicsApp.ViewModels
             var answers = await QuestionContentDbService.GetQuestionContent(QuestionId);
             Answers.Clear();
             Answers.AddRange(answers);
-            CollectionViewHeightRequest = 50 * Answers.Count;
+            CollectionViewHeightRequest = 75 * Answers.Count;
             IsBusy = false;
             UpdateAnswersInterfaceAfterLoad();
         }

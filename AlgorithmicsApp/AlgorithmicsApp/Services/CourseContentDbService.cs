@@ -202,7 +202,7 @@ namespace AlgorithmicsApp.Services
                 {
                     Id = 25,
                     CourseId = 4,
-                    Order = 4,
+                    Order = 7,
                     Title = "Решение системы сравнений"
                 },
             };
@@ -317,13 +317,55 @@ namespace AlgorithmicsApp.Services
                     Formulation = @"Выберите верные утверждения:",
                     IsAnswered = false
                 },
+                new Question
+                {
+                    Id = 12,
+                    CourseId = 4,
+                    Order = 4,
+                    Title = "Вопрос 1",
+                    Formulation = @"С помощью расширенного алгоритма Евклида, решить сравнение: $5x\equiv 3(mod\: 11)$",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 13,
+                    CourseId = 4,
+                    Order = 5,
+                    Title = "Вопрос 2",
+                    Formulation = @"С помощью расширенного алгоритма Евклида, решить сравнение: $42x\equiv 9(mod\: 81)$ Найти все решения по данному модулю(1 ответ - 1 решение):",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 14,
+                    CourseId = 4,
+                    Order = 6,
+                    Title = "Вопрос 3",
+                    Formulation = @"С помощью расширенного алгоритма Евклида найти $a^{-1}$ в кольце $\mathbb{Z}_{m}$ $(a=17,\quad m=38):$",
+                    IsAnswered = false
+                },
+                new Question
+                {
+                    Id = 15,
+                    CourseId = 4,
+                    Order = 8,
+                    Title = "Вопрос 4",
+                    Formulation = @"Решить систему сравнений $$\left\{\begin{matrix}2x\equiv 2(mod\: 5)\\ 3x\equiv 2(mod\: 7)\\ 5x\equiv 11(mod\: 13)\end{matrix}\right.$$, используя формулу $x\equiv \sum_{i=1}^{k}a_{i}M_{i}N_{i}\; (mod\: M):$",
+                    IsAnswered = false
+                },
             };
 
-            await db.DeleteAllAsync<Theory>();
-            await db.DeleteAllAsync<Question>();
+            //await db.DeleteAllAsync<Theory>();
+            //await db.DeleteAllAsync<Question>();
 
-            await db.InsertAllAsync(theories);
-            await db.InsertAllAsync(questions);
+            if (await db.Table<Theory>().CountAsync() == 0)
+            {
+                await db.InsertAllAsync(theories);
+            }
+            if (await db.Table<Question>().CountAsync() == 0)
+            {
+                await db.InsertAllAsync(questions);
+            }
         }
 
         public static async Task<IEnumerable<Theory>> GetTheory(int courseId)
@@ -340,6 +382,14 @@ namespace AlgorithmicsApp.Services
 
             var theory = await db.Table<Theory>().Where(t => t.Id == theoryId).FirstOrDefaultAsync();
             return theory;
+        }
+
+        public static async Task<Question> GetQuestionById(int questionId)
+        {
+            await Init();
+
+            var question = await db.Table<Question>().Where(q => q.Id == questionId).FirstOrDefaultAsync();
+            return question;
         }
 
         public static async Task<IEnumerable<Question>> GetQuestions(int courseId)

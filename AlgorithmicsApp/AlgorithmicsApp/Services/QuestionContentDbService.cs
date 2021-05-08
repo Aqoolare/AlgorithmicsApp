@@ -23,7 +23,6 @@ namespace AlgorithmicsApp.Services
             db = new SQLiteAsyncConnection(databasePath);
             await db.CreateTableAsync<Answer>();
 
-            await db.DeleteAllAsync<Answer>();
 
             Answer[] answers =
             {
@@ -379,9 +378,124 @@ namespace AlgorithmicsApp.Services
                     AnswerColor = "White",
                     Id = 43
                 },
+                new Answer
+                {
+                    QuestionId = 12,
+                    Content = @"7",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 44
+                },
+                new Answer
+                {
+                    QuestionId = 12,
+                    Content = @"3",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 45
+                },
+                new Answer
+                {
+                    QuestionId = 12,
+                    Content = @"5",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 46
+                },
+                new Answer
+                {
+                    QuestionId = 13,
+                    Content = @"60",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 47
+                },
+                new Answer
+                {
+                    QuestionId = 13,
+                    Content = @"3",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 48
+                },
+                new Answer
+                {
+                    QuestionId = 13,
+                    Content = @"33",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 49
+                },
+                new Answer
+                {
+                    QuestionId = 13,
+                    Content = @"31",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 50
+                },
+                new Answer
+                {
+                    QuestionId = 13,
+                    Content = @"6",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 51
+                },
+                new Answer
+                {
+                    QuestionId = 14,
+                    Content = @"9",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 52
+                },
+                new Answer
+                {
+                    QuestionId = 14,
+                    Content = @"7",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 53
+                },
+                new Answer
+                {
+                    QuestionId = 14,
+                    Content = @"17",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 54
+                },
+                new Answer
+                {
+                    QuestionId = 15,
+                    Content = @"101(mod 455)",
+                    IsTrue = true,
+                    AnswerColor = "White",
+                    Id = 55
+                },
+                new Answer
+                {
+                    QuestionId = 15,
+                    Content = @"111(mod 455)",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 56
+                },
+                new Answer
+                {
+                    QuestionId = 15,
+                    Content = @"101(mod 457)",
+                    IsTrue = false,
+                    AnswerColor = "White",
+                    Id = 57
+                },
             };
 
-            await db.InsertAllAsync(answers);
+            //await db.DeleteAllAsync<Answer>();
+
+            if (await db.Table<Answer>().CountAsync() == 0)
+                await db.InsertAllAsync(answers);
         }
 
         public static async Task<IEnumerable<Answer>> GetQuestionContent(int questionID)

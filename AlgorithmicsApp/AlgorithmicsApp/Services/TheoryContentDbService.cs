@@ -412,11 +412,13 @@ namespace AlgorithmicsApp.Services
                 },
             };
 
-            await db.DeleteAllAsync<TheoryContent>();
-            await db.DeleteAllAsync<Link>();
+            //await db.DeleteAllAsync<TheoryContent>();
+            //await db.DeleteAllAsync<Link>();
 
-            await db.InsertAllAsync(theoryContents);
-            await db.InsertAllAsync(links);
+            if (await db.Table<TheoryContent>().CountAsync() == 0)
+                await db.InsertAllAsync(theoryContents);
+            if (await db.Table<Link>().CountAsync() == 0)
+                await db.InsertAllAsync(links);
         }
 
         public static async Task<IEnumerable<TheoryContent>> GetTheoryContent(int theoryId)
