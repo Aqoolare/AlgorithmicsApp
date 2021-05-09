@@ -15,6 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Themes - Copy\**" />
+    <EmbeddedResource Remove="Themes - Copy\**" />
+    <None Remove="Themes - Copy\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Fonts\icofont.ttf" />
   </ItemGroup>
 
@@ -33,8 +39,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Themes\DarkTheme.xaml.cs">
+      <DependentUpon>DarkTheme.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Themes\LightTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CourseContentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

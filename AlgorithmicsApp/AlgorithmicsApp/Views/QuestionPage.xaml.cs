@@ -62,15 +62,15 @@ namespace AlgorithmicsApp.Views
         {
             if (_viewModel.IsAnswered)
             {
-                if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
+                if (_viewModel.Answers.Any(answer => answer.AnswerColor == "#ff748e"))
                 {
                     conditionLabel.Text = resultMessages[1];
-                    App.Current.Resources["AnswerColor"] = Color.Red;
+                    App.Current.Resources["AnsColor"] = Color.FromHex("#FF375F");
                 }
                 else
                 {
                     conditionLabel.Text = resultMessages[0];
-                    App.Current.Resources["AnswerColor"] = Color.Green;
+                    App.Current.Resources["AnsColor"] = Color.FromHex("#30D158");
                 }
                 collectionView.SelectionMode = SelectionMode.None;
                 checkButton.Text = "Решить заново";
@@ -120,12 +120,12 @@ namespace AlgorithmicsApp.Views
                 if (selectedAnswers.Count() == _viewModel.Answers.Where(answer => answer.IsTrue == true).Count() &&
                     !selectedAnswers.Any(answer => answer.IsTrue == false))
                 {
-                    selectedColor = "Green";
+                    selectedColor = "#6edf8a";
                     _viewModel.IsTrue = true;
                 }
                 else
                 {
-                    selectedColor = "Red";
+                    selectedColor = "#ff748e";
                     _viewModel.IsTrue = false;
                 }
                 foreach (var answer in _viewModel.Answers)
@@ -136,15 +136,15 @@ namespace AlgorithmicsApp.Views
                     }
                 }
                 collectionView.SelectionMode = SelectionMode.None;
-                if (selectedColor == "Green")
+                if (selectedColor == "#6edf8a")
                 {
                     conditionLabel.Text = resultMessages[0];
-                    App.Current.Resources["AnswerColor"] = Color.Green;
+                    App.Current.Resources["AnsColor"] = Color.FromHex("#30D158");
                 }
                 else
                 {
                     conditionLabel.Text = resultMessages[1];
-                    App.Current.Resources["AnswerColor"] = Color.Red;
+                    App.Current.Resources["AnsColor"] = Color.FromHex("#FF375F");
                 }
                 //_viewModel.IsAnswered = true;
                 checkButton.Text = "Решить заново";

@@ -7,7 +7,8 @@
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
              xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms" xmlns:views="clr-namespace:AlgorithmicsApp.Views"
              Title="{Binding TheoryTitle}"
-             x:Name="TheoryPage1">
+             x:Name="TheoryPage1"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="nextButton" Text="Далее" Command="{Binding GoToNextPageCommand}"/>
@@ -36,9 +37,8 @@
                                 <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="{Binding BoldText}" FontAttributes="Bold"/>
-                                            <Span Text="{Binding Text1}" FontSize="Small" FontAttributes="Italic"/>
-                                            <Span x:Name="{Binding }" Text="{Binding Link.Text}" FontSize="Small" TextDecorations="Underline" FontAttributes="Italic" TextColor="Blue">
+                                            <Span Text="{Binding Text1}" FontAttributes="Italic"/>
+                                            <Span x:Name="{Binding }" Text="{Binding Link.Text}" TextDecorations="Underline" FontAttributes="Italic" TextColor="{DynamicResource LinkTextColor}">
                                                 <Span.GestureRecognizers>
                                                     <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
                                                 </Span.GestureRecognizers>

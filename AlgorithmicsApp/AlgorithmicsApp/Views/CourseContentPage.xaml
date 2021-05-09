@@ -5,7 +5,8 @@
              x:Class="AlgorithmicsApp.Views.CourseContentPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
-             Title="{Binding CourseName}">
+             Title="{Binding CourseName}"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,12 +18,9 @@
     <Grid>
         <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadCourseItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ListView
-                BackgroundColor="Transparent"
                 CachingStrategy="RecycleElement"
-                HasUnevenRows="True"
                 ItemsSource="{Binding CourseItems}"
-                SelectionMode="None"
-                SeparatorVisibility="None">
+                Style="{DynamicResource Key=CoursesListView}">
                 <ListView.Behaviors>
                     <xct:EventToCommandBehavior
                         EventName="ItemTapped"
@@ -32,21 +30,22 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:CourseItem">
                         <ViewCell>
-                            <Grid Padding="10">
-                                <Frame CornerRadius="10" HasShadow="True">
+                            <Grid>
+                                <Frame CornerRadius="20" HasShadow="True">
                                     <StackLayout Orientation="Horizontal">
-                                        <Image HeightRequest="44"
-                                               HorizontalOptions="Center"
-                                               VerticalOptions="Center"
-                                               WidthRequest="44">
+                                        <Image 
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            Margin="0, 0, 5, 0">
                                             <Image.Source>
                                                 <FontImageSource
                                                     FontFamily="IconFont"
                                                     Glyph="{Binding Icon}"
-                                                    Color="Gray"/>
+                                                    Color="{DynamicResource IconColor}"
+                                                    Size="33"/>
                                             </Image.Source>
                                         </Image>
-                                        <Label Text="{Binding Title}"/>
+                                        <Label Text="{Binding Title}" TextColor="{DynamicResource FrameTextColor}" FontSize="Subtitle"/>
                                     </StackLayout>
                                 </Frame>
                             </Grid>

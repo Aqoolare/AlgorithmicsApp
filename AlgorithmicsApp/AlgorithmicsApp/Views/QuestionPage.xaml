@@ -7,7 +7,8 @@
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
              xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms" 
              xmlns:views="clr-namespace:AlgorithmicsApp.Views"
-             Title="{Binding QuestionTitle}">
+             Title="{Binding QuestionTitle}"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
     <ContentPage.Resources>
         <ResourceDictionary />
     </ContentPage.Resources>
@@ -17,7 +18,7 @@
         <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
     </ContentPage.ToolbarItems>
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}" />
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}"/>
     </Shell.BackButtonBehavior>
 
     <ContentPage.Content>
@@ -50,7 +51,6 @@
                                             <VisualState Name="Selected">
                                                 <VisualState.Setters>
                                                     <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="{DynamicResource MainColor}"/>
-                                                    <Setter TargetName="label" Property="views:MyTextView.TextColor" Value="White"/>
                                                 </VisualState.Setters>
                                             </VisualState>
                                         </VisualStateGroup>
@@ -64,7 +64,7 @@
                     </CollectionView>
                     <!--</RefreshView>-->
                     <StackLayout>
-                        <Label x:Name="conditionLabel" TextColor="{DynamicResource AnswerColor}"/>
+                        <Label x:Name="conditionLabel" TextColor="{DynamicResource AnsColor}" />
                         <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
                                     Command="{Binding CheckAnswersCommand}"/>
                     </StackLayout>
