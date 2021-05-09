@@ -22,7 +22,7 @@ namespace AlgorithmicsApp.Views
         {
             InitializeComponent();
             BindingContext = _viewModel = new QuestionViewModel();
-            collectionView.SelectedItems.Clear();
+            //collectionView.SelectedItems.Clear();
         }
 
         protected override void OnAppearing()
@@ -104,14 +104,14 @@ namespace AlgorithmicsApp.Views
             {
                 answer.AnswerColor = "White";
             }
-            _viewModel.IsAnswered = false;
+            //_viewModel.IsAnswered = false;
             collectionView.SelectionMode = SelectionMode.Multiple;
             checkButton.Text = "Проверить ответы";
         }
 
         void UpdateIsNotAnsweredInteface()
         {
-            if (_viewModel.SelectedAnswers.Count > 0)
+            //if (_viewModel.SelectedAnswers.Count > 0)
             {
                 IEnumerable<Answer> selectedAnswers = from selectedAnswer in _viewModel.SelectedAnswers select (Answer)selectedAnswer;
                 IEnumerable<int> selectedAnswersIds = from selectedAnswer in selectedAnswers select selectedAnswer.Id;
@@ -143,7 +143,7 @@ namespace AlgorithmicsApp.Views
                     conditionLabel.Text = resultMessages[1];
                     App.Current.Resources["AnswerColor"] = Color.Red;
                 }
-                _viewModel.IsAnswered = true;
+                //_viewModel.IsAnswered = true;
                 checkButton.Text = "Решить заново";
             }
         }

@@ -122,6 +122,8 @@ namespace AlgorithmicsApp.ViewModels
         {
             IsBusy = true;
             var answers = await QuestionContentDbService.GetQuestionContent(QuestionId);
+            var question = await CourseContentDbService.GetQuestion(QuestionId);
+            IsAnswered = question.IsAnswered;
             Answers.Clear();
             Answers.AddRange(answers);
             CollectionViewHeightRequest = 75 * Answers.Count;
