@@ -24,6 +24,7 @@ namespace AlgorithmicsApp.ViewModels
         public string QuestionTitle { get; set; }
         public bool IsAnswered { get; set; }
         public int CurrentPosition { get; set; }
+        public bool IsTrue { get; set; }
 
         string formulation = string.Empty;
         public string Formulation
@@ -112,6 +113,7 @@ namespace AlgorithmicsApp.ViewModels
                 await QuestionContentDbService.UpdateQuestionContent(answer);
             }
             var question = await CourseContentDbService.GetQuestion(QuestionId);
+            question.IsTrue = IsTrue;
             question.IsAnswered = !question.IsAnswered;
             await CourseContentDbService.UpdateQuestion(question);
             

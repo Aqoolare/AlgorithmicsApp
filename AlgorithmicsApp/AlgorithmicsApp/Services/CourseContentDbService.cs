@@ -412,7 +412,7 @@ namespace AlgorithmicsApp.Services
         {
             await Init();
 
-            var answeredCount = await db.Table<Question>().Where(q => q.IsAnswered).CountAsync();
+            var answeredCount = await db.Table<Question>().Where(q => q.IsTrue).CountAsync();
             return answeredCount;
         }
 

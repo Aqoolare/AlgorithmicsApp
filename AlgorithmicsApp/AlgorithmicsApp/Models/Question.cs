@@ -12,6 +12,7 @@ namespace AlgorithmicsApp.Models
         public string Formulation { get; set; }
         public int CourseId { get; set; }
         public bool IsAnswered { get; set; }
+        public bool IsTrue { get; set; }
         
         public Question()
         {

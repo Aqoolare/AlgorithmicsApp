@@ -104,6 +104,7 @@ namespace AlgorithmicsApp.Views
             {
                 answer.AnswerColor = "White";
             }
+            _viewModel.IsTrue = false;
             //_viewModel.IsAnswered = false;
             collectionView.SelectionMode = SelectionMode.Multiple;
             checkButton.Text = "Проверить ответы";
@@ -120,10 +121,12 @@ namespace AlgorithmicsApp.Views
                     !selectedAnswers.Any(answer => answer.IsTrue == false))
                 {
                     selectedColor = "Green";
+                    _viewModel.IsTrue = true;
                 }
                 else
                 {
                     selectedColor = "Red";
+                    _viewModel.IsTrue = false;
                 }
                 foreach (var answer in _viewModel.Answers)
                 {
