@@ -162,7 +162,7 @@ namespace AlgorithmicsApp.Views
                 SKPaint paint2 = new SKPaint
                 {
                     Style = SKPaintStyle.Stroke,
-                    Color = Color.FromHex("#05c782").ToSKColor(),                   // Overlay Colour of Radial Gauge
+                    Color = Color.FromHex("#30D158").ToSKColor(),                   // Overlay Colour of Radial Gauge
                     StrokeWidth = progressUtils.getFactoredWidth(radialGaugeWidth), // Overlay Width of Radial Gauge
                     StrokeCap = SKStrokeCap.Round                                   // Round Corners for Radial Gauge
                 };
@@ -191,7 +191,7 @@ namespace AlgorithmicsApp.Views
                 {
                     skPaint.Style = SKPaintStyle.Fill;
                     skPaint.IsAntialias = true;
-                    skPaint.Color = SKColor.Parse("#676a69");
+                    skPaint.Color = SKColor.Parse("#3A3A3C");
                     skPaint.TextAlign = SKTextAlign.Center;
                     skPaint.TextSize = progressUtils.getFactoredHeight(lineSize1);
                     skPaint.Typeface = SKTypeface.FromFamilyName(
@@ -209,7 +209,7 @@ namespace AlgorithmicsApp.Views
                 {
                     skPaint.Style = SKPaintStyle.Fill;
                     skPaint.IsAntialias = true;
-                    skPaint.Color = SKColor.Parse("#676a69");
+                    skPaint.Color = SKColor.Parse("#484848");
                     skPaint.TextAlign = SKTextAlign.Center;
                     skPaint.TextSize = progressUtils.getFactoredHeight(lineSize2);
                     canvas.DrawText("Решено правильно", Xc, Yc + progressUtils.getFactoredHeight(lineHeight2), skPaint);
@@ -220,7 +220,7 @@ namespace AlgorithmicsApp.Views
                 {
                     skPaint.Style = SKPaintStyle.Fill;
                     skPaint.IsAntialias = true;
-                    skPaint.Color = SKColor.Parse("#e2797a");
+                    skPaint.Color = SKColor.Parse("#FF375F");
                     skPaint.TextAlign = SKTextAlign.Center;
                     skPaint.TextSize = progressUtils.getFactoredHeight(lineSize3);
 

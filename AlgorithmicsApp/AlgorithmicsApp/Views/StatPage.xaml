@@ -4,7 +4,8 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="AlgorithmicsApp.Views.StatPage"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
-             Title="Прогресс">
+             Title="Прогресс"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <Grid.RowDefinitions>

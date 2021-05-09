@@ -13,4 +13,5 @@
     <Color x:Key="FormulaTextColor">#1C1C1E</Color>
     <Color x:Key="LinkTextColor">#007AFF</Color>
     <Color x:Key="LinkTextColor2">#8E8E93</Color>
+    <Color x:Key="SpeedometerColor">#30D158</Color>
 </ResourceDictionary>
