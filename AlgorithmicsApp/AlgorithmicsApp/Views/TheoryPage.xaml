@@ -32,7 +32,7 @@
                         <ViewCell>
                             <StackLayout>
                                 <ScrollView>
-                                    <views:MyTextView x:Name="textView" LaTeX="{Binding Formula}" Margin="15, 5"/>
+                                    <views:MyTextView x:Name="textView" Style="{DynamicResource Key=MathStyle}" LaTeX="{Binding Formula}" Margin="15, 5"/>
                                 </ScrollView>
                                 <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
                                     <Label.FormattedText>

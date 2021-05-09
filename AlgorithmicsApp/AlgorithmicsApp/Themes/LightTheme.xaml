@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AlgorithmicsApp.Themes.LightTheme">
+             x:Class="AlgorithmicsApp.Themes.LightTheme"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms">
     <Color x:Key="MainColor">#64D2FF</Color>
     <Color x:Key="TabBarNavigationColor">#C7C7CC</Color>
     <Color x:Key="UnselectedColor">#636366</Color>
