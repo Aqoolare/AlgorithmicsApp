@@ -1,5 +1,4 @@
-﻿using AlgorithmicsApp.Classes;
-using AlgorithmicsApp.Models;
+﻿using AlgorithmicsApp.Models;
 using AlgorithmicsApp.Themes;
 using AlgorithmicsApp.ViewModels;
 using SkiaSharp;
@@ -17,34 +16,6 @@ using Xamarin.Forms.Xaml;
 
 namespace AlgorithmicsApp.Views
 {
-    class EnumPicker : Picker
-    {
-        public static readonly BindableProperty EnumTypeProperty =
-            BindableProperty.Create(nameof(EnumType), typeof(System.Type), typeof(EnumPicker),
-                propertyChanged: (bindable, oldValue, newValue) =>
-                {
-                    EnumPicker picker = (EnumPicker)bindable;
-
-                    if (oldValue != null)
-                    {
-                        picker.ItemsSource = null;
-                    }
-                    if (newValue != null)
-                    {
-                        if (!((System.Type)newValue).GetTypeInfo().IsEnum)
-                            throw new ArgumentException("EnumPicker: EnumType property must be enumeration type");
-
-                        picker.ItemsSource = Enum.GetValues((System.Type)newValue);
-                    }
-                });
-
-        public System.Type EnumType
-        {
-            set => SetValue(EnumTypeProperty, value);
-            get => (System.Type)GetValue(EnumTypeProperty);
-        }
-    }
-
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StatPage : ContentPage
     {
@@ -263,29 +234,6 @@ namespace AlgorithmicsApp.Views
             catch (Exception e)
             {
                 Debug.WriteLine(e.StackTrace);
-            }
-        }
-
-        private void EnumPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Picker picker = sender as Picker;
-            Theme theme = (Theme)picker.SelectedItem;
-
-            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-            if (mergedDictionaries != null)
-            {
-                mergedDictionaries.Remove(mergedDictionaries.First());
-
-                switch (theme)
-                {
-                    case Theme.Dark:
-                        mergedDictionaries.Add(new DarkTheme());
-                        break;
-                    case Theme.Light:
-                    default:
-                        mergedDictionaries.Add(new LightTheme());
-                        break;
-                }
             }
         }
     }

@@ -5,7 +5,6 @@
              x:Class="AlgorithmicsApp.Views.StatPage"
              xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels" 
              xmlns:views="clr-namespace:AlgorithmicsApp.Views"
-             xmlns:classes="clr-namespace:AlgorithmicsApp.Classes" 
              Title="Прогресс"
              BackgroundColor="{DynamicResource ListViewBgColor}">
     <ContentPage.Content>
@@ -16,12 +15,6 @@
                 <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
 
-            <views:EnumPicker 
-                
-                EnumType="{x:Type classes:Theme}"
-                              Title="Select Theme"
-                              SelectedIndexChanged="EnumPicker_SelectedIndexChanged"/>
-            
             <skia:SKCanvasView x:Name="canvas"
                             PaintSurface="canvas_PaintSurface" 
                             Grid.Row="1" 
