@@ -16,7 +16,6 @@
     <!--<item name="colorAccent">#FF4081</item>-->
   </style>
   <style name="MainTheme.Splash">
-    <item name="android:windowBackground">#C7C7CC</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
