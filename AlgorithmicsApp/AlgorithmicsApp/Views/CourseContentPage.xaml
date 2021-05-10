@@ -14,6 +14,17 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior>
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeee4;"
+                    Color="{DynamicResource IconColor}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+
 
     <Grid>
         <RefreshView x:DataType="local:CourseContentViewModel" Command="{Binding LoadCourseItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">

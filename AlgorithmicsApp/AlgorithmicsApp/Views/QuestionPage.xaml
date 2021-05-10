@@ -14,11 +14,32 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="nextButton" Text="Далее" Command="{Binding GoToNextPageCommand}"/>
-        <ToolbarItem Text="Назад" Command="{Binding GoToPreviousPageCommand}"/>
+        <ToolbarItem Command="{Binding GoToPreviousPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea93;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem x:Name="nextButton" Command="{Binding GoToNextPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea94;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}"/>
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}">
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeee4;"
+                    Color="{DynamicResource IconColor}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
     </Shell.BackButtonBehavior>
 
     <ContentPage.Content>
