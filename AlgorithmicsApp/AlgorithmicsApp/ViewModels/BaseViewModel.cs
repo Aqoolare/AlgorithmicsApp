@@ -10,8 +10,6 @@ namespace AlgorithmicsApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
         bool isBusy = false;
         public bool IsBusy
         {
@@ -19,24 +17,20 @@ namespace AlgorithmicsApp.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
-
         protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
+            [CallerMemberName] string propertyName = "")
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
 
             backingStore = value;
-            onChanged?.Invoke();
             OnPropertyChanged(propertyName);
             return true;
+        }
+
+        public void OnAppearing()
+        {
+            IsBusy = true;
         }
 
         #region INotifyPropertyChanged

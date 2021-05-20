@@ -18,7 +18,7 @@ namespace AlgorithmicsApp.Services
             if (db != null)
                 return;
 
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData1.db");
 
             db = new SQLiteAsyncConnection(databasePath);
             await db.CreateTableAsync<TheoryContent>();
@@ -426,6 +426,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var theoryContent = await db.Table<TheoryContent>().Where(tc => tc.TheoryId == theoryId).ToListAsync();
+            await db.CloseAsync();
             return theoryContent;
         }
 
@@ -434,6 +435,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var link = await db.Table<Link>().Where(l => l.Id == linkId).FirstOrDefaultAsync();
+            await db.CloseAsync();
             return link;
         }
     }

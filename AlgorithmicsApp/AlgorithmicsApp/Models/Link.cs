@@ -8,7 +8,6 @@ namespace AlgorithmicsApp.Models
     {
         public int Id { get; set; }
         public int TheoryId { get; set; }
-        public string TheoryTitle { get; set; }
         public int ElementIndex { get; set; }
         public string Text { get; set; }
     }

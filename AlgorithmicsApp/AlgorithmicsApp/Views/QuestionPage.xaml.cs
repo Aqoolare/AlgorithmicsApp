@@ -22,7 +22,6 @@ namespace AlgorithmicsApp.Views
         {
             InitializeComponent();
             BindingContext = _viewModel = new QuestionViewModel();
-            //collectionView.SelectedItems.Clear();
         }
 
         protected override void OnAppearing()
@@ -32,26 +31,6 @@ namespace AlgorithmicsApp.Views
             _viewModel.UpdateAnswersInterface = UpdateIntrface;
             _viewModel.UpdateAnswersInterfaceAfterLoad = UpdateInterfaceAfterLoad;
             _viewModel.OnAppearing();
-            //if (_viewModel.IsAnswered)
-            //{
-            //    if (_viewModel.Answers.Any(answer => answer.AnswerColor == "Red"))
-            //    {
-            //        conditionLabel.Text = resultMessages[1];
-            //        App.Current.Resources["AnswerColor"] = Color.Red;
-            //    }
-            //    else
-            //    {
-            //        conditionLabel.Text = resultMessages[0];
-            //        App.Current.Resources["AnswerColor"] = Color.Green;
-            //    }
-            //    collectionView.SelectionMode = SelectionMode.None;
-            //    checkButton.Text = "Решить заново";
-            //}
-            //else
-            //{
-            //    checkButton.IsEnabled = false;
-            //    checkButton.Text = "Проверить ответы";
-            //}
             if (_viewModel.CurrentPosition == CourseContentDbService.CourseItems.Count())
             {
                 nextButton.IsEnabled = false;
@@ -105,14 +84,13 @@ namespace AlgorithmicsApp.Views
                 answer.AnswerColor = "White";
             }
             _viewModel.IsTrue = false;
-            //_viewModel.IsAnswered = false;
             collectionView.SelectionMode = SelectionMode.Multiple;
             checkButton.Text = "Проверить ответы";
         }
 
         void UpdateIsNotAnsweredInteface()
         {
-            //if (_viewModel.SelectedAnswers.Count > 0)
+            
             {
                 IEnumerable<Answer> selectedAnswers = from selectedAnswer in _viewModel.SelectedAnswers select (Answer)selectedAnswer;
                 IEnumerable<int> selectedAnswersIds = from selectedAnswer in selectedAnswers select selectedAnswer.Id;
@@ -146,7 +124,6 @@ namespace AlgorithmicsApp.Views
                     conditionLabel.Text = resultMessages[1];
                     App.Current.Resources["AnsColor"] = Color.FromHex("#FF375F");
                 }
-                //_viewModel.IsAnswered = true;
                 checkButton.Text = "Решить заново";
             }
         }

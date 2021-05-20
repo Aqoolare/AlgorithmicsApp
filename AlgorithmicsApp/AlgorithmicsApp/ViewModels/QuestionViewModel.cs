@@ -75,7 +75,6 @@ namespace AlgorithmicsApp.ViewModels
         {
             var route = String.Empty;
             var item = CourseContentDbService.CourseItems[CurrentPosition];
-            CourseContentDbService.CourseItemsHistory.Add(item);
             if (item.ItemType == Models.Type.Theory)
             {
                 Theory theory = (Theory)item;
@@ -131,13 +130,6 @@ namespace AlgorithmicsApp.ViewModels
             CollectionViewHeightRequest = 75 * Answers.Count;
             IsBusy = false;
             UpdateAnswersInterfaceAfterLoad();
-        }
-
-
-
-        public void OnAppearing()
-        {
-            IsBusy = true;
         }
     }
 

@@ -51,8 +51,6 @@ namespace AlgorithmicsApp.ViewModels
                 route = $"{nameof(QuestionPage)}?QuestionId={question.Id}&QuestionTitle={question.Title}" +
                     $"&Formulation={Uri.EscapeDataString(question.Formulation)}&IsAnswered={question.IsAnswered}&CurrentPosition={CurrentPosition}";
             }
-            CourseContentDbService.CourseItemsHistory = new List<CourseItem>();
-            CourseContentDbService.CourseItemsHistory.Add(item);
 
             await Shell.Current.GoToAsync(route);
         }
@@ -77,11 +75,6 @@ namespace AlgorithmicsApp.ViewModels
             }
 
             IsBusy = false;
-        }
-
-        public void OnAppearing()
-        {
-            IsBusy = true;
         }
     }
 }

@@ -33,13 +33,6 @@ namespace AlgorithmicsApp.ViewModels
         public AsyncCommand LoadCommand { get; }
         public Action RefreshScrollDown;
 
-        int fSize = 0;
-        public int FSize
-        {
-            get { return fSize; }
-            set { SetProperty(ref fSize, value); }
-        }
-
 
         public TheoryViewModel()
         {
@@ -49,8 +42,6 @@ namespace AlgorithmicsApp.ViewModels
             GoToCourseContentListCommand = new AsyncCommand(GoToCourseContentList);
             GoToPreviousPageCommand = new AsyncCommand(GoToPreviousPage);
             GoToNextPageCommand = new AsyncCommand(GoToNextPage);
-            var p = DeviceDisplay.MainDisplayInfo.Density;
-            FSize = Convert.ToInt32(43 * (p / 2.625));
         }
 
         int GetRightTheoryID()
@@ -76,11 +67,6 @@ namespace AlgorithmicsApp.ViewModels
             TheoryContentList.AddRange(items);
             RefreshScrollDown();
             IsBusy = false;
-        }
-
-        public void OnAppearing()
-        {
-            IsBusy = true;
         }
 
         
@@ -113,8 +99,6 @@ namespace AlgorithmicsApp.ViewModels
 
         async Task GoToPreviousPage()
         {
-            var route = String.Empty;
-            var a = Shell.Current.CurrentState;
             await Shell.Current.GoToAsync($"..");
         }
 
@@ -127,8 +111,7 @@ namespace AlgorithmicsApp.ViewModels
             var theoryItem = await CourseContentDbService.GetTheoryById(link.TheoryId);
 
             var route = $"{nameof(TheoryPage)}?TheoryLinkId={link.TheoryId}&TheoryId={this.TheoryId}&TheoryTitle={theoryItem.Title}&ItemIndexToScroll={link.ElementIndex}&ByLink={true}";
-            //IsBusy = true;
-            //var nextPage = from page in theoryPages where page.Id == link.TheoryId select page;
+            
             await Shell.Current.GoToAsync(route);
             IsBusy = false;
         }

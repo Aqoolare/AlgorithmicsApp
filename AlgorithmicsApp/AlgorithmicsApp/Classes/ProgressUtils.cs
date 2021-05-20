@@ -7,12 +7,12 @@ namespace AlgorithmicsApp.Models
 {
     public class ProgressUtils
     {
-        private const float refHeight = 1080;//1677;
-        private const float refWidth = 632;//940;
+        private const float refHeight = 1080;
+        private const float refWidth = 632;
 
         // Derived Proportinate Values
-        private float deviceHeight = 1; // Initializing to 1
-        private float deviceWidth = 1;  // Initializing to 1
+        private float deviceHeight = 1;
+        private float deviceWidth = 1;
 
         // Empty Constructor
         public ProgressUtils() { }
@@ -22,21 +22,6 @@ namespace AlgorithmicsApp.Models
         {
             this.deviceHeight = deviceHeight;
             this.deviceWidth = deviceWidth;
-        }
-
-        // Getting Device Specific Values
-        public float getFactoredValue(int value)
-        {
-
-            float refRatio = refHeight / refWidth;
-            float devRatio = deviceHeight / deviceWidth;
-
-            float factoredValue = value * (refRatio / devRatio);
-
-            Debug.WriteLine("RR:" + refRatio + "  DR: " + devRatio + " DIV:" + (refRatio / devRatio));
-            Debug.WriteLine("Calculated Value for " + value + "  : " + factoredValue);
-
-            return factoredValue;
         }
 
         // Deriving Proportinate Height

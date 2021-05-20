@@ -19,7 +19,6 @@ namespace AlgorithmicsApp.Views
     {
         public MyTextView()
         {
-            CSharpMath.Rendering.Text.TextLaTeXParser.AdditionalBreakingEngines.Add(new RussianBreakingEngine());
             InvalidateSurface();
         }
     }

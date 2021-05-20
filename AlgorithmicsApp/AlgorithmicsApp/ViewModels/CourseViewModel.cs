@@ -24,11 +24,6 @@ namespace AlgorithmicsApp.ViewModels
             TappedCommand = new AsyncCommand<Course>(Tapped);
         }
 
-        public void OnAppearing()
-        {
-            IsBusy = true;
-        }
-
         async Task LoadCourses()
         {
             IsBusy = true;
@@ -42,10 +37,6 @@ namespace AlgorithmicsApp.ViewModels
         {
             if (course == null)
                 return;
-
-            IsBusy = true;
-            var theory = await CourseContentDbService.GetTheory(course.Id);
-            IsBusy = false;
 
             var route = $"{nameof(CourseContentPage)}?CourseId={course.Id}&CourseName={course.Name}";
             await Shell.Current.GoToAsync(route);

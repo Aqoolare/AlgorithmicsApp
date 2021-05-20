@@ -44,27 +44,22 @@ namespace AlgorithmicsApp.Views
             drawGaugeAsync();
         }
 
-        //void switchToggledAsync(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-        //    initiateProgressUpdate();
-        //}
-
 
         void sliderValueChanged(object sender, ValueChangedEventArgs args)
         {
             if (canvas != null)
             {
-                // Invalidating surface due to data change
+                
                 canvas.InvalidateSurface();
             }
         }
 
         async void animateProgress(int progress)
         {
-            //sw_listToggle.IsEnabled = false;
+            
             sweepAngleSlider.Value = 1;
 
-            // Looping at data interval of 5
+            
             for (int i = 0; i < progress; i = i + 5)
             {
                 sweepAngleSlider.Value = i;
@@ -72,7 +67,7 @@ namespace AlgorithmicsApp.Views
             }
 
             sweepAngleSlider.Value = progress;
-            //sw_listToggle.IsEnabled = true;
+            
 
         }
 
@@ -83,112 +78,86 @@ namespace AlgorithmicsApp.Views
 
         public void drawGaugeAsync()
         {
-            // Radial Gauge Constants
+            
             int uPadding = 150;
             int side = 500;
             int radialGaugeWidth = 25;
 
-            // Line TextSize inside Radial Gauge
+            
             int lineSize1 = 220;
             int lineSize2 = 70;
             int lineSize3 = 80;
 
-            // Line Y Coordinate inside Radial Gauge
+            
             int lineHeight1 = 100;
             int lineHeight2 = 200;
             int lineHeight3 = 300;
 
-            // Start & End Angle for Radial Gauge
+            
             float startAngle = -220;
             float sweepAngle = 260;
 
             try
             {
 
-                // Getting Canvas Info 
+                
                 SKImageInfo info = args.Info;
                 SKSurface surface = args.Surface;
                 SKCanvas canvas = surface.Canvas;
                 progressUtils.setDevice(info.Height, info.Width);
                 canvas.Clear();
 
-                // Getting Device Specific Screen Values
-                // -------------------------------------------------
-
-                // Top Padding for Radial Gauge
+                
                 float upperPading = progressUtils.getFactoredHeight(uPadding);
 
-                /* Coordinate Plotting for Radial Gauge
-                *
-                *    (X1,Y1) ------------
-                *           |   (XC,YC)  |
-                *           |      .     |
-                *         Y |            |
-                *           |            |
-                *            ------------ (X2,Y2))
-                *                  X
-                *   
-                *To fit a perfect Circle inside --> X==Y
-                *       i.e It should be a Square
-                */
-
-                // Xc & Yc are center of the Circle
+                
                 int Xc = info.Width / 2;
                 float Yc = progressUtils.getFactoredHeight(side);
 
-                // X1 Y1 are lefttop cordiates of rectange
+                
                 int X1 = (int)(Xc - Yc);
                 int Y1 = (int)(Yc - Yc + upperPading);
 
-                // X2 Y2 are rightbottom cordiates of rectange
+                
                 int X2 = (int)(Xc + Yc);
                 int Y2 = (int)(Yc + Yc + upperPading);
 
-                //Loggig Screen Specific Calculated Values
-                Debug.WriteLine("INFO " + info.Width + " - " + info.Height);
-                Debug.WriteLine(" C : " + upperPading + "  " + info.Height);
-                Debug.WriteLine(" C : " + Xc + "  " + Yc);
-                Debug.WriteLine("XY : " + X1 + "  " + Y1);
-                Debug.WriteLine("XY : " + X2 + "  " + Y2);
 
-                //  Empty Gauge Styling
+                
                 SKPaint paint1 = new SKPaint
                 {
                     Style = SKPaintStyle.Stroke,
-                    Color = Color.FromHex("#e0dfdf").ToSKColor(),                   // Colour of Radial Gauge
-                    StrokeWidth = progressUtils.getFactoredWidth(radialGaugeWidth), // Width of Radial Gauge
-                    StrokeCap = SKStrokeCap.Round                                   // Round Corners for Radial Gauge
+                    Color = Color.FromHex("#e0dfdf").ToSKColor(),                   
+                    StrokeWidth = progressUtils.getFactoredWidth(radialGaugeWidth), 
+                    StrokeCap = SKStrokeCap.Round                                   
                 };
 
-                // Filled Gauge Styling
+                
                 SKPaint paint2 = new SKPaint
                 {
                     Style = SKPaintStyle.Stroke,
-                    Color = Color.FromHex("#30D158").ToSKColor(),                   // Overlay Colour of Radial Gauge
-                    StrokeWidth = progressUtils.getFactoredWidth(radialGaugeWidth), // Overlay Width of Radial Gauge
-                    StrokeCap = SKStrokeCap.Round                                   // Round Corners for Radial Gauge
+                    Color = Color.FromHex("#30D158").ToSKColor(),                   
+                    StrokeWidth = progressUtils.getFactoredWidth(radialGaugeWidth), 
+                    StrokeCap = SKStrokeCap.Round                                   
                 };
 
-                // Defining boundaries for Gauge
+                
                 SKRect rect = new SKRect(X1, Y1, X2, Y2);
 
 
-                //canvas.DrawRect(rect, paint1);
-                //canvas.DrawOval(rect, paint1);
-
-                // Rendering Empty Gauge
+                
                 SKPath path1 = new SKPath();
                 path1.AddArc(rect, startAngle, sweepAngle);
                 canvas.DrawPath(path1, paint1);
 
-                // Rendering Filled Gauge
+                
                 SKPath path2 = new SKPath();
                 path2.AddArc(rect, startAngle, (float)sweepAngleSlider.Value);
                 canvas.DrawPath(path2, paint2);
 
-                //---------------- Drawing Text Over Gauge ---------------------------
+                
 
-                // Achieved Minutes
+                
                 using (SKPaint skPaint = new SKPaint())
                 {
                     skPaint.Style = SKPaintStyle.Fill;
@@ -202,11 +171,11 @@ namespace AlgorithmicsApp.Views
                                         SKFontStyleWidth.Normal,
                                         SKFontStyleSlant.Upright);
 
-                    // Drawing Achieved Minutes Over Radial Gauge
+                    
                     canvas.DrawText(_viewModel.AnsweredQuestionsCount + "", Xc, Yc + progressUtils.getFactoredHeight(lineHeight1), skPaint);
                 }
 
-                // Achieved Minutes Text Styling
+                
                 using (SKPaint skPaint = new SKPaint())
                 {
                     skPaint.Style = SKPaintStyle.Fill;
@@ -217,7 +186,7 @@ namespace AlgorithmicsApp.Views
                     canvas.DrawText("Решено правильно", Xc, Yc + progressUtils.getFactoredHeight(lineHeight2), skPaint);
                 }
 
-                // Goal Minutes Text Styling
+                
                 using (SKPaint skPaint = new SKPaint())
                 {
                     skPaint.Style = SKPaintStyle.Fill;
@@ -226,7 +195,7 @@ namespace AlgorithmicsApp.Views
                     skPaint.TextAlign = SKTextAlign.Center;
                     skPaint.TextSize = progressUtils.getFactoredHeight(lineSize3);
 
-                    // Drawing Text Over Radial Gauge
+                    
                     canvas.DrawText("Всего: " + _viewModel.TotalQuestionsCount, Xc, Yc + progressUtils.getFactoredHeight(lineHeight3), skPaint);
                 }
 

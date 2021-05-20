@@ -15,14 +15,13 @@ namespace AlgorithmicsApp.Services
         static SQLiteAsyncConnection db = null;
 
         public static CourseItem[] CourseItems { get; set; }
-        public static List<CourseItem> CourseItemsHistory { get; set; }
 
         static async Task Init()
         {
             if (db != null)
                 return;
-
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
+            
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData1.db");
 
             db = new SQLiteAsyncConnection(databasePath);
             await db.CreateTableAsync<Theory>();
@@ -373,6 +372,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var theory = await db.Table<Theory>().Where(t => t.CourseId == courseId).ToListAsync();
+            await db.CloseAsync();
             return theory;
         }
 
@@ -381,6 +381,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var theory = await db.Table<Theory>().Where(t => t.Id == theoryId).FirstOrDefaultAsync();
+            await db.CloseAsync();
             return theory;
         }
 
@@ -389,6 +390,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var question = await db.Table<Question>().Where(q => q.Id == questionId).FirstOrDefaultAsync();
+            await db.CloseAsync();
             return question;
         }
 
@@ -397,6 +399,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var questions = await db.Table<Question>().Where(q => q.CourseId == courseId).ToListAsync();
+            await db.CloseAsync();
             return questions;
         }
 
@@ -405,6 +408,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var totalCount = await db.Table<Question>().CountAsync();
+            await db.CloseAsync();
             return totalCount;
         }
 
@@ -413,6 +417,7 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var answeredCount = await db.Table<Question>().Where(q => q.IsTrue).CountAsync();
+            await db.CloseAsync();
             return answeredCount;
         }
 
@@ -421,14 +426,16 @@ namespace AlgorithmicsApp.Services
             await Init();
 
             var question = await db.Table<Question>().Where(q => q.Id == questionId).FirstOrDefaultAsync();
+            await db.CloseAsync();
             return question;
         }
 
         public static async Task<int> UpdateQuestion(Question question)
         {
             await Init();
-
-            return await db.UpdateAsync(question);
+            var res = await db.UpdateAsync(question);
+            await db.CloseAsync();
+            return res;
         }
     }
 }
