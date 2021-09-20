@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AlgorithmicsApp.Models"
+             x:Class="AlgorithmicsApp.Views.TheoryPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms" xmlns:views="clr-namespace:AlgorithmicsApp.Views"
+             Title="{Binding TheoryTitle}"
+             x:Name="TheoryPage1"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoToPreviousPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea6c;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem x:Name="nextButton" Command="{Binding GoToNextPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea6d;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}" >
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeee4;"
+                    Color="{DynamicResource IconColor}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+
+    <RefreshView x:DataType="local:TheoryViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <StackLayout>
+            <ListView
+            CachingStrategy="RecycleElement"
+            HasUnevenRows="True"
+            ItemsSource="{Binding TheoryContentList}"
+            SelectionMode="None"
+            SeparatorVisibility="None"
+            x:Name="listView">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Wrapper">
+                        <ViewCell>
+                            <StackLayout>
+                                <ScrollView>
+                                    <views:MyTextView x:Name="textView" Style="{DynamicResource Key=MathStyle}" LaTeX="{Binding Formula}" Margin="15, 5"/>
+                                </ScrollView>
+                                <Label LineBreakMode="WordWrap" HeightRequest="{Binding LabelHeightReq}" HorizontalTextAlignment="End" Margin="15, 0">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Text1}" FontAttributes="Italic"/>
+                                            <Span x:Name="{Binding }" Text="{Binding Link.Text}" TextDecorations="Underline" FontAttributes="Italic" TextColor="{DynamicResource LinkTextColor}">
+                                                <Span.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference TheoryPage1},Path=BindingContext.LinkTappedCommand}" CommandParameter="{Binding Link}"/>
+                                                </Span.GestureRecognizers>
+                                            </Span>
+                                            <Span Text="{Binding Text2}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Label x:Name="linkLabel" FontSize="Small" TextColor="Gray" Padding="0" Margin="15,0" HorizontalTextAlignment="Start"/>
+        </StackLayout>
+    </RefreshView>
+</ContentPage> 
+    

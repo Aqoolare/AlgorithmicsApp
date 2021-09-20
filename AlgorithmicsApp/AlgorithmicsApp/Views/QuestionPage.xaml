@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AlgorithmicsApp.Models"
+             x:Class="AlgorithmicsApp.Views.QuestionPage"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             xmlns:views="clr-namespace:AlgorithmicsApp.Views"
+             Title="{Binding QuestionTitle}"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary />
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoToPreviousPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea6c;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem x:Name="nextButton" Command="{Binding GoToNextPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xea6d;"
+                    Color="{DynamicResource IconColor}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding GoToCourseContentListCommand}">
+            <BackButtonBehavior.IconOverride>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeee4;"
+                    Color="{DynamicResource IconColor}"/>
+            </BackButtonBehavior.IconOverride>
+        </BackButtonBehavior>
+    </Shell.BackButtonBehavior>
+
+    <ContentPage.Content>
+        <RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <ScrollView>
+                <StackLayout>
+                    <views:MyTextView LaTeX="{Binding Formulation}" HorizontalOptions="Center" Margin="15, 10, 15, 0"/>
+                    <!--<RefreshView x:DataType="local:QuestionViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+                        <CollectionView
+                            ItemsSource="{Binding Answers, Mode=TwoWay}"
+                            SelectedItems="{Binding SelectedAnswers, Mode=TwoWay}"
+                            SelectionMode="Multiple"
+                            x:Name="collectionView"
+                            SelectionChanged="collectionView_SelectionChanged"
+                            HeightRequest="{Binding CollectionViewHeightRequest}"
+                            >
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Vertical"/>
+                            </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Answer">
+                                <StackLayout Padding="10">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="{Binding AnswerColor}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter TargetName="frame" Property="Frame.BackgroundColor" Value="{DynamicResource MainColor}"/>
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <Frame CornerRadius="10" HasShadow="True" x:Name="frame" BackgroundColor="{Binding AnswerColor}">
+                                        <views:MyTextView x:Name="label" LaTeX="{Binding Content}" />
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <!--</RefreshView>-->
+                    <StackLayout>
+                        <Label x:Name="conditionLabel" TextColor="{DynamicResource AnsColor}" />
+                        <Button x:Name="checkButton" Text="Проверить ответы" CornerRadius="10" Margin="10"
+                                    Command="{Binding CheckAnswersCommand}"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

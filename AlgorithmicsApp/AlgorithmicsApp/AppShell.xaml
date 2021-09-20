@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AlgorithmicsApp.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AlgorithmicsApp.Views"
+    BackgroundColor="{DynamicResource TabBarNavigationColor}"
+    TitleColor="{DynamicResource TextColor2}"
+    UnselectedColor="{DynamicResource UnselectedColor}"
+    Shell.TabBarBackgroundColor="{DynamicResource TabBarNavigationColor}"
+    Shell.TabBarUnselectedColor="{DynamicResource UnselectedColor}"
+    Shell.TabBarTitleColor="{DynamicResource TextColor}"
+    Shell.ForegroundColor="{DynamicResource TextColor}"
+    >
+    <Shell.Resources>
+        <ResourceDictionary Source="Themes/LightTheme.xaml" />
+    </Shell.Resources>
+
+    <TabBar>
+        <Tab Title="Обучение">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xeada;"/>
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate local:CoursesPage}" Route="CoursesPage" />
+        </Tab>
+        <Tab Title="Прогресс">
+            <Tab.Icon>
+                <FontImageSource
+                    FontFamily="IconFont"
+                    Glyph="&#xed29;"/>
+            </Tab.Icon>
+            <ShellContent Title="Прогресс" ContentTemplate="{DataTemplate local:StatPage}" Route="StatPage"/>
+        </Tab>
+    </TabBar>
+
+</Shell>

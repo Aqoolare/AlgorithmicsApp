@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:AlgorithmicsApp.Models"
+             x:Class="AlgorithmicsApp.Views.CoursesPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels"
+             xmlns:math="clr-namespace:CSharpMath.Forms;assembly=CSharpMath.Forms"
+             Title="Обучение">
+    
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemTappedEventArgsConverter x:Key="ItemTappedEventArgsConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <RefreshView x:DataType="local:CourseViewModel" Command="{Binding LoadCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <ListView
+            Style="{DynamicResource Key=CoursesListView}"
+            CachingStrategy="RecycleElement"
+            ItemsSource="{Binding CoursesList}">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                    EventName="ItemTapped"
+                    Command="{Binding TappedCommand}"                
+                    EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:Course">
+                    <ViewCell>
+                        <Grid>
+                            <Frame Style="{DynamicResource Key=frameListView}">
+                                <StackLayout Orientation="Horizontal">
+                                    <Image 
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center"
+                                        Margin="5, 0, 0, 0">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                    FontFamily="IconFont"
+                                                    Glyph="{Binding Icon}"
+                                                    Color="{DynamicResource IconColor}"
+                                                    Size="55"/>
+                                        </Image.Source>
+                                    </Image>
+                                    <StackLayout VerticalOptions="Center" Margin="15, 0">
+                                        <Label
+                                            FontSize="Medium"
+                                            Text="{Binding Name}"
+                                            VerticalOptions="Center"
+                                            TextColor="{DynamicResource FrameTextColor}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </RefreshView>
+</ContentPage>

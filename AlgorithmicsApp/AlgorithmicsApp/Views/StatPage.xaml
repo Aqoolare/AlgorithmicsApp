@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="AlgorithmicsApp.Views.StatPage"
+             xmlns:local="clr-namespace:AlgorithmicsApp.ViewModels" 
+             xmlns:views="clr-namespace:AlgorithmicsApp.Views"
+             Title="Прогресс"
+             BackgroundColor="{DynamicResource ListViewBgColor}">
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+
+            <skia:SKCanvasView x:Name="canvas"
+                            PaintSurface="canvas_PaintSurface" 
+                            Grid.Row="1" 
+                            BackgroundColor="Transparent"/>
+            <Slider x:Name="sweepAngleSlider"
+                   ValueChanged="sliderValueChanged"
+                   Minimum="0" Maximum="260"
+                   IsVisible="false"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
