@@ -16,7 +16,7 @@ namespace AlgorithmicsApp.Services
             if (db != null)
                 return;
 
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData1.db");
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData2.db");
 
             db = new SQLiteAsyncConnection(databasePath);
 
